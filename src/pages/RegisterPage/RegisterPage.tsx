@@ -1,5 +1,7 @@
 import { useState } from "react";
+import type { ChangeEvent, ReactNode } from "react";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import {
   FaGoogle,
@@ -11,6 +13,17 @@ import {
   FaUserPlus,
 } from "react-icons/fa";
 
+// Props interface for FloatingLabelInput component
+interface FloatingLabelInputProps {
+  id: string;
+  label: string;
+  type: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  rightIcon?: ReactNode; // Optional prop
+  placeholder?: string; // Optional prop
+}
+
 // Reuse the Floating Label Input from Login Page
 const FloatingLabelInput = ({
   id,
@@ -20,11 +33,11 @@ const FloatingLabelInput = ({
   onChange,
   rightIcon,
   placeholder,
-}) => {
-  const [isFocused, setIsFocused] = useState(false);
+}: FloatingLabelInputProps) => {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(value ? true : false);
+  const handleFocus = (): void => setIsFocused(true);
+  const handleBlur = (): void => setIsFocused(value ? true : false);
 
   return (
     <div className="relative">
@@ -88,10 +101,10 @@ const FloatingLabelInput = ({
 };
 
 const RegisterPage = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<string>("");
 
   // Animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -102,7 +115,7 @@ const RegisterPage = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -114,7 +127,7 @@ const RegisterPage = () => {
     },
   };
 
-  const featureVariants = {
+  const featureVariants: Variants = {
     hidden: { x: -30, opacity: 0 },
     visible: (custom) => ({
       x: 0,
@@ -126,7 +139,7 @@ const RegisterPage = () => {
     }),
   };
 
-  const buttonVariants = {
+  const buttonVariants: Variants = {
     initial: { scale: 1 },
     hover: {
       scale: 1.03,
@@ -144,7 +157,6 @@ const RegisterPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-
           <NavLink to="/" className="flex items-center space-x-2">
             <img
               src="/logo.jpeg"
@@ -276,7 +288,9 @@ const RegisterPage = () => {
                   type="email"
                   label="Email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setEmail(e.target.value)
+                  }
                 />
               </motion.div>
 

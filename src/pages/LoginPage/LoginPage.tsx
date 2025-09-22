@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import type { ChangeEvent, ReactNode } from "react";
+import { motion } from "framer-motion";
 import {
   FaGoogle,
   FaFacebookF,
@@ -10,6 +11,16 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
+// Props interface for FloatingLabelInput component
+interface FloatingLabelInputProps {
+  id: string;
+  label: string;
+  type: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  rightIcon?: ReactNode; // Optional prop
+}
+
 // Enhanced Floating Label Input Component
 const FloatingLabelInput = ({
   id,
@@ -18,11 +29,11 @@ const FloatingLabelInput = ({
   value,
   onChange,
   rightIcon,
-}) => {
-  const [isFocused, setIsFocused] = useState(false);
+}: FloatingLabelInputProps) => {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(value ? true : false);
+  const handleFocus = (): void => setIsFocused(true);
+  const handleBlur = (): void => setIsFocused(value ? true : false);
 
   return (
     <div className="relative">
@@ -76,9 +87,9 @@ const FloatingLabelInput = ({
 };
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -119,7 +130,11 @@ const LoginPage = () => {
       >
         {/* Logo */}
         <NavLink to="/" className="w-full flex justify-center mb-8">
-          <img src="/logo.jpeg" alt="Sarthifx Logo" className="h-16 rounded-xl" />
+          <img
+            src="/logo.jpeg"
+            alt="Sarthifx Logo"
+            className="h-16 rounded-xl"
+          />
         </NavLink>
 
         {/* Welcome Title */}
@@ -146,7 +161,9 @@ const LoginPage = () => {
               type="email"
               label="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
             />
           </motion.div>
 
@@ -157,7 +174,9 @@ const LoginPage = () => {
               type={showPassword ? "text" : "password"}
               label="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
               rightIcon={
                 <button
                   type="button"

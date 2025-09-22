@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
 import HeroSection from "../../sections/HeroSection/HeroSection";
 import TradeWithConfidenceSection from "../../sections/TradeWithConfSection/TradeWithConfSection";
 

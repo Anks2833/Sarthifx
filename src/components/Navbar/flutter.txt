@@ -1,0 +1,1065 @@
+import 'package:exness_clone/core/extensions.dart';
+import 'package:exness_clone/theme/app_colors.dart';
+import 'package:exness_clone/theme/app_flavor_color.dart';
+import 'package:exness_clone/utils/bottom_nav_helper.dart';
+import 'package:exness_clone/view/account/buy_sell_trade/provider/orders_provider.dart';
+import 'package:exness_clone/view/account/buy_sell_trade/widget/trade_bottom_sheets.dart';
+import 'package:exness_clone/widget/button/premium_app_button.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../constant/trade_data.dart';
+
+class OrdersScreen extends StatelessWidget {
+  const OrdersScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<OrdersProvider>(
+      builder: (context, p, _) {
+        final hasTrades = p.trades.isNotEmpty;
+
+        return Scaffold(
+          appBar: AppBar(
+            flexibleSpace: Container(
+              color: context.backgroundColor,
+            ),
+            title: const Text(
+              'Open Orders',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+            centerTitle: true,
+            elevation: 1,
+            bottom: p.equity != null
+                ? PreferredSize(
+                    preferredSize: const Size.fromHeight(50),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .surfaceVariant
+                          .withOpacity(0.3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          // _statChip('Balance', double.tryParse(p.equity!.balance) ?? 0.0),
+                          _statChip(
+                              'Funds', double.tryParse(p.equity!.funds) ?? 0.0),
+                          _statChip('Equity',
+                              double.tryParse(p.equity!.equity) ?? 0.0),
+                          _statChip('Free',
+                              double.tryParse(p.equity!.freeMargin) ?? 0.0),
+                          _statChip(
+                              'PNL', double.tryParse(p.equity!.pnl) ?? 0.0,
+                              color: (double.tryParse(p.equity!.pnl) ?? 0) >= 0
+                                  ? Colors.green
+                                  : Colors.red),
+                        ],
+                      ),
+                    ),
+                  )
+                : null,
+          ),
+          body: hasTrades
+              ? ListView.separated(
+                  padding: const EdgeInsets.all(12),
+                  itemCount: p.trades.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 10),
+                  itemBuilder: (context, i) {
+                    final t = p.trades[i];
+                    final isBuy = t.side.toLowerCase() == 'buy';
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: context.scaffoldBackgroundColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: isBuy
+                                    ? Colors.green.withOpacity(0.15)
+                                    : Colors.red.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                t.side.toUpperCase(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: isBuy ? Colors.green : Colors.red,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    t.symbol,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    'Lot: ${t.lot} • TP: ${t.tp ?? '-'} • SL: ${t.sl ?? '-'}',
+                                    style: TextStyle(
+                                        color: Colors.grey[600], fontSize: 13),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    'Avg Price: ${t.avg.toString()}',
+                                    // 'Avg Price: ${t.avg.toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                        color: Colors.grey[500], fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  t.profit.toString(),
+                                  // t.profit.toStringAsFixed(2),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: t.profit >= 0
+                                        ? AppColor.greenColor
+                                        : AppColor.redColor,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                        icon: Icon(Icons.edit,
+                                            size: 20,
+                                            color: AppColor.greyColor),
+                                        onPressed: () {
+                                          isBuy
+                                              ? showBuyTradeBottomSheet(
+                                                  context,
+                                                  symbol: t.symbol,
+                                                  sector:
+                                                      TradeData.stockCategory,
+                                                  currentPrice: t.avg,
+                                                )
+                                              : showSellTradeBottomSheet(
+                                                  context,
+                                                  symbol: t.symbol,
+                                                  sector:
+                                                      TradeData.stockCategory,
+                                                  currentPrice: t.avg,
+                                                );
+                                        }),
+                                    IconButton(
+                                      icon: Icon(Icons.close,
+                                          size: 20, color: AppColor.greyColor),
+                                      onPressed: () => p.closeTrade(t.id),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                )
+              : _EmptyPlaceholder(onPlaceOrder: () => BottomNavHelper.goTo(0)
+                  //     showBuyTradeBottomSheet(
+                  //   context,
+                  //   symbol: "C:GBPUSD",
+                  //   sector: AppData.stockCategory,
+                  //   currentPrice: 10.0,
+                  // ),
+                  ),
+          // floatingActionButton: PremiumAppButton(
+          //   text: 'Place Order',
+          //   onPressed: () => showBuyTradeBottomSheet(
+          //     context,
+          //     symbol: "C:GBPUSD",
+          //     sector: AppData.stockCategory,
+          //     currentPrice: 10.0,
+          //   ),
+          //   showIcon: true,
+          //   icon: Icons.add,
+          //   width: MediaQuery.of(context).size.width * 0.5,
+          // ),
+        );
+      },
+    );
+  }
+
+  /* static Widget _statChip(String label, double value, {Color? color}) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(label,
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+        const SizedBox(height: 2),
+        Text(
+          value.toStringAsFixed(2),
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: color ,
+          ),
+        ),
+      ],
+    );
+  }*/
+  static Widget _statChip(String label, double value, {Color? color}) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(label,
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+        const SizedBox(height: 2),
+        Text(
+          value.toString(),
+          // value.toStringAsFixed(2),
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: color ?? Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _EmptyPlaceholder extends StatelessWidget {
+  final VoidCallback onPlaceOrder;
+  const _EmptyPlaceholder({required this.onPlaceOrder});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 90,
+              height: 90,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    theme.colorScheme.primary.withOpacity(0.10),
+                    theme.colorScheme.primary.withOpacity(0.02),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.shopping_cart_outlined,
+                size: 48,
+                color: AppFlavorColor.primary,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'No Open Orders',
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: theme.colorScheme.onBackground,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'When you place an order, it will appear here with real-time updates.',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: Colors.grey[600],
+                height: 1.4,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 28),
+            PremiumAppButton(
+              text: 'Place Your First Order',
+              onPressed: onPlaceOrder,
+              showIcon: true,
+              icon: Icons.add,
+              width: MediaQuery.of(context).size.width * 0.7,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+import 'package:exness_clone/utils/snack_bar.dart';
+import 'package:flutter/foundation.dart';
+import '../../../../network/api_service.dart';
+import '../model/models.dart';
+import '../service/socket_service.dart';
+
+class OrdersProvider extends ChangeNotifier {
+  final Map<String, Trade> _trades = {};
+  EquitySnapshot? _equity;
+  bool _socketStarted = false;
+  bool _isPlacingOrder = false;
+
+  EquitySnapshot? get equity => _equity;
+  List<Trade> get trades => _trades.values.toList();
+  bool get hasActiveTrades => _trades.isNotEmpty;
+  bool get isPlacingOrder => _isPlacingOrder;
+
+  void _handleEquity(Map<String, dynamic> raw) {
+    try {
+      _equity = EquitySnapshot.fromJson(raw);
+
+      // Update trade profits from live profit data
+      if (_equity!.liveprofit.isNotEmpty) {
+        for (final lp in _equity!.liveprofit) {
+          if (lp.id.isNotEmpty && _trades.containsKey(lp.id)) {
+            _trades[lp.id] = _trades[lp.id]!.copyWith(profit: lp.profit);
+          }
+        }
+      }
+
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error handling equity data: $e');
+    }
+  }
+
+  void _handleTradeUpdate(Map<String, dynamic> data) {
+    try {
+      final tradeId = data['_id']?.toString() ?? data['tradeId']?.toString();
+      if (tradeId != null && _trades.containsKey(tradeId)) {
+        final existingTrade = _trades[tradeId]!;
+        _trades[tradeId] = Trade(
+          id: tradeId,
+          symbol: data['symbol']?.toString() ?? existingTrade.symbol,
+          side: data['bs']?.toString() ?? existingTrade.side,
+          lot: (data['lot'] is num)
+              ? (data['lot'] as num).toDouble()
+              : existingTrade.lot,
+          avg: (data['avg'] is num)
+              ? (data['avg'] as num).toDouble()
+              : existingTrade.avg,
+          tp: data['target'] != null
+              ? (data['target'] as num).toDouble()
+              : existingTrade.tp,
+          sl: data['exit'] != null
+              ? (data['exit'] as num).toDouble()
+              : existingTrade.sl,
+          profit: (data['profit'] is num)
+              ? (data['profit'] as num).toDouble()
+              : existingTrade.profit,
+        );
+        debugPrint('Trade updated: $tradeId');
+        notifyListeners();
+      }
+    } catch (e) {
+      debugPrint('Error handling trade update: $e');
+    }
+  }
+
+  void _handleNewTrade(Map<String, dynamic> data) {
+    try {
+      final tradeId = data['_id']?.toString() ?? data['tradeId']?.toString();
+      if (tradeId != null && !_trades.containsKey(tradeId)) {
+        _trades[tradeId] = Trade(
+          id: tradeId,
+          symbol: data['symbol']?.toString() ?? '',
+          side: data['bs']?.toString() ?? '',
+          lot: (data['lot'] is num) ? (data['lot'] as num).toDouble() : 0.0,
+          avg: (data['avg'] is num) ? (data['avg'] as num).toDouble() : 0.0,
+          tp: data['target'] != null
+              ? (data['target'] as num).toDouble()
+              : null,
+          sl: data['exit'] != null ? (data['exit'] as num).toDouble() : null,
+          profit: (data['profit'] is num)
+              ? (data['profit'] as num).toDouble()
+              : 0.0,
+        );
+        debugPrint('New trade received: $tradeId');
+        notifyListeners();
+      }
+    } catch (e) {
+      debugPrint('Error handling new trade: $e');
+    }
+  }
+
+  void startSocket({
+    required String jwt,
+    required String tradeId,
+  }) {
+    if (_socketStarted) {
+      debugPrint('WebSocket already running');
+      return;
+    }
+
+    debugPrint('Starting WebSocket for user: $tradeId');
+    _socketStarted = true;
+
+    SocketService().connect(
+      jwt: jwt,
+      userId: tradeId,
+      onEquity: _handleEquity,
+      onTradeUpdate: _handleTradeUpdate,
+      onNewTrade: _handleNewTrade,
+      onError: (msg) {
+        debugPrint('Socket error: $msg');
+
+        // Reset socket state on authentication failure
+        if (msg.contains('handshakeFailed') || msg.contains('invalid Token')) {
+          _socketStarted = false;
+          debugPrint('Resetting socket state due to auth failure');
+        }
+      },
+    );
+  }
+
+  void stopSocket() {
+    if (_socketStarted) {
+      SocketService().dispose();
+      _socketStarted = false;
+      _equity = null;
+      debugPrint('WebSocket stopped');
+      notifyListeners();
+    }
+  }
+
+/*
+  Future<String?> createTrade({
+    required String jwt,
+    required String tradeAccountId,
+    required String userId,
+    required String symbol,
+    required double lot,
+    required String side,
+    required double avg,
+    String sector = 'Crypto',
+    double? target,
+    double? exit,
+  }) async {
+    _isPlacingOrder = true;
+    notifyListeners();
+
+    try {
+      final payload = <String, dynamic>{
+        "tradeAccountId": tradeAccountId,
+        "symbol": symbol,
+        "lot": lot,
+        "bs": side,
+        "avg": avg,
+        "sector": sector,
+        if (target != null) "target": target,
+        if (exit != null) "exit": exit,
+      };
+
+      debugPrint('Creating trade: $payload');
+      final res = await ApiService.createTrade(payload);
+      debugPrint('API Response: success=${res.success}, data=${res.data}');
+
+      if (res.success && res.data != null) {
+        final d = res.data!;
+
+        // Handle nested trade data structure
+        final tradeData = d['trade'] ?? d;
+        final tradeId = tradeData['tradeId']?.toString() ??
+            tradeData['_id']?.toString() ??
+            d['tradeId']?.toString() ??
+            d['_id']?.toString();
+
+        if (tradeId != null) {
+          // Add trade to local state immediately
+          _trades[tradeId] = Trade(
+            id: tradeId,
+            symbol: symbol,
+            side: side,
+            lot: lot,
+            avg: avg,
+            tp: target,
+            sl: exit,
+            profit: 0.0,
+          );
+
+          debugPrint('Trade created successfully: $tradeId');
+          notifyListeners();
+
+          // Start WebSocket for real-time updates
+          startSocket(jwt: jwt, tradeId: tradeAccountId);
+
+          return tradeId;
+        } else {
+          debugPrint('No tradeId found in response: $d');
+        }
+      } else {
+        debugPrint('Create trade failed: ${res.message ?? res.data}');
+        SnackBarService.showError('${res.message ?? res.data}');
+      }
+    } catch (e) {
+      debugPrint('Error creating trade: $e');
+    } finally {
+      _isPlacingOrder = false;
+      notifyListeners();
+    }
+
+    return null;
+  }
+*/
+
+
+  Future<String?> createTrade({
+    required String jwt,
+    required String tradeAccountId,
+    required String userId,
+    required String symbol,
+    required double lot,
+    required String side,
+    required double avg,
+    required String sector,
+    double? target,
+    double? exit,
+  }) async {
+    _isPlacingOrder = true;
+    notifyListeners();
+
+    try {
+      final payload = <String, dynamic>{
+        "tradeAccountId": tradeAccountId,
+        "symbol": symbol,
+        "lot": lot,
+        "bs": side,
+        "avg": avg,
+        "sector": sector,
+        if (target != null) "target": target,
+        if (exit != null) "exit": exit,
+      };
+
+      debugPrint('Creating trade: $payload');
+      final res = await ApiService.createTrade(payload);
+      debugPrint(
+          'API Response: success=${res.success}, data=${res.data}, message=${res.message}');
+
+      if (res.success && res.data != null) {
+        final d = res.data!;
+        final tradeData = d['trade'] ?? d;
+        final tradeId = tradeData['tradeId']?.toString() ??
+            tradeData['_id']?.toString() ??
+            d['tradeId']?.toString() ??
+            d['_id']?.toString();
+
+        if (tradeId != null) {
+          _trades[tradeId] = Trade(
+            id: tradeId,
+            symbol: symbol,
+            side: side,
+            lot: lot,
+            avg: avg,
+            tp: target,
+            sl: exit,
+            profit: 0.0,
+          );
+
+          debugPrint('Trade created successfully: $tradeId');
+          notifyListeners();
+          startSocket(jwt: jwt, tradeId: tradeAccountId);
+
+          return res.message ?? 'Order placed';
+        }
+      }
+      return res.message ?? res.data?.toString() ?? 'Order failed';
+    } catch (e) {
+      debugPrint('Error creating trade: $e');
+      return 'Error: $e';
+    } finally {
+      _isPlacingOrder = false;
+      notifyListeners();
+    }
+  }
+
+  Future<bool> updateTrade({
+    required String tradeId,
+    double? tp,
+    double? sl,
+  }) async {
+    try {
+      final payload = <String, dynamic>{
+        if (tp != null) "pl": tp,
+        if (sl != null) "sl": sl,
+      };
+
+      final res = await ApiService.updateTrade(tradeId, payload);
+      if (res.success) {
+        if (_trades.containsKey(tradeId)) {
+          _trades[tradeId] = _trades[tradeId]!.copyWith(tp: tp, sl: sl);
+          notifyListeners();
+        }
+        return true;
+      }
+    } catch (e) {
+      debugPrint('Error updating trade: $e');
+    }
+    return false;
+  }
+
+  Future<bool> closeTrade(String tradeId) async {
+    try {
+      final payload = {"tradeId": tradeId};
+      final res = await ApiService.stopTrade(payload);
+
+      if (res.success) {
+        _trades.remove(tradeId);
+        notifyListeners();
+
+        // Stop WebSocket if no active trades
+        if (_trades.isEmpty && _socketStarted) {
+          stopSocket();
+        }
+
+        return true;
+      }
+    } catch (e) {
+      debugPrint('Error closing trade: $e');
+    }
+    return false;
+  }
+
+  void clearAllTrades() {
+    _trades.clear();
+    stopSocket();
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    stopSocket();
+    super.dispose();
+  }
+}
+
+
+
+
+
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
+import 'package:socket_io_client/socket_io_client.dart' as io;
+
+class SocketService {
+  SocketService._();
+  static final SocketService _instance = SocketService._();
+  factory SocketService() => _instance;
+
+  io.Socket? _socket;
+  bool get isConnected => _socket?.connected ?? false;
+
+  void connect({
+    required String jwt,
+    required String userId,
+    required void Function(Map<String, dynamic>) onEquity,
+    void Function(Map<String, dynamic>)? onTradeUpdate,
+    void Function(Map<String, dynamic>)? onNewTrade,
+    void Function(String)? onError,
+  }) {
+    if (isConnected) {
+      debugPrint('Socket already connected');
+      return;
+    }
+
+    debugPrint('Connecting to WebSocket...');
+
+    _socket = io.io(
+      'https://api.capyngen.us',
+      io.OptionBuilder()
+          .setTransports(['websocket'])
+          .enableAutoConnect()
+          .setAuth({'token': jwt})
+          .build(),
+    );
+
+    _socket!.onConnect((_) {
+      debugPrint('Socket connected successfully');
+
+      _socket!.emit('subscribe', userId);
+      debugPrint('Subscribed user: $userId');
+
+      _socket!.emit('equity:value');
+      debugPrint('Started equity streaming');
+    });
+
+    // / Here for live-data
+    _socket!.on('equity:value', (data) {
+      _prettyPrint(data, prefix: "📊 equity:value → ");
+    });
+
+    _socket!.on('live-data', (data) {
+      _prettyPrint(data, prefix: "📡 live-data → ");
+    });
+
+    _socket!.onAny((event, data) {
+      _prettyPrint(data, prefix: "📩 Event: $event → ");
+    });
+
+    _socket!.on('equity:value', (data) {
+      if (data is Map<String, dynamic>) {
+        onEquity(data);
+      }
+    });
+
+    _socket!.on('error', (data) {
+      String errorMsg = 'Unknown error';
+      if (data is Map<String, dynamic> && data['message'] != null) {
+        errorMsg = data['message'].toString();
+      } else if (data is String) {
+        errorMsg = data;
+      }
+
+      debugPrint('Socket error: $errorMsg');
+      onError?.call(errorMsg);
+
+      if (errorMsg.contains('handshakeFailed') ||
+          errorMsg.contains('invalid Token')) {
+        debugPrint('Authentication failed - disconnecting');
+        _socket?.disconnect();
+      }
+    });
+
+    _socket!.onConnectError((data) {
+      debugPrint('Connection error: $data');
+      onError?.call('Connection failed: $data');
+    });
+
+    _socket!.onDisconnect((reason) {
+      debugPrint('Socket disconnected: $reason');
+    });
+
+    _socket!.on('trade:update', (data) {
+      if (data is Map<String, dynamic>) {
+        onTradeUpdate?.call(data);
+      }
+    });
+
+    _socket!.on('trade:new', (data) {
+      if (data is Map<String, dynamic>) {
+        onNewTrade?.call(data);
+      }
+    });
+  }
+
+  void disconnect() {
+    if (_socket != null) {
+      debugPrint('Disconnecting socket...');
+      _socket!.disconnect();
+    }
+  }
+
+  void dispose() {
+    disconnect();
+    _socket?.dispose();
+    _socket = null;
+  }
+}
+
+void _prettyPrint(dynamic data, {String prefix = ""}) {
+  try {
+    final encoder = const JsonEncoder.withIndent("  ");
+    final pretty = encoder.convert(data);
+    debugPrint("$prefix$pretty");
+  } catch (_) {
+    debugPrint("$prefix$data");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import 'package:exness_clone/services/change_account_service.dart';
+import 'package:exness_clone/services/storage_service.dart';
+import 'package:exness_clone/theme/app_flavor_color.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../../config/flavor_config.dart';
+import '../../../../constant/trade_data.dart';
+import '../../../../theme/app_colors.dart';
+import '../../../../utils/snack_bar.dart';
+import '../provider/orders_provider.dart';
+
+Future<void> showBuyTradeBottomSheet(
+  BuildContext context, {
+  required String symbol,
+  required double currentPrice,
+  required String sector,
+}) async =>
+    _showTradeSheet(context,
+        side: 'Buy',
+        symbol: symbol,
+        sector: sector,
+        currentPrice: currentPrice);
+
+Future<void> showSellTradeBottomSheet(
+  BuildContext context, {
+  required String symbol,
+  required double currentPrice,
+  required String sector,
+}) async =>
+    _showTradeSheet(context,
+        side: 'Sell',
+        symbol: symbol,
+        sector: sector,
+        currentPrice: currentPrice);
+
+Future<void> _showTradeSheet(
+  BuildContext context, {
+  required String side,
+  required String symbol,
+  required String sector,
+  required double currentPrice,
+}) async {
+  final lotCtrl = TextEditingController(text: '1.0');
+  final tpCtrl = TextEditingController();
+  final slCtrl = TextEditingController();
+  final priceCtrl =
+      TextEditingController(text: currentPrice.toStringAsFixed(2));
+
+  await showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    ),
+    builder: (ctx) {
+      return Padding(
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 12,
+          bottom: MediaQuery.of(ctx).viewInsets.bottom + 12,
+        ),
+        child: ChangeAccountService(accountBuilder: (context, account) {
+          return Consumer<OrdersProvider>(
+            builder: (ctx, p, _) {
+              final jwt = StorageService.getToken();
+              final userId = StorageService.getUser();
+              debugPrint("User Id ${userId?.id ?? ''}");
+
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 36,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade400,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Text('$symbol  •  $side',
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w600)),
+                      const Spacer(),
+                      Text('Price ${currentPrice..toString()}',
+                          style: TextStyle(color: Colors.grey.shade600)),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: lotCtrl,
+                          enabled: !p.isPlacingOrder,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration: const InputDecoration(labelText: 'Lot'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: TextField(
+                          controller: priceCtrl,
+                          enabled: !p.isPlacingOrder,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration:
+                              const InputDecoration(labelText: 'Entry (avg)'),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: tpCtrl,
+                          enabled: !p.isPlacingOrder,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration:
+                              const InputDecoration(labelText: 'TP (target)'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: TextField(
+                          controller: slCtrl,
+                          enabled: !p.isPlacingOrder,
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
+                          decoration:
+                              const InputDecoration(labelText: 'SL (exit)'),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: p.isPlacingOrder
+                              ? null
+                              : () => Navigator.pop(ctx),
+                          style: OutlinedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: const Text('Cancel'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: side == 'Sell'
+                                ? AppColor.redColor
+                                : AppFlavorColor.primary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          onPressed: p.isPlacingOrder
+                              ? null
+                              : () async {
+                                  final lot =
+                                      double.tryParse(lotCtrl.text.trim()) ??
+                                          1.0;
+                                  final avg =
+                                      double.tryParse(priceCtrl.text.trim()) ??
+                                          currentPrice;
+                                  final tp = tpCtrl.text.trim().isEmpty
+                                      ? null
+                                      : double.tryParse(tpCtrl.text.trim());
+                                  final sl = slCtrl.text.trim().isEmpty
+                                      ? null
+                                      : double.tryParse(slCtrl.text.trim());
+
+                                  final res = await p.createTrade(
+                                      tradeAccountId: account.id ?? '',
+                                      userId: userId?.id ?? '',
+                                      symbol: symbol,
+                                      lot: lot,
+                                      side: side,
+                                      avg: avg,
+                                      sector: TradeData.stockCategory,
+                                      target: tp,
+                                      exit: sl,
+                                      jwt: jwt ?? '');
+
+                                  if (ctx.mounted) {
+                                    Navigator.pop(ctx);
+                                    SnackBarService.showInfo(
+                                        res ?? 'Unknown response');
+                                  }
+                                },
+                          child: p.isPlacingOrder
+                              ? SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        AppColor.whiteColor),
+                                  ),
+                                )
+                              : Text(
+                                  side,
+                                  style: TextStyle(color: AppColor.whiteColor),
+                                ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
+          );
+        }),
+      );
+    },
+  );
+}
+
+
+
+
+
+
+// Pass from here 
+
+  child: GestureDetector(
+                          onTap: () {
+                            // showSellTradeBottomSheet(
+                            //   context,
+                            //   symbol: widget.symbolName,
+                            //   sector: TradeData.stockCategory,
+                            //   currentPrice: widget.price,
+                            // );
+
+
+
+
+
+

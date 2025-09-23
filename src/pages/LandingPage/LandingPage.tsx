@@ -3,6 +3,14 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroSection from "../../sections/HeroSection/HeroSection";
 import TradeWithConfidenceSection from "../../sections/TradeWithConfSection/TradeWithConfSection";
+import AllMarkets from "../../components/AllMarkets/AllMarkets";
+import TradeDayNightSection from "../../components/TradeDayNightSection/TradeDayNightSection";
+import TradeYourWaySection from "../../components/TradeWay/TradeWay";
+import PaymentMethodsSection from "../../components/PaymentMethods/PaymentMethods";
+import CustomerSupportSection from "../../components/CustomerSupport/CustomerSupport";
+import TestimonialsSection from "../../components/Testimonials/Testimonials";
+import GetStartedSection from "../../components/GetStartedSection/GetStartedSection";
+import JoinTradersSection from "../../components/JoinTraderSection/JoinTraderSection";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -67,8 +75,15 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <HeroSection />
-
       <TradeWithConfidenceSection />
+      <AllMarkets />
+      <TradeDayNightSection />
+      <TradeYourWaySection />
+      <PaymentMethodsSection />
+      <CustomerSupportSection />
+      <TestimonialsSection />
+      <GetStartedSection />
+      <JoinTradersSection />
     </div>
   );
 };

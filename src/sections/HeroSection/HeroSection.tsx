@@ -1,14 +1,33 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const heroContentRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef(null);
+  const heroContentRef = useRef(null);
+  const backgroundRef = useRef(null);
+
+  // Framer Motion scroll tracking for the width reduction effect
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Transform values based on scroll - subtle width reduction
+  const backgroundWidth = useTransform(
+    scrollYProgress,
+    [0, 0.5],
+    ["100%", "95%"]
+  );
+  const backgroundHeight = useTransform(
+    scrollYProgress,
+    [0, 0.5],
+    ["100%", "95%"]
+  );
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -37,15 +56,27 @@ const HeroSection = () => {
   return (
     <section
       ref={heroRef}
-      className="relative h-screen flex items-center justify-center px-6 overflow-hidden"
+      className="relative h-screen bg-white flex items-center justify-center px-6 overflow-hidden"
     >
       {/* Trading Background Image with blur effect */}
-      <div className="absolute inset-0 z-0">
+      <motion.div
+        ref={backgroundRef}
+        className="absolute z-0"
+        style={{
+          width: backgroundWidth,
+          height: backgroundHeight,
+          top: "50%",
+          left: "50%",
+          x: "-50%",
+          y: "-50%",
+        }}
+      >
         {/* Primary background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('https://unsplash.com/photos/red-and-blue-light-streaks-fiXLQXAhCfk')", // Trading desk with multiple monitors
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1470&auto=format&fit=crop')",
             filter: "blur(8px) brightness(0.4)",
             transform: "scale(1.1)", // Prevent blur edges from showing
           }}
@@ -61,7 +92,7 @@ const HeroSection = () => {
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         ></div>
-      </div>
+      </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto flex items-center justify-between w-full">
         {/* Left Content */}
@@ -140,12 +171,20 @@ const HeroSection = () => {
       >
         <div className="flex justify-center items-center space-x-4 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-opacity-10 backdrop-blur-sm px-6 py-5">
           <div className="flex space-x-1">
-            <img src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/683928506676896290d68f91_trustpilot-stars.svg" alt="Star" className="w-32" />
+            <img
+              src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/683928506676896290d68f91_trustpilot-stars.svg"
+              alt="Star"
+              className="w-32"
+            />
           </div>
           <span className="text-white text-sm">
             4.4 out of 5 based on 67,448 reviews
           </span>
-          <img src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c69e7_others-trustpilot.svg" alt="Trustpilot" className="w-20" />
+          <img
+            src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c69e7_others-trustpilot.svg"
+            alt="Trustpilot"
+            className="w-20"
+          />
         </div>
       </motion.div>
     </section>

@@ -58,28 +58,37 @@ const TradeWithConfidenceSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section
+      className="py-12 sm:py-16 lg:py-20 overflow-hidden"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-extrabold text-gray-900 mb-4">
+          <h2
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
+            style={{ color: "var(--text-primary)" }}
+          >
             Trade with confidence
           </h2>
-          <p className="text-gray-600 text-sm">
+          <p
+            className="text-sm sm:text-base"
+            style={{ color: "var(--text-secondary)" }}
+          >
             For over 25 years, Sarthifx Group has been a trusted partner of
             traders worldwide.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
           {/* Left Awards */}
           <motion.div
-            className="space-y-8"
+            className="space-y-6 lg:space-y-8"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -88,37 +97,49 @@ const TradeWithConfidenceSection = () => {
             {leftAwards.map((award, index) => (
               <motion.div
                 key={index}
-                className="relative text-center p-8"
+                className="relative text-center p-6 lg:p-8 rounded-lg"
+                style={{
+                  backgroundColor: "var(--bg-secondary)",
+                  border: "1px solid var(--border-primary)",
+                }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
                 viewport={{ once: true }}
               >
                 {/* Left Wheat SVG */}
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 h-20">
+                <div className="absolute left-2 lg:left-0 top-1/2 transform -translate-y-1/2 w-8 h-12 lg:w-12 lg:h-20">
                   <img
                     src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c6992_right%20wheat.svg"
                     alt="Award decoration"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain opacity-60"
                   />
                 </div>
 
                 {/* Right Wheat SVG */}
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-20">
+                <div className="absolute right-2 lg:right-0 top-1/2 transform -translate-y-1/2 w-8 h-12 lg:w-12 lg:h-20">
                   <img
                     src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c6991_left%20wheat.svg"
                     alt="Award decoration"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain opacity-60"
                   />
                 </div>
 
-                <h3 className="font-bold text-gray-900 mb-3 text-md leading-tight">
+                <h3
+                  className="font-bold mb-3 text-sm sm:text-base lg:text-lg leading-tight"
+                  style={{ color: "var(--text-primary)" }}
+                >
                   {award.title}
                 </h3>
-                <p className="text-sm text-gray-500 font-medium">
+                <p
+                  className="text-xs sm:text-sm font-medium"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {award.organization}
                   <br />
-                  {award.year}
+                  <span style={{ color: "var(--text-accent-orange)" }}>
+                    {award.year}
+                  </span>
                 </p>
               </motion.div>
             ))}
@@ -126,13 +147,19 @@ const TradeWithConfidenceSection = () => {
 
           {/* Center Auto-Scrolling Stats */}
           <motion.div
-            className="text-center relative min-h-[400px] flex items-center justify-center"
+            className="text-center relative min-h-[300px] sm:min-h-[350px] lg:min-h-[400px] flex items-center justify-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <div className="relative">
+            <div
+              className="relative p-8 rounded-2xl"
+              style={{
+                backgroundColor: "var(--bg-secondary)",
+                border: "2px solid var(--border-primary)",
+              }}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentStatIndex}
@@ -158,12 +185,13 @@ const TradeWithConfidenceSection = () => {
                   className="text-center"
                 >
                   <motion.div
-                    className="text-8xl font-black text-gray-900 mb-4 tracking-tight"
+                    className="text-5xl sm:text-6xl lg:text-8xl font-black mb-4 tracking-tight"
+                    style={{ color: "var(--text-accent-blue)" }}
                     animate={{
                       textShadow: [
-                        "0 0 0px rgba(0,0,0,0)",
-                        "0 2px 8px rgba(0,0,0,0.1)",
-                        "0 0 0px rgba(0,0,0,0)",
+                        "0 0 0px rgba(74,158,255,0)",
+                        "0 2px 8px rgba(74,158,255,0.3)",
+                        "0 0 0px rgba(74,158,255,0)",
                       ],
                     }}
                     transition={{
@@ -175,7 +203,8 @@ const TradeWithConfidenceSection = () => {
                     {stats[currentStatIndex].value}
                   </motion.div>
                   <motion.p
-                    className="text-gray-600 text-xl font-medium"
+                    className="text-base sm:text-lg lg:text-xl font-medium"
+                    style={{ color: "var(--text-secondary)" }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.4 }}
@@ -184,40 +213,12 @@ const TradeWithConfidenceSection = () => {
                   </motion.p>
                 </motion.div>
               </AnimatePresence>
-
-              {/* Animated background elements */}
-              <motion.div
-                className="absolute -top-10 -left-10 w-4 h-4 bg-blue-500 rounded-full opacity-20"
-                animate={{
-                  y: [0, -10, 0],
-                  x: [0, 5, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              <motion.div
-                className="absolute -bottom-10 -right-10 w-3 h-3 bg-red-500 rounded-full opacity-30"
-                animate={{
-                  y: [0, 10, 0],
-                  x: [0, -5, 0],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-              />
             </div>
-
           </motion.div>
 
           {/* Right Awards */}
           <motion.div
-            className="space-y-8"
+            className="space-y-6 lg:space-y-8"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -226,37 +227,49 @@ const TradeWithConfidenceSection = () => {
             {rightAwards.map((award, index) => (
               <motion.div
                 key={index}
-                className="relative text-center p-8"
+                className="relative text-center p-6 lg:p-8 rounded-lg"
+                style={{
+                  backgroundColor: "var(--bg-secondary)",
+                  border: "1px solid var(--border-primary)",
+                }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.7 + index * 0.2 }}
                 viewport={{ once: true }}
               >
                 {/* Left Wheat SVG */}
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 h-20">
+                <div className="absolute left-2 lg:left-0 top-1/2 transform -translate-y-1/2 w-8 h-12 lg:w-12 lg:h-20">
                   <img
                     src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c6992_right%20wheat.svg"
                     alt="Award decoration"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain opacity-60"
                   />
                 </div>
 
                 {/* Right Wheat SVG */}
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-20">
+                <div className="absolute right-2 lg:right-0 top-1/2 transform -translate-y-1/2 w-8 h-12 lg:w-12 lg:h-20">
                   <img
                     src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c6991_left%20wheat.svg"
                     alt="Award decoration"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain opacity-60"
                   />
                 </div>
 
-                <h3 className="font-bold text-gray-900 mb-3 text-lg leading-tight">
+                <h3
+                  className="font-bold mb-3 text-sm sm:text-base lg:text-lg leading-tight"
+                  style={{ color: "var(--text-primary)" }}
+                >
                   {award.title}
                 </h3>
-                <p className="text-sm text-gray-500 font-medium">
+                <p
+                  className="text-xs sm:text-sm font-medium"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {award.organization}
                   <br />
-                  {award.year}
+                  <span style={{ color: "var(--text-accent-orange)" }}>
+                    {award.year}
+                  </span>
                 </p>
               </motion.div>
             ))}

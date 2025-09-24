@@ -312,7 +312,7 @@ const PaymentMethodsSection = () => {
               viewport={{ once: true }}
             >
               <motion.button
-                className="group flex items-center space-x-2 text-red-500 font-semibold text-lg hover:text-red-400 transition-colors"
+                className="group flex items-center space-x-2 text-white font-semibold text-lg hover:text-[var(--text-accent-orange)] transition-colors"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >

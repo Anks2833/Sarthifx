@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+:root {
+    /* Background Colors */
+    --bg-primary: #0a1929;
+    --bg-secondary: #1e1f2e;
+    --bg-accent: #363947;
+
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #a1a5b3;
+    --text-accent-blue: #4a9eff;
+    --text-accent-orange: #ff8c42;
+
+    /* Border Colors */
+    --border-primary: #d4af37;
+    --border-secondary: #4a9eff;
+    --border-accent: #ff8c42;
+
+    /* Gradient Colors (for the swirl effect) */
+    --gradient-start: #4a9eff;
+    --gradient-mid-1: #00d4aa;
+    --gradient-mid-2: #ffeb3b;
+    --gradient-end: #ff4081;
+}

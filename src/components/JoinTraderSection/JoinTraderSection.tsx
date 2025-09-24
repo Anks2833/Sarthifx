@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 
 const JoinTradersSection = () => {
   const [activeWordIndex, setActiveWordIndex] = useState(0);
@@ -10,7 +9,7 @@ const JoinTradersSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveWordIndex((prev) => (prev + 1) % words.length);
-    }, 1500);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [words.length]);
@@ -34,185 +33,227 @@ const JoinTradersSection = () => {
     ];
 
     return (
-      <motion.div
-        className="relative w-80 h-[600px] bg-black rounded-[3rem] p-2 shadow-2xl"
-        initial={{ opacity: 0, y: 50, rotateY: 15 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          rotateY: 0,
-        }}
-        transition={{
-          duration: 1,
-          delay: 0.5,
-          type: "spring",
-          stiffness: 100,
-        }}
-        whileHover={{
-          y: -10,
-          rotateY: 5,
-          transition: { duration: 0.3 },
-        }}
+      <div
+        className="relative w-64 sm:w-72 lg:w-80 h-[500px] sm:h-[550px] lg:h-[600px] rounded-[2.5rem] sm:rounded-[3rem] p-2 mx-auto"
+        style={{ backgroundColor: "var(--bg-primary)" }}
       >
         {/* Screen */}
-        <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+        <div
+          className="w-full h-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden relative"
+          style={{ backgroundColor: "var(--bg-secondary)" }}
+        >
           {/* Status Bar */}
-          <div className="flex justify-between items-center px-6 py-3 bg-white">
-            <span className="text-sm font-semibold">9:41</span>
+          <div
+            className="flex justify-between items-center px-4 sm:px-6 py-2 sm:py-3"
+            style={{ backgroundColor: "var(--bg-secondary)" }}
+          >
+            <span
+              className="text-xs sm:text-sm font-semibold"
+              style={{ color: "var(--text-primary)" }}
+            >
+              9:41
+            </span>
             <div className="flex space-x-1">
-              <div className="w-4 h-2 bg-black rounded-sm"></div>
-              <div className="w-1 h-3 bg-black rounded-full"></div>
-              <div className="w-6 h-3 bg-black rounded-sm"></div>
+              <div
+                className="w-3 sm:w-4 h-1.5 sm:h-2 rounded-sm"
+                style={{ backgroundColor: "var(--text-primary)" }}
+              ></div>
+              <div
+                className="w-1 h-2 sm:h-3 rounded-full"
+                style={{ backgroundColor: "var(--text-primary)" }}
+              ></div>
+              <div
+                className="w-4 sm:w-6 h-2 sm:h-3 rounded-sm"
+                style={{ backgroundColor: "var(--text-primary)" }}
+              ></div>
             </div>
           </div>
 
           {/* Header */}
-          <div className="px-6 py-4 border-b border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xs">D</span>
+          <div
+            className="px-4 sm:px-6 py-3 sm:py-4"
+            style={{
+              borderBottomColor: "var(--border-secondary)",
+              borderBottomWidth: "1px",
+            }}
+          >
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div
+                  className="w-6 sm:w-8 h-6 sm:h-8 rounded-lg flex items-center justify-center"
+                  style={{ backgroundColor: "var(--text-accent-orange)" }}
+                >
+                  <span
+                    className="font-bold text-xs sm:text-sm"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    S
+                  </span>
                 </div>
-                <h1 className="text-2xl font-bold text-gray-900">Hub</h1>
+                <h1
+                  className="text-lg sm:text-2xl font-bold"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  Hub
+                </h1>
               </div>
-              <div className="flex space-x-2">
-                <button className="text-sm text-gray-600 px-3 py-1 rounded-full border border-gray-300">
+              <div className="flex space-x-1 sm:space-x-2">
+                <button
+                  className="text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full transition-colors duration-200"
+                  style={{
+                    color: "var(--text-secondary)",
+                    border: "1px solid var(--border-secondary)",
+                  }}
+                >
                   Demo
                 </button>
-                <button className="text-sm text-white px-3 py-1 rounded-full bg-red-500">
+                <button
+                  className="text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full transition-colors duration-200"
+                  style={{
+                    backgroundColor: "var(--text-accent-orange)",
+                    color: "var(--text-primary)",
+                  }}
+                >
                   Real
                 </button>
               </div>
             </div>
 
             {/* Total Assets */}
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div
+              className="rounded-lg p-3 sm:p-4"
+              style={{ backgroundColor: "var(--bg-accent)" }}
+            >
               <div className="flex justify-between items-center">
                 <div>
-                  <span className="text-gray-600 text-sm">Total assets</span>
-                  <motion.div
-                    className="text-2xl font-bold text-gray-900 flex items-center"
-                    animate={{
-                      scale: [1, 1.02, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
+                  <span
+                    className="text-xs sm:text-sm"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    Total assets
+                  </span>
+                  <div
+                    className="text-lg sm:text-2xl font-bold flex items-center"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     USD 2742.43
-                    <motion.span
-                      className="ml-2 text-blue-500"
-                      animate={{ rotate: [0, 180, 360] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                    <span
+                      className="ml-2"
+                      style={{ color: "var(--text-accent-blue)" }}
                     >
                       ↻
-                    </motion.span>
-                  </motion.div>
+                    </span>
+                  </div>
                 </div>
-                <span className="text-gray-400 text-sm">View details →</span>
+                <span
+                  className="text-xs sm:text-sm"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  View details →
+                </span>
               </div>
             </div>
           </div>
 
           {/* My Trading Accounts */}
-          <div className="px-6 py-4">
-            <h3 className="text-gray-900 font-semibold mb-4">
+          <div className="px-4 sm:px-6 py-3 sm:py-4">
+            <h3
+              className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base"
+              style={{ color: "var(--text-primary)" }}
+            >
               My trading accounts
             </h3>
-            <div className="space-y-3">
-              {accounts.map((account, index) => (
-                <motion.div
+            <div className="space-y-2 sm:space-y-3">
+              {accounts.map((account) => (
+                <div
                   key={account.id}
-                  className="bg-gray-50 rounded-xl p-4 flex items-center space-x-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1 + index * 0.2 }}
-                  whileHover={{
-                    scale: 1.02,
-                    backgroundColor: "#f8fafc",
-                  }}
+                  className="rounded-xl p-3 sm:p-4 flex items-center space-x-2 sm:space-x-3 transition-all duration-200 hover:opacity-80"
+                  style={{ backgroundColor: "var(--bg-accent)" }}
                 >
                   <div
-                    className={`w-10 h-10 ${account.color} rounded-lg flex items-center justify-center`}
+                    className={`w-8 sm:w-10 h-8 sm:h-10 ${account.color} rounded-lg flex items-center justify-center`}
                   >
-                    <span className="text-white font-bold text-sm">
+                    <span
+                      className="font-bold text-xs sm:text-sm"
+                      style={{ color: "var(--text-primary)" }}
+                    >
                       {account.type.charAt(0)}
                     </span>
                   </div>
                   <div className="flex-1">
-                    <div className="font-medium text-gray-900 text-sm">
+                    <div
+                      className="font-medium text-xs sm:text-sm"
+                      style={{ color: "var(--text-primary)" }}
+                    >
                       {account.type}
                     </div>
-                    <motion.div
-                      className="text-gray-600 text-sm"
-                      animate={{
-                        color: ["#6b7280", "#16a34a", "#6b7280"],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
+                    <div
+                      className="text-xs sm:text-sm"
+                      style={{ color: "var(--text-secondary)" }}
                     >
                       {account.balance}
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
           {/* Bottom Navigation */}
-          <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-6 py-3">
+          <div
+            className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 py-2 sm:py-3"
+            style={{
+              backgroundColor: "var(--bg-secondary)",
+              borderTopColor: "var(--border-secondary)",
+              borderTopWidth: "1px",
+            }}
+          >
             <div className="flex justify-around">
               {["Hub", "CFDs", "Options", "Wallets", "Account"].map(
                 (item, index) => (
-                  <motion.div
+                  <div
                     key={item}
-                    className="flex flex-col items-center space-y-1"
-                    whileHover={{ scale: 1.1 }}
+                    className="flex flex-col items-center space-y-1 transition-all duration-200 hover:opacity-80"
                   >
                     <div
-                      className={`w-6 h-6 rounded ${
-                        index === 0 ? "bg-red-500" : "bg-gray-300"
-                      }`}
+                      className={`w-4 sm:w-6 h-4 sm:h-6 rounded`}
+                      style={{
+                        backgroundColor:
+                          index === 0
+                            ? "var(--text-accent-orange)"
+                            : "var(--text-secondary)",
+                      }}
                     ></div>
                     <span
-                      className={`text-xs ${
-                        index === 0 ? "text-red-500" : "text-gray-400"
-                      }`}
+                      className="text-xs"
+                      style={{
+                        color:
+                          index === 0
+                            ? "var(--text-accent-orange)"
+                            : "var(--text-secondary)",
+                      }}
                     >
                       {item}
                     </span>
-                  </motion.div>
+                  </div>
                 )
               )}
             </div>
           </div>
         </div>
-
-        {/* Screen Reflection */}
-        <motion.div
-          className="absolute inset-2 bg-gradient-to-tr from-transparent via-white to-transparent opacity-5 rounded-[2.5rem] pointer-events-none"
-          animate={{
-            opacity: [0.05, 0.15, 0.05],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </motion.div>
+      </div>
     );
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-red-500 to-red-600 overflow-hidden">
+    <section
+      className="relative min-h-screen overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, var(--bg-primary), var(--bg-accent))`,
+      }}
+    >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div
           className="w-full h-full"
           style={{
@@ -222,133 +263,67 @@ const JoinTradersSection = () => {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-center">
-          {/* Left Side - Animated Text */}
-          <motion.div
-            className="space-y-4"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full items-center">
+          {/* Left Side - Text */}
+          <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
             <div className="text-center lg:text-left">
-              {/* Animated Title */}
-              <div className="space-y-2">
+              {/* Title */}
+              <div className="space-y-1 sm:space-y-2">
                 {words.map((word, index) => (
-                  <motion.div
-                    key={word}
-                    className="overflow-hidden"
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.8,
-                      delay: 0.3 + index * 0.2,
-                      type: "spring",
-                      stiffness: 100,
-                    }}
-                  >
-                    <motion.h1
-                      className={`text-8xl lg:text-9xl font-black leading-none transition-colors duration-500 ${
-                        activeWordIndex === index ? "text-black" : "text-white"
+                  <div key={word} className="overflow-hidden">
+                    <h1
+                      className={`text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black leading-none transition-all duration-500 ${
+                        activeWordIndex === index
+                          ? "opacity-100 scale-105"
+                          : "opacity-80 scale-100"
                       }`}
-                      animate={{
-                        scale: activeWordIndex === index ? 1.05 : 1,
+                      style={{
+                        color:
+                          activeWordIndex === index
+                            ? "var(--text-accent-orange)"
+                            : "var(--text-primary)",
                         textShadow:
                           activeWordIndex === index
-                            ? "0 4px 20px rgba(0,0,0,0.3)"
-                            : "0 2px 10px rgba(255,255,255,0.1)",
+                            ? "0 4px 20px rgba(255, 140, 66, 0.3)"
+                            : "0 2px 10px rgba(255, 255, 255, 0.1)",
                       }}
-                      transition={{ duration: 0.3 }}
                     >
                       {word}
-                    </motion.h1>
-                  </motion.div>
+                    </h1>
+                  </div>
                 ))}
               </div>
 
               {/* Subtitle */}
-              <motion.p
-                className="text-white/80 text-xl lg:text-2xl mt-8 max-w-lg mx-auto lg:mx-0"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
+              <p
+                className="text-lg sm:text-xl lg:text-2xl mt-6 sm:mt-8 max-w-lg mx-auto lg:mx-0 opacity-90"
+                style={{ color: "var(--text-secondary)" }}
               >
                 Trade with confidence on the world's leading platform
-              </motion.p>
+              </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Side - Mobile Mockup */}
-          <motion.div
-            className="flex justify-center lg:justify-end"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
+          <div className="flex justify-center lg:justify-end order-1 lg:order-2">
             <MobileMockup />
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* CTA Button */}
-      <motion.div
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 2 }}
-      >
-        <motion.button
-          className="bg-black text-white px-12 py-4 rounded-full text-xl font-semibold shadow-2xl"
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-          }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <motion.span
-            animate={{
-              backgroundPosition: ["0%", "100%", "0%"],
-            }}
-            style={{
-              background: "linear-gradient(45deg, #fff, #ff6b6b, #fff)",
-              backgroundSize: "200% 100%",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            Open account
-          </motion.span>
-        </motion.button>
-      </motion.div>
-
-      {/* Floating Elements */}
-      {[...Array(12)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-white/20 rounded-full"
+      <div className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 z-20">
+        <button
+          className="px-8 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-semibold transition-all duration-300 hover:scale-105"
           style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
+            backgroundColor: "var(--text-accent-orange)",
+            color: "var(--text-primary)",
           }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.8, 0.2],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: Math.random() * 5 + 3,
-            repeat: Infinity,
-            delay: Math.random() * 3,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+        >
+          Open account
+        </button>
+      </div>
     </section>
   );
 };

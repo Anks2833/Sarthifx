@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 
 // Type definitions
@@ -23,7 +22,7 @@ interface MarketSectionProps {
 }
 
 const AllMarkets = () => {
-  const [activeSection, setActiveSection] = useState<number>(0);
+  const [_activeSection, setActiveSection] = useState<number>(0);
 
   const marketsData: Market[] = [
     {
@@ -31,19 +30,10 @@ const AllMarkets = () => {
       description:
         "Trade the most popular currency pairs with high leverage, tight spreads, and fast execution.",
       cards: [
-        {
-          pair: "EUR/USD",
-          color: "bg-blue-400",
-          flag: "🇪🇺",
-        },
-        {
-          pair: "GBP/USD",
-          color: "bg-red-400",
-          flag: "🇬🇧",
-        },
+        { pair: "EUR/USD", color: "bg-blue-400", flag: "🇪🇺" },
+        { pair: "GBP/USD", color: "bg-red-400", flag: "🇬🇧" },
       ],
-      mobileImage:
-        "https://unsplash.com/photos/red-and-blue-light-streaks-fiXLQXAhCfk", // placeholder - replace with actual path
+      mobileImage: "/MobileMockups/mobileMockup1.webp",
       mockupPosition: "right",
     },
     {
@@ -51,57 +41,30 @@ const AllMarkets = () => {
       description:
         "Trade 24/7 on exclusive Synthetic and Derived Indices. Choose volatility levels that match your strategy.",
       cards: [
-        {
-          pair: "VOL 100",
-          color: "bg-teal-400",
-          flag: "📈",
-        },
-        {
-          pair: "USD BASKET",
-          color: "bg-blue-400",
-          flag: "💱",
-        },
+        { pair: "VOL 100", color: "bg-teal-400", flag: "📈" },
+        { pair: "USD BASKET", color: "bg-blue-400", flag: "💱" },
       ],
-      mobileImage:
-        "https://unsplash.com/photos/red-and-blue-light-streaks-fiXLQXAhCfk", // placeholder
+      mobileImage: "/MobileMockups/mobileMockup2.webp",
       mockupPosition: "right",
     },
     {
       title: "Stocks",
       description: "Trade global market leaders like Apple, Tesla, and NVIDIA.",
       cards: [
-        {
-          pair: "AAPL",
-          color: "bg-gray-800",
-          flag: "🍎",
-        },
-        {
-          pair: "TSLA",
-          color: "bg-gray-400",
-          flag: "🚗",
-        },
+        { pair: "AAPL", color: "bg-gray-800", flag: "🍎" },
+        { pair: "TSLA", color: "bg-gray-400", flag: "🚗" },
       ],
-      mobileImage:
-        "https://unsplash.com/photos/red-and-blue-light-streaks-fiXLQXAhCfk", // placeholder
+      mobileImage: "/MobileMockups/mobileMockup3.webp",
       mockupPosition: "right",
     },
     {
       title: "Commodities",
       description: "Trade gold, silver, oil, natural gas, sugar, and more.",
       cards: [
-        {
-          pair: "GOLD",
-          color: "bg-yellow-500",
-          flag: "🥇",
-        },
-        {
-          pair: "SILVER",
-          color: "bg-gray-400",
-          flag: "🥈",
-        },
+        { pair: "GOLD", color: "bg-yellow-500", flag: "🥇" },
+        { pair: "SILVER", color: "bg-gray-400", flag: "🥈" },
       ],
-      mobileImage:
-        "https://unsplash.com/photos/red-and-blue-light-streaks-fiXLQXAhCfk", // placeholder
+      mobileImage: "/MobileMockups/mobileMockup4.webp",
       mockupPosition: "right",
     },
     {
@@ -109,209 +72,143 @@ const AllMarkets = () => {
       description:
         "Trade round the clock on the volatility of cryptocurrencies like Bitcoin and Ethereum.",
       cards: [
-        {
-          pair: "BTC/USD",
-          color: "bg-orange-500",
-          flag: "₿",
-        },
-        {
-          pair: "ETH/USD",
-          color: "bg-gray-700",
-          flag: "Ξ",
-        },
+        { pair: "BTC/USD", color: "bg-orange-500", flag: "₿" },
+        { pair: "ETH/USD", color: "bg-gray-700", flag: "Ξ" },
       ],
-      mobileImage:
-        "https://unsplash.com/photos/red-and-blue-light-streaks-fiXLQXAhCfk", // placeholder
+      mobileImage: "/MobileMockups/mobileMockup5.webp",
       mockupPosition: "right",
     },
     {
       title: "Stock Indices",
       description: "Trade offerings that track the top global stock indices.",
       cards: [
-        {
-          pair: "WALL ST 30",
-          color: "bg-green-500",
-          flag: "🏛️",
-        },
-        {
-          pair: "US 500",
-          color: "bg-blue-400",
-          flag: "📊",
-        },
+        { pair: "WALL ST 30", color: "bg-green-500", flag: "🏛️" },
+        { pair: "US 500", color: "bg-blue-400", flag: "📊" },
       ],
-      mobileImage:
-        "https://unsplash.com/photos/red-and-blue-light-streaks-fiXLQXAhCfk", // placeholder
+      mobileImage: "/MobileMockups/mobileMockup6.webp",
       mockupPosition: "right",
     },
   ];
 
-  // Simple implementation to match the screenshots
   const MarketSection = ({ market, index }: MarketSectionProps) => {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(sectionRef, { amount: 0.6 });
 
     useEffect(() => {
-      if (isInView) {
-        setActiveSection(index);
-      }
-    }, [isInView, index]);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setActiveSection(index);
+          }
+        },
+        { threshold: 0.5 }
+      );
+
+      if (sectionRef.current) observer.observe(sectionRef.current);
+
+      return () => {
+        if (sectionRef.current) observer.unobserve(sectionRef.current);
+      };
+    }, [index]);
 
     return (
       <div
         ref={sectionRef}
-        className="min-h-screen flex items-center justify-between px-6 py-20 relative"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 lg:py-20"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 max-w-7xl mx-auto w-full items-center">
           {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="flex flex-col justify-center"
-          >
-            <h2 className="text-6xl font-black text-gray-900 mb-6">
+          <div className="flex flex-col justify-center order-2 lg:order-1">
+            <h2
+              className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6"
+              style={{ color: "var(--text-primary)" }}
+            >
               {market.title}
             </h2>
 
-            <p className="text-xl text-gray-600 mb-8 max-w-md leading-relaxed">
+            <p
+              className="text-lg sm:text-xl mb-8 max-w-md leading-relaxed"
+              style={{ color: "var(--text-secondary)" }}
+            >
               {market.description}
             </p>
 
-            <motion.a
+            {/* Trading Cards - Mobile */}
+            <div className="flex flex-wrap gap-4 mb-8 lg:hidden">
+              {market.cards.map((card: Card) => (
+                <div
+                  key={`${market.title}-${card.pair}-mobile`}
+                  className="p-4 rounded-xl shadow-lg"
+                  style={{
+                    backgroundColor: "var(--bg-secondary)",
+                    border: "1px solid var(--border-secondary)",
+                  }}
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="text-xl">{card.flag}</div>
+                    <div
+                      className="font-bold text-base"
+                      style={{ color: "var(--text-primary)" }}
+                    >
+                      {card.pair}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <a
               href="#"
-              className="flex items-center space-x-2 text-red-500 font-semibold text-xl"
-              whileHover={{ x: 5 }}
+              className="flex items-center space-x-2 font-semibold text-lg lg:text-xl group"
+              style={{ color: "var(--text-accent-orange)" }}
             >
               <span>Learn more</span>
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                }}
-              >
-                <FaArrowRight />
-              </motion.span>
-            </motion.a>
-          </motion.div>
+              <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+          </div>
 
-          {/* Right Content with Phone and Cards */}
-          <div className="relative hidden lg:flex items-center justify-center min-h-[600px]">
-            {index === activeSection && (
-              <>
-                {/* Trading cards */}
-                <AnimatePresence>
-                  {market.cards.map((card: Card, cardIndex: number) => (
-                    <motion.div
-                      key={`${market.title}-${card.pair}`}
-                      className={`absolute ${card.color} p-4 rounded-2xl shadow-xl text-white z-10`}
-                      style={{
-                        top: cardIndex === 0 ? "20%" : "60%",
-                        left: "5%",
-                      }}
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -30 }}
-                      transition={{ duration: 0.4, delay: cardIndex * 0.1 }}
+          {/* Right Content - Desktop Only */}
+          <div className="relative hidden lg:flex items-center justify-center min-h-[500px] xl:min-h-[600px] order-1 lg:order-2">
+            {/* Trading Cards - Desktop */}
+            <div className="absolute left-0 top-1/2 transform -translate-y-1/2 space-y-6 z-10">
+              {market.cards.map((card: Card) => (
+                <div
+                  key={`${market.title}-${card.pair}-desktop`}
+                  className="p-4 rounded-xl shadow-xl"
+                  style={{
+                    backgroundColor: "var(--bg-secondary)",
+                    border: "2px solid var(--border-primary)",
+                  }}
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="text-2xl">{card.flag}</div>
+                    <div
+                      className="font-bold text-lg"
+                      style={{ color: "var(--text-primary)" }}
                     >
-                      <div className="flex items-center space-x-3">
-                        <div className="text-2xl">{card.flag}</div>
-                        <div className="font-bold text-lg">{card.pair}</div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
+                      {card.pair}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-                {/* Connecting lines */}
-                <motion.div
-                  className="absolute z-10 left-[30%] top-1/2 transform -translate-y-1/2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <svg
-                    width="150"
-                    height="300"
-                    viewBox="0 0 150 300"
-                    fill="none"
-                  >
-                    <motion.path
-                      d={`M0,${market.cards[0].pair.length * 5} H100 V150 H140`}
-                      stroke="#ff0040"
-                      strokeWidth="2"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                    />
-                    <motion.path
-                      d={`M0,${
-                        250 - market.cards[1].pair.length * 5
-                      } H100 V150 H140`}
-                      stroke="#ff0040"
-                      strokeWidth="2"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.5, delay: 0.4 }}
-                    />
-                  </svg>
-                </motion.div>
+            {/* Phone Mockup */}
+            <div className="relative z-0 ml-32">
+              <img
+                src={market.mobileImage}
+                alt={`${market.title} Trading App`}
+                className="h-[500px] xl:h-[650px] w-auto object-contain drop-shadow-2xl"
+              />
+            </div>
+          </div>
 
-                {/* Phone Mockup */}
-                <motion.div
-                  className="relative z-0"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {/* Mobile mockup with screenshot */}
-                  {index === 0 && (
-                    <img
-                      src="/MobileMockups/mobileMockup1.webp"
-                      alt="Forex Trading App"
-                      className="h-[650px] w-auto object-contain"
-                    />
-                  )}
-                  {index === 1 && (
-                    <img
-                      src="/MobileMockups/mobileMockup2.webp"
-                      alt="Derived Indices Trading App"
-                      className="h-[650px] w-auto object-contain"
-                    />
-                  )}
-                  {index === 2 && (
-                    <img
-                      src="/MobileMockups/mobileMockup3.webp"
-                      alt="Stocks Trading App"
-                      className="h-[650px] w-auto object-contain"
-                    />
-                  )}
-                  {index === 3 && (
-                    <img
-                      src="/MobileMockups/mobileMockup4.webp"
-                      alt="Commodities Trading App"
-                      className="h-[650px] w-auto object-contain"
-                    />
-                  )}
-                  {index === 4 && (
-                    <img
-                      src="/MobileMockups/mobileMockup5.webp"
-                      alt="Crypto Trading App"
-                      className="h-[650px] w-auto object-contain"
-                    />
-                  )}
-                  {index === 5 && (
-                    <img
-                      src="/MobileMockups/mobileMockup6.webp"
-                      alt="Stock Indices Trading App"
-                      className="h-[650px] w-auto object-contain"
-                    />
-                  )}
-                </motion.div>
-              </>
-            )}
+          {/* Mobile Image */}
+          <div className="flex justify-center order-1 lg:hidden">
+            <img
+              src={market.mobileImage}
+              alt={`${market.title} Trading App`}
+              className="h-[350px] sm:h-[400px] w-auto object-contain drop-shadow-xl"
+            />
           </div>
         </div>
       </div>
@@ -319,27 +216,20 @@ const AllMarkets = () => {
   };
 
   return (
-    <section className="bg-white overflow-hidden">
-      <div className="py-20">
+    <section
+      className="overflow-hidden"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
+      <div className="py-12 lg:py-20">
         {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-6xl font-black text-gray-900 mb-4">
+        <div className="text-center mb-12 lg:mb-16 px-4">
+          <h2
+            className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4"
+            style={{ color: "var(--text-primary)" }}
+          >
             All your markets in one place
           </h2>
-          <motion.div
-            className="h-1 w-24 bg-red-500 mx-auto rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: 96 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-          />
-        </motion.div>
+        </div>
 
         {/* Market Sections */}
         {marketsData.map((market, index) => (

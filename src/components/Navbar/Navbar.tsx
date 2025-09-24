@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 
-// Type definitions
 type DropdownType =
   | "trading"
   | "platforms"
@@ -16,6 +15,9 @@ interface ChevronDownProps {
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [activeMobileDropdown, setActiveMobileDropdown] =
+    useState<DropdownType>(null);
   const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -42,6 +44,17 @@ const Navbar = () => {
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
     }, 200);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setActiveMobileDropdown(null);
+  };
+
+  const toggleMobileDropdown = (dropdown: DropdownType) => {
+    setActiveMobileDropdown(
+      activeMobileDropdown === dropdown ? null : dropdown
+    );
   };
 
   // SVG Icons
@@ -99,10 +112,10 @@ const Navbar = () => {
     </svg>
   );
 
-  // Menu components
+  // Menu components for desktop
   const TradingMenu = () => (
     <div
-      className={`absolute top-full left-0 w-full px-10 py-4 z-40 transition-all duration-300 ${
+      className={`absolute top-full left-0 w-full px-4 md:px-10 py-4 z-40 transition-all duration-300 ${
         activeDropdown === "trading"
           ? "opacity-100"
           : "opacity-0 pointer-events-none"
@@ -110,16 +123,28 @@ const Navbar = () => {
       onMouseEnter={() => handleMouseEnter("trading")}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="grid grid-cols-3 gap-8 p-8">
+      <div
+        className="rounded-2xl shadow-xl overflow-hidden"
+        style={{
+          backgroundColor: "var(--bg-secondary)",
+          border: "1px solid var(--border-primary)",
+        }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 lg:p-8">
           <div>
             <div className="mb-8">
-              <h3 className="text-gray-400 font-medium mb-4">Trade</h3>
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Trade
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     CFDs
                   </a>
@@ -127,7 +152,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Options
                   </a>
@@ -135,12 +161,18 @@ const Navbar = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-gray-400 font-medium mb-4">Markets</h3>
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Markets
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Forex
                   </a>
@@ -148,7 +180,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Derived Indices
                   </a>
@@ -156,7 +189,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Stocks
                   </a>
@@ -164,7 +198,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Stock Indices
                   </a>
@@ -172,7 +207,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Commodities
                   </a>
@@ -180,7 +216,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Cryptocurrencies
                   </a>
@@ -188,7 +225,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     ETFs
                   </a>
@@ -198,14 +236,18 @@ const Navbar = () => {
           </div>
           <div>
             <div className="mb-8">
-              <h3 className="text-gray-400 font-medium mb-4">
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 Deposits & withdrawals
               </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Payment methods
                   </a>
@@ -213,12 +255,18 @@ const Navbar = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-gray-400 font-medium mb-4">Tools</h3>
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Tools
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     TradingView
                   </a>
@@ -226,7 +274,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     MT5 Signals
                   </a>
@@ -234,7 +283,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Trading Calculator
                   </a>
@@ -242,7 +292,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Trading Central
                   </a>
@@ -250,7 +301,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Economic Calendar
                   </a>
@@ -258,12 +310,24 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
-          <div className="bg-gray-900 rounded-xl flex flex-col p-8">
+          <div
+            className="rounded-xl flex flex-col p-6 lg:p-8"
+            style={{
+              backgroundColor: "var(--bg-accent)",
+              border: "1px solid var(--border-secondary)",
+            }}
+          >
             <div>
-              <h3 className="text-white text-xl font-bold mb-3">
+              <h3
+                className="text-lg lg:text-xl font-bold mb-3"
+                style={{ color: "var(--text-primary)" }}
+              >
                 Sarthifx trading competitions
               </h3>
-              <p className="text-white text-opacity-80 mb-6">
+              <p
+                className="mb-6 text-sm lg:text-base"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 Compete risk-free with virtual funds and stand a chance to win
                 real cash prizes.
               </p>
@@ -271,7 +335,8 @@ const Navbar = () => {
             <div className="mt-auto">
               <a
                 href="#"
-                className="inline-flex items-center text-white space-x-2 group"
+                className="inline-flex items-center space-x-2 group"
+                style={{ color: "var(--text-accent-blue)" }}
               >
                 <span>Learn more</span>
                 <ArrowRight />
@@ -283,9 +348,10 @@ const Navbar = () => {
     </div>
   );
 
+  // Similar responsive updates for other menus...
   const PlatformsMenu = () => (
     <div
-      className={`absolute top-full left-0 w-full px-10 py-4 z-40 transition-all duration-300 ${
+      className={`absolute top-full left-0 w-full px-4 md:px-10 py-4 z-40 transition-all duration-300 ${
         activeDropdown === "platforms"
           ? "opacity-100"
           : "opacity-0 pointer-events-none"
@@ -293,16 +359,28 @@ const Navbar = () => {
       onMouseEnter={() => handleMouseEnter("platforms")}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="grid grid-cols-3 gap-8 p-8">
+      <div
+        className="rounded-2xl shadow-xl overflow-hidden"
+        style={{
+          backgroundColor: "var(--bg-secondary)",
+          border: "1px solid var(--border-primary)",
+        }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 lg:p-8">
           <div>
             <div className="mb-8">
-              <h3 className="text-gray-400 font-medium mb-4">CFDs trading</h3>
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                CFDs trading
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx MT5
                   </a>
@@ -310,7 +388,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx X
                   </a>
@@ -318,12 +397,18 @@ const Navbar = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-gray-400 font-medium mb-4">Copy trading</h3>
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Copy trading
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Nakala
                   </a>
@@ -331,7 +416,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx cTrader
                   </a>
@@ -341,14 +427,18 @@ const Navbar = () => {
           </div>
           <div>
             <div>
-              <h3 className="text-gray-400 font-medium mb-4">
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 Options trading
               </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Trader
                   </a>
@@ -356,7 +446,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Bot
                   </a>
@@ -364,7 +455,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Go
                   </a>
@@ -372,7 +464,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="inline-flex items-center space-x-2 text-gray-700 hover:text-red-500 transition-colors duration-200 group"
+                    className="inline-flex items-center space-x-2 transition-colors duration-200 group hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     <span>SmartTrader</span>
                     <ExternalLink />
@@ -381,19 +474,32 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
-          <div className="bg-gray-900 rounded-xl flex flex-col p-8">
+          <div
+            className="rounded-xl flex flex-col p-6 lg:p-8"
+            style={{
+              backgroundColor: "var(--bg-accent)",
+              border: "1px solid var(--border-secondary)",
+            }}
+          >
             <div>
-              <h3 className="text-white text-xl font-bold mb-3">
+              <h3
+                className="text-lg lg:text-xl font-bold mb-3"
+                style={{ color: "var(--text-primary)" }}
+              >
                 Sarthifx Trader
               </h3>
-              <p className="text-white text-opacity-80 mb-6">
+              <p
+                className="mb-6 text-sm lg:text-base"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 Trade options on financial markets and 24/7 Derived Indices.
               </p>
             </div>
             <div className="mt-auto">
               <a
                 href="#"
-                className="inline-flex items-center text-white space-x-2 group"
+                className="inline-flex items-center space-x-2 group"
+                style={{ color: "var(--text-accent-blue)" }}
               >
                 <span>Learn more</span>
                 <ArrowRight />
@@ -407,7 +513,7 @@ const Navbar = () => {
 
   const LearningMenu = () => (
     <div
-      className={`absolute top-full left-0 w-full px-10 py-4 z-40 transition-all duration-300 ${
+      className={`absolute top-full left-0 w-full px-4 md:px-10 py-4 z-40 transition-all duration-300 ${
         activeDropdown === "learning"
           ? "opacity-100"
           : "opacity-0 pointer-events-none"
@@ -415,16 +521,28 @@ const Navbar = () => {
       onMouseEnter={() => handleMouseEnter("learning")}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="grid grid-cols-3 gap-8 p-8">
+      <div
+        className="rounded-2xl shadow-xl overflow-hidden"
+        style={{
+          backgroundColor: "var(--bg-secondary)",
+          border: "1px solid var(--border-primary)",
+        }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 lg:p-8">
           <div>
             <div>
-              <h3 className="text-gray-400 font-medium mb-4">Learn</h3>
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Learn
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="inline-flex items-center space-x-2 text-gray-700 hover:text-red-500 transition-colors duration-200 group"
+                    className="inline-flex items-center space-x-2 transition-colors duration-200 group hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     <span>Sarthifx Academy</span>
                     <ExternalLink />
@@ -433,7 +551,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Blog
                   </a>
@@ -441,7 +560,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Glossary
                   </a>
@@ -451,12 +571,18 @@ const Navbar = () => {
           </div>
           <div>
             <div>
-              <h3 className="text-gray-400 font-medium mb-4">Get support</h3>
+              <h3
+                className="font-medium mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Get support
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Help centre
                   </a>
@@ -464,7 +590,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="inline-flex items-center space-x-2 text-gray-700 hover:text-red-500 transition-colors duration-200 group"
+                    className="inline-flex items-center space-x-2 transition-colors duration-200 group hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     <span>Community</span>
                     <ExternalLink />
@@ -473,7 +600,8 @@ const Navbar = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
                   >
                     Contact us
                   </a>
@@ -481,19 +609,32 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
-          <div className="bg-gray-900 rounded-xl flex flex-col p-8">
+          <div
+            className="rounded-xl flex flex-col p-6 lg:p-8"
+            style={{
+              backgroundColor: "var(--bg-accent)",
+              border: "1px solid var(--border-secondary)",
+            }}
+          >
             <div>
-              <h3 className="text-white text-xl font-bold mb-3">
+              <h3
+                className="text-lg lg:text-xl font-bold mb-3"
+                style={{ color: "var(--text-primary)" }}
+              >
                 Sarthifx Academy
               </h3>
-              <p className="text-white text-opacity-80 mb-6">
+              <p
+                className="mb-6 text-sm lg:text-base"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 Expert guides on how to become a trader
               </p>
             </div>
             <div className="mt-auto">
               <a
                 href="#"
-                className="inline-flex items-center text-white space-x-2 group"
+                className="inline-flex items-center space-x-2 group"
+                style={{ color: "var(--text-accent-blue)" }}
               >
                 <span>Learn more</span>
                 <ArrowRight />
@@ -507,7 +648,7 @@ const Navbar = () => {
 
   const AboutMenu = () => (
     <div
-      className={`absolute top-full left-0 w-full px-10 py-4 z-40 transition-all duration-300 ${
+      className={`absolute top-full left-0 w-full px-4 md:px-10 py-4 z-40 transition-all duration-300 ${
         activeDropdown === "about"
           ? "opacity-100"
           : "opacity-0 pointer-events-none"
@@ -515,14 +656,21 @@ const Navbar = () => {
       onMouseEnter={() => handleMouseEnter("about")}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="grid grid-cols-3 gap-8 p-8">
-          <div>
+      <div
+        className="rounded-2xl shadow-xl overflow-hidden"
+        style={{
+          backgroundColor: "var(--bg-secondary)",
+          border: "1px solid var(--border-primary)",
+        }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 lg:p-8">
+          <div className="lg:col-span-1">
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
-                  className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                  className="transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   Who we are
                 </a>
@@ -530,7 +678,8 @@ const Navbar = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                  className="transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   Why choose us
                 </a>
@@ -538,7 +687,8 @@ const Navbar = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                  className="transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   Regulatory information
                 </a>
@@ -546,7 +696,8 @@ const Navbar = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                  className="transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   Secure & responsible trading
                 </a>
@@ -554,7 +705,8 @@ const Navbar = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                  className="transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   Careers
                 </a>
@@ -562,19 +714,32 @@ const Navbar = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-700 hover:text-red-500 transition-colors duration-200"
+                  className="transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   Newsroom
                 </a>
               </li>
             </ul>
           </div>
-          <div className="col-span-2 bg-gray-900 rounded-xl flex flex-col p-8">
+          <div
+            className="lg:col-span-2 rounded-xl flex flex-col p-6 lg:p-8"
+            style={{
+              backgroundColor: "var(--bg-accent)",
+              border: "1px solid var(--border-secondary)",
+            }}
+          >
             <div>
-              <h3 className="text-white text-xl font-bold mb-3">
+              <h3
+                className="text-lg lg:text-xl font-bold mb-3"
+                style={{ color: "var(--text-primary)" }}
+              >
                 Why choose us
               </h3>
-              <p className="text-white text-opacity-80 mb-6">
+              <p
+                className="mb-6 text-sm lg:text-base"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 For over 25 years, Sarthifx has been a trusted partner of
                 traders worldwide.
               </p>
@@ -582,7 +747,8 @@ const Navbar = () => {
             <div className="mt-auto">
               <a
                 href="#"
-                className="inline-flex items-center text-white space-x-2 group"
+                className="inline-flex items-center space-x-2 group"
+                style={{ color: "var(--text-accent-blue)" }}
               >
                 <span>Learn more</span>
                 <ArrowRight />
@@ -596,7 +762,7 @@ const Navbar = () => {
 
   const LanguageMenu = () => (
     <div
-      className={`absolute top-full left-0 w-full px-10 py-4 z-40 transition-all duration-300 ${
+      className={`absolute top-full left-0 w-full px-4 md:px-10 py-4 z-40 transition-all duration-300 ${
         activeDropdown === "language"
           ? "opacity-100"
           : "opacity-0 pointer-events-none"
@@ -604,42 +770,54 @@ const Navbar = () => {
       onMouseEnter={() => handleMouseEnter("language")}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="grid grid-cols-3 gap-8 p-8">
+      <div
+        className="rounded-2xl shadow-xl overflow-hidden"
+        style={{
+          backgroundColor: "var(--bg-secondary)",
+          border: "1px solid var(--border-primary)",
+        }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6 lg:p-8">
           <div className="space-y-4">
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               English
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Português
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Tiếng Việt
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Türkçe
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               繁體中文
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Deutsch
             </a>
@@ -647,75 +825,87 @@ const Navbar = () => {
           <div className="space-y-4">
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Français
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Español
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               বাংলা
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Kiswahili
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               한국어
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Polski
             </a>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               العربية
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Pусский
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               हिन्दी
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               简体中文
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               Italiano
             </a>
             <a
               href="#"
-              className="block text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="block transition-colors duration-200 hover:opacity-80"
+              style={{ color: "var(--text-primary)" }}
             >
               O'zbek
             </a>
@@ -725,17 +915,162 @@ const Navbar = () => {
     </div>
   );
 
+  // Mobile dropdown component
+  const MobileDropdownContent = ({ type }: { type: DropdownType }) => {
+    const dropdownData = {
+      trading: {
+        sections: [
+          {
+            title: "Trade",
+            items: ["CFDs", "Options"],
+          },
+          {
+            title: "Markets",
+            items: [
+              "Forex",
+              "Derived Indices",
+              "Stocks",
+              "Stock Indices",
+              "Commodities",
+              "Cryptocurrencies",
+              "ETFs",
+            ],
+          },
+          {
+            title: "Deposits & withdrawals",
+            items: ["Payment methods"],
+          },
+          {
+            title: "Tools",
+            items: [
+              "TradingView",
+              "MT5 Signals",
+              "Trading Calculator",
+              "Trading Central",
+              "Economic Calendar",
+            ],
+          },
+        ],
+      },
+      platforms: {
+        sections: [
+          {
+            title: "CFDs trading",
+            items: ["Sarthifx MT5", "Sarthifx X"],
+          },
+          {
+            title: "Copy trading",
+            items: ["Sarthifx Nakala", "Sarthifx cTrader"],
+          },
+          {
+            title: "Options trading",
+            items: [
+              "Sarthifx Trader",
+              "Sarthifx Bot",
+              "Sarthifx Go",
+              "SmartTrader",
+            ],
+          },
+        ],
+      },
+      learning: {
+        sections: [
+          {
+            title: "Learn",
+            items: ["Sarthifx Academy", "Sarthifx Blog", "Glossary"],
+          },
+          {
+            title: "Get support",
+            items: ["Help centre", "Community", "Contact us"],
+          },
+        ],
+      },
+      about: {
+        sections: [
+          {
+            title: "About us",
+            items: [
+              "Who we are",
+              "Why choose us",
+              "Regulatory information",
+              "Secure & responsible trading",
+              "Careers",
+              "Newsroom",
+            ],
+          },
+        ],
+      },
+      language: {
+        sections: [
+          {
+            title: "Languages",
+            items: [
+              "English",
+              "Português",
+              "Tiếng Việt",
+              "Türkçe",
+              "繁體中文",
+              "Deutsch",
+              "Français",
+              "Español",
+              "বাংলা",
+              "Kiswahili",
+              "한국어",
+              "Polski",
+              "العربية",
+              "Pусский",
+              "हिन्दी",
+              "简体中文",
+              "Italiano",
+              "O'zbek",
+            ],
+          },
+        ],
+      },
+    };
+
+    if (!type || !dropdownData[type]) return null;
+
+    return (
+      <div className="px-4 pb-4">
+        {dropdownData[type].sections.map((section, sectionIndex) => (
+          <div key={sectionIndex} className="mb-6">
+            <h4
+              className="font-medium mb-3 text-sm"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              {section.title}
+            </h4>
+            <ul className="space-y-2">
+              {section.items.map((item, itemIndex) => (
+                <li key={itemIndex}>
+                  <a
+                    href="#"
+                    className="block py-2 transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-10 ${
-        isScrolled ? "py-2" : "py-6 bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-10 ${
+        isScrolled ? "py-2" : "py-4 md:py-6"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <div
           className={`flex items-center space-x-2 transition-all duration-500 ${
-            isScrolled
+            isScrolled && !isMobileMenuOpen
               ? "opacity-0 -translate-y-10"
               : "opacity-100 translate-y-0"
           }`}
@@ -744,32 +1079,41 @@ const Navbar = () => {
             <img
               src="/logo.jpeg"
               alt="Sarthifx-logo"
-              className="w-20 h-16 rounded-xl"
+              className="w-16 h-12 md:w-20 md:h-16 rounded-xl"
             />
           </div>
         </div>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <nav
-          className={`${
-            isScrolled ? "bg-white shadow-lg" : "bg-white/10 backdrop-blur-md"
+          className={`hidden lg:block ${
+            isScrolled ? "shadow-lg" : "backdrop-blur-md"
           } rounded-full px-6 py-2.5 transition-all duration-300`}
+          style={{
+            backgroundColor: isScrolled
+              ? "var(--bg-secondary)"
+              : "rgba(42, 45, 58, 0.1)",
+            border: `1px solid var(--border-primary)`,
+          }}
           onMouseLeave={handleMouseLeave}
         >
           <ul className="flex items-center space-x-6">
             <li
-              className={`relative group ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
+              className="relative group"
+              style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("trading")}
             >
               <a href="#" className="flex items-center space-x-1.5">
                 <span
                   className={`font-medium transition-colors duration-200 ${
-                    activeDropdown === "trading"
-                      ? "text-red-500"
-                      : "group-hover:text-red-400"
+                    activeDropdown === "trading" ? "" : "group-hover:opacity-80"
                   }`}
+                  style={{
+                    color:
+                      activeDropdown === "trading"
+                        ? "var(--text-accent-orange)"
+                        : "var(--text-primary)",
+                  }}
                 >
                   Trading
                 </span>
@@ -778,18 +1122,23 @@ const Navbar = () => {
             </li>
 
             <li
-              className={`relative group ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
+              className="relative group"
+              style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("platforms")}
             >
               <a href="#" className="flex items-center space-x-1.5">
                 <span
                   className={`font-medium transition-colors duration-200 ${
                     activeDropdown === "platforms"
-                      ? "text-red-500"
-                      : "group-hover:text-red-400"
+                      ? ""
+                      : "group-hover:opacity-80"
                   }`}
+                  style={{
+                    color:
+                      activeDropdown === "platforms"
+                        ? "var(--text-accent-orange)"
+                        : "var(--text-primary)",
+                  }}
                 >
                   Platforms
                 </span>
@@ -798,18 +1147,23 @@ const Navbar = () => {
             </li>
 
             <li
-              className={`relative group ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
+              className="relative group"
+              style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("learning")}
             >
               <a href="#" className="flex items-center space-x-1.5">
                 <span
                   className={`font-medium transition-colors duration-200 ${
                     activeDropdown === "learning"
-                      ? "text-red-500"
-                      : "group-hover:text-red-400"
+                      ? ""
+                      : "group-hover:opacity-80"
                   }`}
+                  style={{
+                    color:
+                      activeDropdown === "learning"
+                        ? "var(--text-accent-orange)"
+                        : "var(--text-primary)",
+                  }}
                 >
                   Learning & support
                 </span>
@@ -818,18 +1172,21 @@ const Navbar = () => {
             </li>
 
             <li
-              className={`relative group ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
+              className="relative group"
+              style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("about")}
             >
               <a href="#" className="flex items-center space-x-1.5">
                 <span
                   className={`font-medium transition-colors duration-200 ${
-                    activeDropdown === "about"
-                      ? "text-red-500"
-                      : "group-hover:text-red-400"
+                    activeDropdown === "about" ? "" : "group-hover:opacity-80"
                   }`}
+                  style={{
+                    color:
+                      activeDropdown === "about"
+                        ? "var(--text-accent-orange)"
+                        : "var(--text-primary)",
+                  }}
                 >
                   About
                 </span>
@@ -838,12 +1195,11 @@ const Navbar = () => {
             </li>
 
             <li
-              className={`relative group ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
+              className="relative group"
+              style={{ color: "var(--text-primary)" }}
             >
               <a href="#" className="flex items-center space-x-1.5 group">
-                <span className="font-medium transition-colors duration-200 group-hover:text-red-400">
+                <span className="font-medium transition-colors duration-200 group-hover:opacity-80">
                   Partners
                 </span>
                 <ExternalLink />
@@ -851,9 +1207,8 @@ const Navbar = () => {
             </li>
 
             <li
-              className={`relative group ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
+              className="relative group"
+              style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("language")}
             >
               <a href="#" className="flex items-center space-x-1.5">
@@ -861,9 +1216,15 @@ const Navbar = () => {
                 <span
                   className={`font-medium transition-colors duration-200 ${
                     activeDropdown === "language"
-                      ? "text-red-500"
-                      : "group-hover:text-red-400"
+                      ? ""
+                      : "group-hover:opacity-80"
                   }`}
+                  style={{
+                    color:
+                      activeDropdown === "language"
+                        ? "var(--text-accent-orange)"
+                        : "var(--text-primary)",
+                  }}
                 >
                   EN
                 </span>
@@ -872,9 +1233,9 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        {/* CTAs */}
+        {/* Desktop CTAs */}
         <div
-          className={`flex items-center space-x-4 transition-all duration-500 ${
+          className={`hidden lg:flex items-center space-x-4 transition-all duration-500 ${
             isScrolled
               ? "opacity-0 -translate-y-10"
               : "opacity-100 translate-y-0"
@@ -882,42 +1243,207 @@ const Navbar = () => {
         >
           <a
             href="/login"
-            className="border border-white text-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-gray-900 transition-all duration-300"
+            className="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:opacity-80"
+            style={{
+              border: `1px solid var(--border-primary)`,
+              color: "var(--text-primary)",
+            }}
           >
             Log in
           </a>
           <a
             href="/register"
-            className="bg-red-500 text-white px-6 py-2 rounded-full font-medium hover:bg-red-600 transition-all duration-300 transform hover:scale-105"
+            className="px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105"
+            style={{
+              backgroundColor: "var(--text-accent-orange)",
+              color: "var(--text-primary)",
+            }}
           >
             Open account
           </a>
         </div>
 
         {/* Mobile menu button */}
-        <button className="lg:hidden text-white">
+        <button
+          className="lg:hidden z-50 relative"
+          style={{ color: "var(--text-primary)" }}
+          onClick={toggleMobileMenu}
+        >
           <svg
-            className="w-6 h-6"
+            className={`w-6 h-6 transition-transform duration-300 ${
+              isMobileMenuOpen ? "rotate-90" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+            {isMobileMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
           </svg>
         </button>
       </div>
 
-      {/* Dropdown menus */}
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden absolute top-full left-0 right-0 transition-all duration-300 ${
+          isMobileMenuOpen
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-4 pointer-events-none"
+        }`}
+        style={{
+          backgroundColor: "var(--bg-secondary)",
+          border: "1px solid var(--border-primary)",
+        }}
+      >
+        <div className="max-h-[80vh] overflow-y-auto">
+          <nav className="py-4">
+            <ul className="space-y-1">
+              <li>
+                <button
+                  className="w-full flex items-center justify-between px-4 py-3 transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
+                  onClick={() => toggleMobileDropdown("trading")}
+                >
+                  <span className="font-medium">Trading</span>
+                  <ChevronDown isActive={activeMobileDropdown === "trading"} />
+                </button>
+                {activeMobileDropdown === "trading" && (
+                  <MobileDropdownContent type="trading" />
+                )}
+              </li>
+
+              <li>
+                <button
+                  className="w-full flex items-center justify-between px-4 py-3 transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
+                  onClick={() => toggleMobileDropdown("platforms")}
+                >
+                  <span className="font-medium">Platforms</span>
+                  <ChevronDown
+                    isActive={activeMobileDropdown === "platforms"}
+                  />
+                </button>
+                {activeMobileDropdown === "platforms" && (
+                  <MobileDropdownContent type="platforms" />
+                )}
+              </li>
+
+              <li>
+                <button
+                  className="w-full flex items-center justify-between px-4 py-3 transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
+                  onClick={() => toggleMobileDropdown("learning")}
+                >
+                  <span className="font-medium">Learning & support</span>
+                  <ChevronDown isActive={activeMobileDropdown === "learning"} />
+                </button>
+                {activeMobileDropdown === "learning" && (
+                  <MobileDropdownContent type="learning" />
+                )}
+              </li>
+
+              <li>
+                <button
+                  className="w-full flex items-center justify-between px-4 py-3 transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
+                  onClick={() => toggleMobileDropdown("about")}
+                >
+                  <span className="font-medium">About</span>
+                  <ChevronDown isActive={activeMobileDropdown === "about"} />
+                </button>
+                {activeMobileDropdown === "about" && (
+                  <MobileDropdownContent type="about" />
+                )}
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  className="w-full flex items-center justify-between px-4 py-3 transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  <span className="font-medium">Partners</span>
+                  <ExternalLink />
+                </a>
+              </li>
+
+              <li>
+                <button
+                  className="w-full flex items-center justify-between px-4 py-3 transition-colors duration-200 hover:opacity-80"
+                  style={{ color: "var(--text-primary)" }}
+                  onClick={() => toggleMobileDropdown("language")}
+                >
+                  <div className="flex items-center space-x-2">
+                    <Globe />
+                    <span className="font-medium">EN</span>
+                  </div>
+                  <ChevronDown isActive={activeMobileDropdown === "language"} />
+                </button>
+                {activeMobileDropdown === "language" && (
+                  <MobileDropdownContent type="language" />
+                )}
+              </li>
+            </ul>
+
+            {/* Mobile CTAs */}
+            <div
+              className="px-4 py-4 border-t"
+              style={{ borderColor: "var(--border-primary)" }}
+            >
+              <div className="flex flex-col space-y-3">
+                <a
+                  href="/login"
+                  className="px-6 py-3 rounded-full font-medium text-center transition-all duration-300 hover:opacity-80"
+                  style={{
+                    border: `1px solid var(--border-primary)`,
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  Log in
+                </a>
+                <a
+                  href="/register"
+                  className="px-6 py-3 rounded-full font-medium text-center transition-all duration-300 transform hover:scale-105"
+                  style={{
+                    backgroundColor: "var(--text-accent-orange)",
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  Open account
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      {/* Desktop Dropdown menus */}
       <TradingMenu />
       <PlatformsMenu />
       <LearningMenu />
       <AboutMenu />
       <LanguageMenu />
+
+      {/* Mobile menu overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="lg:hidden fixed z-50"
+          onClick={toggleMobileMenu}
+        />
+      )}
     </header>
   );
 };

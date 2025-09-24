@@ -161,7 +161,7 @@ const RegisterPage = () => {
             <img
               src="/logo.jpeg"
               alt="Sarthifx Logo"
-              className="h-12 rounded-xl"
+              className="h-16 rounded-xl"
             />
           </NavLink>
         </motion.div>

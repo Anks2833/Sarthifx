@@ -5,7 +5,7 @@ import HeroSection from "../../sections/HeroSection/HeroSection";
 import TradeWithConfidenceSection from "../../sections/TradeWithConfSection/TradeWithConfSection";
 import AllMarkets from "../../components/AllMarkets/AllMarkets";
 import TradeDayNightSection from "../../components/TradeDayNightSection/TradeDayNightSection";
-import TradeYourWaySection from "../../components/TradeWay/TradeWay";
+// import TradeYourWaySection from "../../components/TradeWay/TradeWay";
 import PaymentMethodsSection from "../../components/PaymentMethods/PaymentMethods";
 import CustomerSupportSection from "../../components/CustomerSupport/CustomerSupport";
 import TestimonialsSection from "../../components/Testimonials/Testimonials";
@@ -78,7 +78,7 @@ const LandingPage = () => {
       <TradeWithConfidenceSection />
       <AllMarkets />
       <TradeDayNightSection />
-      <TradeYourWaySection />
+      {/* <TradeYourWaySection /> */}
       <PaymentMethodsSection />
       <CustomerSupportSection />
       <TestimonialsSection />

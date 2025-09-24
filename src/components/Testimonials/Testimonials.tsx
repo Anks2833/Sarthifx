@@ -23,35 +23,35 @@ interface TestimonialCardProps {
 
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true);
+  const [isAutoPlay, _setIsAutoPlay] = useState<boolean>(true);
 
   // Customer testimonials data
   const testimonials: Testimonial[] = [
     {
       id: 1,
       rating: 5,
-      text: "Deriv is an easy and smooth trading experience, better than any other platform. Also, the peer-to-peer transaction, I find it revolutionary and the best for us traders in third-world countries.",
+      text: "Sarthifx is an easy and smooth trading experience, better than any other platform. Also, the peer-to-peer transaction, I find it revolutionary and the best for us traders in third-world countries.",
       author: "tinashe kurebwaseka",
       country: "Zimbabwe",
     },
     {
       id: 2,
       rating: 5,
-      text: "Deriv is the best trading platform. I never had difficulty in trading for more than 5 years. Thank you Deriv for your present in trading world.",
+      text: "Sarthifx is the best trading platform. I never had difficulty in trading for more than 5 years. Thank you Sarthifx for your present in trading world.",
       author: "ezra hutabarat",
       country: "Indonesia",
     },
     {
       id: 3,
       rating: 5,
-      text: "I'm happy with the service provided. Deriv always updates me on what's happening and gives daily status report of accounts. And the staff is very responsive and always ready to assist.",
+      text: "I'm happy with the service provided. Sarthifx always updates me on what's happening and gives daily status report of accounts. And the staff is very responsive and always ready to assist.",
       author: "Wandile S'busiso Ninela",
       country: "South Africa",
     },
     {
       id: 4,
       rating: 5,
-      text: "Deriv is by far the best binary options brokerage. It has over 5 different types of binary options unlike other brokers. The payments are fast and it's really amazing. Thanks Deriv.",
+      text: "Sarthifx is by far the best binary options brokerage. It has over 5 different types of binary options unlike other brokers. The payments are fast and it's really amazing. Thanks Sarthifx.",
       author: "philip sserugunda",
       country: "Uganda",
     },
@@ -65,7 +65,7 @@ const TestimonialsSection = () => {
     {
       id: 6,
       rating: 5,
-      text: "I've been using Deriv for 3 years now and it's been a fantastic journey. The platform is stable, spreads are competitive, and the educational resources are top-notch.",
+      text: "I've been using Sarthifx for 3 years now and it's been a fantastic journey. The platform is stable, spreads are competitive, and the educational resources are top-notch.",
       author: "ahmed hassan",
       country: "Egypt",
     },
@@ -77,21 +77,36 @@ const TestimonialsSection = () => {
 
     const interval = setInterval(() => {
       setCurrentIndex(
-        (prev) => (prev + 1) % Math.ceil(testimonials.length / 4)
+        (prev) =>
+          (prev + 1) % Math.ceil(testimonials.length / getCardsPerView())
       );
     }, 5000);
 
     return () => clearInterval(interval);
   }, [isAutoPlay, testimonials.length]);
 
+  // Get cards per view based on screen size
+  const getCardsPerView = () => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth >= 1024) return 3; // lg
+      if (window.innerWidth >= 768) return 2; // md
+      return 1; // sm
+    }
+    return 3; // default
+  };
+
   // Navigation functions
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % Math.ceil(testimonials.length / 4));
+    setCurrentIndex(
+      (prev) => (prev + 1) % Math.ceil(testimonials.length / getCardsPerView())
+    );
   };
 
   const goToPrev = () => {
     setCurrentIndex((prev) =>
-      prev === 0 ? Math.ceil(testimonials.length / 4) - 1 : prev - 1
+      prev === 0
+        ? Math.ceil(testimonials.length / getCardsPerView()) - 1
+        : prev - 1
     );
   };
 
@@ -111,9 +126,15 @@ const TestimonialsSection = () => {
           }}
         >
           <FaStar
-            className={`w-5 h-5 ${
-              i < rating ? "text-green-500" : "text-gray-300"
+            className={`w-4 h-4 sm:w-5 sm:h-5 ${
+              i < rating ? "text-yellow-400" : "opacity-30"
             }`}
+            style={{
+              color:
+                i < rating
+                  ? "var(--text-accent-orange)"
+                  : "var(--text-secondary)",
+            }}
           />
         </motion.div>
       ))}
@@ -123,7 +144,11 @@ const TestimonialsSection = () => {
   // Testimonial card component
   const TestimonialCard = ({ testimonial, index }: TestimonialCardProps) => (
     <motion.div
-      className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col"
+      className="p-4 sm:p-6 rounded-2xl shadow-lg h-full flex flex-col"
+      style={{
+        backgroundColor: "var(--bg-secondary)",
+        border: "1px solid var(--border-secondary)",
+      }}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -133,13 +158,14 @@ const TestimonialsSection = () => {
       }}
       whileHover={{
         y: -5,
-        boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+        scale: 1.02,
       }}
     >
       <StarRating rating={testimonial.rating} delay={index * 0.2} />
 
       <motion.p
-        className="text-gray-700 text-sm leading-relaxed flex-1 mb-6"
+        className="text-sm sm:text-base leading-relaxed flex-1 mb-4 sm:mb-6"
+        style={{ color: "var(--text-secondary)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: index * 0.1 + 0.3 }}
@@ -148,37 +174,56 @@ const TestimonialsSection = () => {
       </motion.p>
 
       <motion.div
-        className="border-t pt-4"
+        className="pt-4"
+        style={{
+          borderTopColor: "var(--border-secondary)",
+          borderTopWidth: "1px",
+        }}
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: index * 0.1 + 0.5 }}
       >
-        <div className="font-medium text-gray-900 text-sm">
+        <div
+          className="font-medium text-sm sm:text-base"
+          style={{ color: "var(--text-primary)" }}
+        >
           {testimonial.author}
         </div>
-        <div className="text-gray-500 text-xs mt-1">{testimonial.country}</div>
+        <div
+          className="text-xs sm:text-sm mt-1"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          {testimonial.country}
+        </div>
       </motion.div>
     </motion.div>
   );
 
   // Get current testimonials to display
   const getCurrentTestimonials = (): Testimonial[] => {
-    const startIndex = currentIndex * 4;
-    return testimonials.slice(startIndex, startIndex + 4);
+    const cardsPerView = getCardsPerView();
+    const startIndex = currentIndex * cardsPerView;
+    return testimonials.slice(startIndex, startIndex + cardsPerView);
   };
 
   return (
-    <section className="bg-gray-50 py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section
+      className="py-12 sm:py-16 lg:py-20 overflow-hidden"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-6xl font-black text-gray-900 mb-4">
+          <h2
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black mb-4"
+            style={{ color: "var(--text-primary)" }}
+          >
             What our customers say
           </h2>
         </motion.div>
@@ -188,7 +233,7 @@ const TestimonialsSection = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 lg:mb-12"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
@@ -208,44 +253,47 @@ const TestimonialsSection = () => {
           <div className="flex justify-center space-x-4 mb-8">
             <motion.button
               onClick={goToPrev}
-              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors"
-              whileHover={{ scale: 1.1 }}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg flex items-center justify-center transition-colors"
+              style={{
+                backgroundColor: "var(--bg-secondary)",
+                color: "var(--text-secondary)",
+                border: "1px solid var(--border-secondary)",
+              }}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "var(--bg-accent)",
+              }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaChevronLeft />
+              <FaChevronLeft className="w-4 h-4" />
             </motion.button>
 
             <motion.button
               onClick={goToNext}
-              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors"
-              whileHover={{ scale: 1.1 }}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg flex items-center justify-center transition-colors"
+              style={{
+                backgroundColor: "var(--bg-secondary)",
+                color: "var(--text-secondary)",
+                border: "1px solid var(--border-secondary)",
+              }}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "var(--bg-accent)",
+              }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaChevronRight />
+              <FaChevronRight className="w-4 h-4" />
             </motion.button>
-          </div>
-
-          {/* Pagination Dots */}
-          <div className="flex justify-center space-x-2 mb-12">
-            {Array.from({ length: Math.ceil(testimonials.length / 4) }).map(
-              (_, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentIndex ? "bg-red-500" : "bg-gray-300"
-                  }`}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                />
-              )
-            )}
           </div>
         </div>
 
         {/* Trustpilot Section */}
         <motion.div
-          className="flex items-center justify-center space-x-6 pt-8 border-t border-gray-200"
+          className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-6 sm:pt-8"
+          style={{
+            borderTopColor: "var(--border-secondary)",
+            borderTopWidth: "1px",
+          }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -265,7 +313,10 @@ const TestimonialsSection = () => {
                   damping: 30,
                 }}
               >
-                <FaStar className="w-8 h-8 text-green-500" />
+                <FaStar
+                  className="w-6 h-6 sm:w-8 sm:h-8"
+                  style={{ color: "var(--text-accent-orange)" }}
+                />
               </motion.div>
             ))}
           </div>
@@ -275,60 +326,17 @@ const TestimonialsSection = () => {
             className="flex items-center space-x-3"
             whileHover={{ scale: 1.05 }}
           >
-            <FaStar className="w-8 h-8 text-green-500" />
-            <span className="text-2xl font-bold text-gray-800">Trustpilot</span>
-          </motion.div>
-        </motion.div>
-
-        {/* Auto-play Control */}
-        <motion.div
-          className="flex justify-center mt-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          <button
-            onClick={() => setIsAutoPlay(!isAutoPlay)}
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-          >
-            {isAutoPlay ? "Pause Auto-play" : "Resume Auto-play"}
-          </button>
-        </motion.div>
-
-        {/* Statistics */}
-        <motion.div
-          className="grid grid-cols-3 gap-8 mt-12 pt-12 border-t border-gray-200"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          {[
-            { number: "67,448", label: "Reviews" },
-            { number: "4.4/5", label: "Rating" },
-            { number: "Excellent", label: "Overall" },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="text-center"
-              whileHover={{ scale: 1.05 }}
+            <FaStar
+              className="w-6 h-6 sm:w-8 sm:h-8"
+              style={{ color: "var(--text-accent-orange)" }}
+            />
+            <span
+              className="text-xl sm:text-2xl font-bold"
+              style={{ color: "var(--text-primary)" }}
             >
-              <motion.div
-                className="text-4xl font-bold text-gray-900 mb-2"
-                animate={{
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: index * 0.5,
-                }}
-              >
-                {stat.number}
-              </motion.div>
-              <div className="text-gray-600">{stat.label}</div>
-            </motion.div>
-          ))}
+              Trustpilot
+            </span>
+          </motion.div>
         </motion.div>
       </div>
     </section>

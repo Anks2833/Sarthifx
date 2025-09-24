@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const CustomerSupportSection = () => {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-  const [isLooping, setIsLooping] = useState(true);
+  const [isLooping, _setIsLooping] = useState(true);
 
   // Chat conversation data
   const chatMessages = [
@@ -54,7 +54,11 @@ const CustomerSupportSection = () => {
   // Typing indicator component
   const TypingIndicator = () => (
     <motion.div
-      className="flex space-x-1 p-3 bg-red-500 text-white rounded-2xl rounded-bl-sm max-w-xs"
+      className="flex space-x-1 p-3 rounded-2xl rounded-bl-sm max-w-xs"
+      style={{
+        backgroundColor: "var(--text-accent-orange)",
+        color: "var(--text-primary)",
+      }}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.8 }}
@@ -63,7 +67,8 @@ const CustomerSupportSection = () => {
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="w-2 h-2 bg-white rounded-full"
+            className="w-2 h-2 rounded-full"
+            style={{ backgroundColor: "var(--text-primary)" }}
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.5, 1, 0.5],
@@ -80,20 +85,24 @@ const CustomerSupportSection = () => {
   );
 
   return (
-    <section className="bg-white py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section
+      className="py-12 sm:py-16 lg:py-20 overflow-hidden"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Side - Content */}
           <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            className="space-y-6 order-2 lg:order-1"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <motion.h2
-              className="text-6xl font-black text-gray-900 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight"
+              style={{ color: "var(--text-primary)" }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
@@ -102,7 +111,8 @@ const CustomerSupportSection = () => {
             </motion.h2>
 
             <motion.p
-              className="text-gray-600 text-lg leading-relaxed max-w-lg"
+              className="text-base sm:text-lg leading-relaxed max-w-lg"
+              style={{ color: "var(--text-secondary)" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -114,7 +124,7 @@ const CustomerSupportSection = () => {
 
             {/* Features */}
             <motion.div
-              className="grid grid-cols-2 gap-6 pt-8"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 lg:pt-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -128,14 +138,20 @@ const CustomerSupportSection = () => {
               ].map((feature, _index) => (
                 <motion.div
                   key={feature.label}
-                  className="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl"
+                  className="flex items-center space-x-3 p-3 sm:p-4 rounded-xl transition-all duration-300"
+                  style={{
+                    backgroundColor: "var(--bg-secondary)",
+                    border: "1px solid var(--border-secondary)",
+                  }}
                   whileHover={{
-                    scale: 1.05,
-                    backgroundColor: "#f8fafc",
+                    scale: 1.02,
                   }}
                 >
-                  <div className="text-2xl">{feature.icon}</div>
-                  <div className="font-medium text-gray-800">
+                  <div className="text-xl sm:text-2xl">{feature.icon}</div>
+                  <div
+                    className="font-medium text-sm sm:text-base"
+                    style={{ color: "var(--text-primary)" }}
+                  >
                     {feature.label}
                   </div>
                 </motion.div>
@@ -145,32 +161,60 @@ const CustomerSupportSection = () => {
 
           {/* Right Side - Animated Chat Interface */}
           <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative order-1 lg:order-2"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Background Person Image */}
-            <div className="relative w-full h-[500px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden">
-              {/* Simulated person */}
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-300 via-transparent to-gray-100">
+            {/* Background Chat Interface */}
+            <div
+              className="relative w-full h-[400px] sm:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden"
+              style={{
+                background: `linear-gradient(135deg, var(--bg-secondary), var(--bg-accent))`,
+              }}
+            >
+              {/* Background Design Elements */}
+              <div className="absolute inset-0">
                 {/* Person representation */}
-                <div className="absolute bottom-0 right-8 w-32 h-40 bg-gradient-to-t from-blue-600 via-blue-500 to-blue-400 rounded-t-full opacity-80"></div>
-                <div className="absolute bottom-32 right-12 w-24 h-24 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full shadow-inner">
+                <div
+                  className="absolute bottom-0 right-4 sm:right-8 w-24 sm:w-32 h-32 sm:h-40 rounded-t-full opacity-80"
+                  style={{
+                    background: `linear-gradient(to top, var(--text-accent-blue), var(--text-accent-orange))`,
+                  }}
+                ></div>
+                <div
+                  className="absolute bottom-24 sm:bottom-32 right-8 sm:right-12 w-16 sm:w-24 h-16 sm:h-24 rounded-full shadow-inner"
+                  style={{ backgroundColor: "var(--border-primary)" }}
+                >
                   {/* Face features */}
-                  <div className="absolute top-6 left-6 w-2 h-2 bg-gray-700 rounded-full"></div>
-                  <div className="absolute top-6 right-6 w-2 h-2 bg-gray-700 rounded-full"></div>
-                  <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-4 h-2 border-b-2 border-gray-700 rounded-b-full"></div>
+                  <div
+                    className="absolute top-4 sm:top-6 left-4 sm:left-6 w-2 h-2 rounded-full"
+                    style={{ backgroundColor: "var(--bg-primary)" }}
+                  ></div>
+                  <div
+                    className="absolute top-4 sm:top-6 right-4 sm:right-6 w-2 h-2 rounded-full"
+                    style={{ backgroundColor: "var(--bg-primary)" }}
+                  ></div>
+                  <div
+                    className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 w-3 sm:w-4 h-1 sm:h-2 border-b-2 rounded-b-full"
+                    style={{ borderColor: "var(--bg-primary)" }}
+                  ></div>
                 </div>
 
-                {/* Background elements */}
-                <div className="absolute top-8 left-8 w-16 h-16 bg-green-200 rounded-lg opacity-60"></div>
-                <div className="absolute top-16 right-16 w-12 h-12 bg-yellow-200 rounded-full opacity-60"></div>
+                {/* Background decorative elements */}
+                <div
+                  className="absolute top-6 sm:top-8 left-6 sm:left-8 w-12 sm:w-16 h-12 sm:h-16 rounded-lg opacity-60"
+                  style={{ backgroundColor: "var(--text-accent-blue)" }}
+                ></div>
+                <div
+                  className="absolute top-12 sm:top-16 right-12 sm:right-16 w-8 sm:w-12 h-8 sm:h-12 rounded-full opacity-60"
+                  style={{ backgroundColor: "var(--text-accent-orange)" }}
+                ></div>
               </div>
 
               {/* Chat Overlay */}
-              <div className="absolute inset-0 flex flex-col justify-end p-6 space-y-3">
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 space-y-2 sm:space-y-3">
                 <AnimatePresence>
                   {chatMessages
                     .slice(0, currentMessageIndex + 1)
@@ -194,11 +238,22 @@ const CustomerSupportSection = () => {
                         }}
                       >
                         <div
-                          className={`max-w-xs p-3 rounded-2xl shadow-lg ${
+                          className={`max-w-xs p-3 rounded-2xl shadow-lg text-sm sm:text-base ${
                             message.type === "agent"
-                              ? "bg-red-500 text-white rounded-bl-sm"
-                              : "bg-gray-100 text-gray-900 rounded-br-sm"
+                              ? "rounded-bl-sm"
+                              : "rounded-br-sm"
                           }`}
+                          style={{
+                            backgroundColor:
+                              message.type === "agent"
+                                ? "var(--text-accent-orange)"
+                                : "var(--bg-primary)",
+                            color: "var(--text-primary)",
+                            border:
+                              message.type === "user"
+                                ? "1px solid var(--border-secondary)"
+                                : "none",
+                          }}
                         >
                           <motion.div
                             initial={{ opacity: 0 }}
@@ -230,7 +285,11 @@ const CustomerSupportSection = () => {
 
               {/* Online status indicator */}
               <motion.div
-                className="absolute top-4 left-4 flex items-center space-x-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium"
+                className="absolute top-3 sm:top-4 left-3 sm:left-4 flex items-center space-x-2 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                style={{
+                  backgroundColor: "var(--text-accent-blue)",
+                  color: "var(--text-primary)",
+                }}
                 animate={{
                   scale: [1, 1.05, 1],
                 }}
@@ -240,7 +299,8 @@ const CustomerSupportSection = () => {
                 }}
               >
                 <motion.div
-                  className="w-2 h-2 bg-white rounded-full"
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: "var(--text-primary)" }}
                   animate={{
                     opacity: [1, 0.5, 1],
                   }}
@@ -251,46 +311,7 @@ const CustomerSupportSection = () => {
                 />
                 <span>Tony is online</span>
               </motion.div>
-
-              {/* Floating help icons */}
-              {[...Array(4)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
-                  style={{
-                    top: `${20 + Math.random() * 60}%`,
-                    left: `${10 + Math.random() * 80}%`,
-                  }}
-                  animate={{
-                    y: [0, -10, 0],
-                    rotate: [0, 180, 360],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: Math.random() * 4 + 3,
-                    repeat: Infinity,
-                    delay: Math.random() * 2,
-                    ease: "easeInOut",
-                  }}
-                >
-                  {["💬", "❓", "💡", "📞"][i]}
-                </motion.div>
-              ))}
             </div>
-
-            {/* Chat controls */}
-            <motion.div
-              className="absolute bottom-4 right-4"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <button
-                onClick={() => setIsLooping(!isLooping)}
-                className="bg-red-500 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition-colors"
-              >
-                {isLooping ? "⏸️" : "▶️"}
-              </button>
-            </motion.div>
           </motion.div>
         </div>
       </div>

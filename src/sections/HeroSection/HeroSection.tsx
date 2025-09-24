@@ -1,10 +1,5 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
   const heroRef = useRef(null);
@@ -28,30 +23,6 @@ const HeroSection = () => {
     [0, 0.5],
     ["100%", "95%"]
   );
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    const heroContent = heroContentRef.current;
-
-    if (!hero || !heroContent) return;
-
-    // Hero content width animation
-    gsap.to(heroContent, {
-      maxWidth: "800px",
-      scrollTrigger: {
-        trigger: hero,
-        start: "top center",
-        end: "bottom center",
-        scrub: 2,
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    // Cleanup
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
 
   return (
     <section
@@ -84,7 +55,7 @@ const HeroSection = () => {
 
         {/* Gold circular pattern resembling logo border */}
         <div
-          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] lg:w-[800px] h-[400px] sm:h-[600px] lg:h-[800px] opacity-10 rounded-full border-8 sm:border-12 lg:border-[15px]"
+          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] lg:w-[700px] h-[300px] sm:h-[500px] lg:h-[700px] opacity-10 rounded-full border-4 sm:border-8 lg:border-[12px]"
           style={{ borderColor: "var(--border-primary)" }}
         ></div>
 
@@ -97,7 +68,7 @@ const HeroSection = () => {
         ></div>
       </motion.div>
 
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between w-full gap-8 lg:gap-12">
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between w-full gap-6 lg:gap-12">
         {/* Left Content */}
         <motion.div
           ref={heroContentRef}
@@ -108,13 +79,13 @@ const HeroSection = () => {
         >
           {/* Logo element at the top */}
           <motion.div
-            className="mb-6 sm:mb-8"
+            className="mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="flex items-center justify-center lg:justify-start">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
                 <span
                   className="bg-clip-text text-transparent bg-gradient-to-r"
                   style={{
@@ -138,14 +109,14 @@ const HeroSection = () => {
               </div>
             </div>
             <div
-              className="text-xs sm:text-sm mt-1 tracking-wider"
+              className="text-xs mt-1 tracking-wider"
               style={{ color: "var(--text-secondary)" }}
             >
               GLOBAL TRADING SOLUTIONS
             </div>
           </motion.div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight mb-4 sm:mb-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -169,7 +140,7 @@ const HeroSection = () => {
             </motion.div>
           </h1>
           <motion.p
-            className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0"
+            className="text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0"
             style={{ color: "var(--text-secondary)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -180,9 +151,9 @@ const HeroSection = () => {
             traders worldwide.
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-8 sm:mb-12">
+          <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-10">
             <motion.button
-              className="px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg"
+              className="px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all transform hover:scale-105 hover:shadow-lg"
               style={{
                 background: `linear-gradient(to right, var(--text-accent-orange), var(--border-primary))`,
                 color: "var(--text-primary)",
@@ -196,7 +167,7 @@ const HeroSection = () => {
               Open Account
             </motion.button>
             <motion.button
-              className="px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105"
+              className="px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all transform hover:scale-105"
               style={{
                 border: `2px solid var(--text-accent-blue)`,
                 color: "var(--text-accent-blue)",
@@ -218,7 +189,7 @@ const HeroSection = () => {
 
           {/* Currency pairs */}
           <motion.div
-            className="flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-6"
+            className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.5 }}
@@ -231,7 +202,7 @@ const HeroSection = () => {
                 EUR/USD
               </span>
               <span
-                className="font-medium"
+                className="font-medium text-sm"
                 style={{ color: "var(--text-primary)" }}
               >
                 1.0876
@@ -251,7 +222,7 @@ const HeroSection = () => {
                 GBP/USD
               </span>
               <span
-                className="font-medium"
+                className="font-medium text-sm"
                 style={{ color: "var(--text-primary)" }}
               >
                 1.2785
@@ -271,7 +242,7 @@ const HeroSection = () => {
                 USD/JPY
               </span>
               <span
-                className="font-medium"
+                className="font-medium text-sm"
                 style={{ color: "var(--text-primary)" }}
               >
                 147.25
@@ -295,7 +266,7 @@ const HeroSection = () => {
         >
           {/* Stylized trading platform mockup */}
           <div
-            className="relative w-[400px] xl:w-[500px] h-[240px] xl:h-[300px] rounded-lg border shadow-xl overflow-hidden transform rotate-3"
+            className="relative w-[350px] xl:w-[450px] h-[210px] xl:h-[270px] rounded-lg border shadow-xl overflow-hidden transform rotate-3"
             style={{
               background: `linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary))`,
               borderColor: "var(--border-secondary)",
@@ -345,7 +316,7 @@ const HeroSection = () => {
 
             {/* Currency pairs sidebar */}
             <div
-              className="absolute top-10 left-0 bottom-0 w-[120px] border-r flex flex-col"
+              className="absolute top-10 left-0 bottom-0 w-[100px] border-r flex flex-col"
               style={{
                 backgroundColor: "var(--bg-accent)",
                 borderColor: "var(--border-secondary)",
@@ -356,7 +327,7 @@ const HeroSection = () => {
                 .map((_, i) => (
                   <div
                     key={i}
-                    className="py-2 px-3 border-b text-[10px]"
+                    className="py-2 px-2 border-b text-[9px]"
                     style={{
                       borderColor: "var(--border-secondary)",
                       color: "var(--text-secondary)",
@@ -378,7 +349,7 @@ const HeroSection = () => {
 
             {/* Bottom panel */}
             <div
-              className="absolute bottom-0 left-0 right-0 h-12 border-t"
+              className="absolute bottom-0 left-0 right-0 h-10 border-t"
               style={{
                 backgroundColor: "var(--bg-accent)",
                 borderColor: "var(--border-secondary)",
@@ -388,7 +359,7 @@ const HeroSection = () => {
 
           {/* Second trading screen with different angle */}
           <div
-            className="relative w-[320px] xl:w-[400px] h-[192px] xl:h-[240px] rounded-lg border shadow-xl overflow-hidden transform -rotate-6 -mt-10 -ml-40"
+            className="relative w-[280px] xl:w-[350px] h-[168px] xl:h-[210px] rounded-lg border shadow-xl overflow-hidden transform -rotate-6 -mt-8 -ml-32"
             style={{
               background: `linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary))`,
               borderColor: "var(--border-secondary)",
@@ -397,7 +368,7 @@ const HeroSection = () => {
             {/* Chart background */}
             <div className="h-full w-full opacity-70 flex flex-col">
               <div
-                className="h-8 border-b"
+                className="h-6 border-b"
                 style={{
                   backgroundColor: "var(--bg-primary)",
                   borderColor: "var(--border-secondary)",

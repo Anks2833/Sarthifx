@@ -26,7 +26,7 @@ const TradeDayNightSection = () => {
 
   const particles = useMemo(
     () =>
-      Array.from({ length: 15 }).map((_, i) => ({
+      Array.from({ length: 12 }).map((_, i) => ({
         id: i,
         size: Math.random() * 3 + 1,
         x: Math.random() * 100,
@@ -39,7 +39,7 @@ const TradeDayNightSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[150vh] flex items-center justify-center overflow-hidden"
+      className="relative min-h-[120vh] sm:min-h-[140vh] lg:min-h-[150vh] flex items-center justify-center overflow-hidden"
     >
       <motion.div
         className="absolute inset-0 z-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-amber-50"
@@ -56,9 +56,10 @@ const TradeDayNightSection = () => {
         style={{ backgroundColor: backgroundBlend }}
       />
 
-      <div className="absolute right-1/4 top-1/3 z-10">
+      {/* Sun/Moon positioning - responsive */}
+      <div className="absolute right-1/4 sm:right-1/3 lg:right-1/4 top-1/4 sm:top-1/3 z-10">
         <motion.div
-          className="w-20 h-20 rounded-full bg-yellow-400 absolute"
+          className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full bg-yellow-400 absolute"
           style={{
             opacity: dayBackgroundOpacity,
             scale: useTransform(dayNightProgress, [0, 0.3], [1, 0.8]),
@@ -74,7 +75,7 @@ const TradeDayNightSection = () => {
         />
 
         <motion.div
-          className="w-16 h-16 rounded-full bg-gray-200 absolute"
+          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full bg-gray-200 absolute"
           style={{
             opacity: nightBackgroundOpacity,
             scale: useTransform(dayNightProgress, [0.5, 0.8], [0.8, 1]),
@@ -86,27 +87,23 @@ const TradeDayNightSection = () => {
             ),
           }}
         >
+          {/* Moon craters - responsive sizes */}
           <motion.div
-            className="w-3 h-3 rounded-full bg-gray-300 absolute top-3 left-3"
-            style={{
-              opacity: nightBackgroundOpacity,
-            }}
+            className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-gray-300 absolute top-2 left-2 lg:top-3 lg:left-3"
+            style={{ opacity: nightBackgroundOpacity }}
           />
           <motion.div
-            className="w-2 h-2 rounded-full bg-gray-300 absolute top-10 left-8"
-            style={{
-              opacity: nightBackgroundOpacity,
-            }}
+            className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-gray-300 absolute top-6 left-6 lg:top-10 lg:left-8"
+            style={{ opacity: nightBackgroundOpacity }}
           />
           <motion.div
-            className="w-4 h-4 rounded-full bg-gray-300 absolute bottom-2 right-3"
-            style={{
-              opacity: nightBackgroundOpacity,
-            }}
+            className="w-2.5 h-2.5 lg:w-4 lg:h-4 rounded-full bg-gray-300 absolute bottom-1 right-2 lg:bottom-2 lg:right-3"
+            style={{ opacity: nightBackgroundOpacity }}
           />
         </motion.div>
       </div>
 
+      {/* Particles */}
       <div className="absolute inset-0 z-10 overflow-hidden">
         {particles.map((particle) => (
           <motion.div
@@ -138,9 +135,9 @@ const TradeDayNightSection = () => {
         ))}
       </div>
 
-      <div className="sticky top-[15vh] z-30 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
+      <div className="sticky top-[10vh] sm:top-[15vh] z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-16 sm:py-20">
         <motion.div
-          className="space-y-8"
+          className="space-y-6 sm:space-y-8 order-2 lg:order-1"
           style={{
             opacity: useTransform(
               scrollYProgress,
@@ -151,7 +148,7 @@ const TradeDayNightSection = () => {
         >
           <div className="relative">
             <motion.h1
-              className="text-7xl font-black leading-tight relative z-10"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight relative z-10"
               style={{
                 color: textColor,
                 textShadow: useTransform(dayNightProgress, (v) =>
@@ -183,9 +180,9 @@ const TradeDayNightSection = () => {
               </div>
             </motion.h1>
 
-            {/* Text glow effect */}
+            {/* Enhanced text glow effect */}
             <motion.div
-              className="absolute -inset-2 rounded-xl blur-xl z-0"
+              className="absolute -inset-4 rounded-xl blur-xl z-0"
               style={{
                 background: useTransform(dayNightProgress, (v) =>
                   v > 0.5
@@ -205,15 +202,16 @@ const TradeDayNightSection = () => {
           </div>
 
           <motion.p
-            className="text-xl opacity-90 max-w-lg leading-relaxed"
+            className="text-sm sm:text-base lg:text-lg opacity-90 max-w-lg leading-relaxed"
             style={{ color: textColor }}
           >
             Cryptocurrencies and our unique Synthetic Indices are available
             24/7. Trade when it suits you, with no market closes.
           </motion.p>
 
+          {/* Enhanced button */}
           <motion.button
-            className="group relative bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold overflow-hidden shadow-xl flex items-center"
+            className="group relative bg-gradient-to-r from-red-500 to-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-semibold overflow-hidden shadow-xl flex items-center"
             whileHover={{
               scale: 1.05,
               boxShadow: "0 10px 25px -5px rgba(239, 68, 68, 0.4)",
@@ -233,7 +231,7 @@ const TradeDayNightSection = () => {
 
             <span className="relative z-10">Open account</span>
             <motion.svg
-              className="ml-2 w-5 h-5"
+              className="ml-2 w-4 h-4 sm:w-5 sm:h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -253,41 +251,59 @@ const TradeDayNightSection = () => {
             </motion.svg>
           </motion.button>
 
-          <div className="flex gap-8 mt-4">
-            <div>
-              <div className="text-red-500 text-3xl font-bold mb-1">24/7</div>
+          {/* Enhanced stats section */}
+          <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-6">
+            {[
+              { value: "24/7", label: "Trading" },
+              { value: "100+", label: "Markets" },
+              { value: "0.01s", label: "Execution" },
+            ].map((stat, index) => (
               <motion.div
-                className="text-sm opacity-70"
-                style={{ color: textColor }}
+                key={stat.label}
+                className="text-center p-3 sm:p-4 rounded-lg"
+                style={{
+                  background: useTransform(dayNightProgress, (v) =>
+                    v > 0.5 ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"
+                  ),
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                }}
+                transition={{ duration: 0.2 }}
               >
-                Trading
+                <motion.div
+                  className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 text-red-500"
+                  animate={{
+                    textShadow: [
+                      "0 0 0px rgba(239, 68, 68, 0)",
+                      "0 0 20px rgba(239, 68, 68, 0.5)",
+                      "0 0 0px rgba(239, 68, 68, 0)",
+                    ],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: index * 0.5,
+                  }}
+                >
+                  {stat.value}
+                </motion.div>
+                <motion.div
+                  className="text-xs sm:text-sm opacity-70"
+                  style={{ color: textColor }}
+                >
+                  {stat.label}
+                </motion.div>
               </motion.div>
-            </div>
-
-            <div>
-              <div className="text-red-500 text-3xl font-bold mb-1">100+</div>
-              <motion.div
-                className="text-sm opacity-70"
-                style={{ color: textColor }}
-              >
-                Markets
-              </motion.div>
-            </div>
-
-            <div>
-              <div className="text-red-500 text-3xl font-bold mb-1">0.01s</div>
-              <motion.div
-                className="text-sm opacity-70"
-                style={{ color: textColor }}
-              >
-                Execution
-              </motion.div>
-            </div>
+            ))}
           </div>
         </motion.div>
 
         <motion.div
-          className="relative flex justify-center items-center"
+          className="relative flex justify-center items-center order-1 lg:order-2"
           style={{
             opacity: useTransform(
               scrollYProgress,
@@ -296,8 +312,9 @@ const TradeDayNightSection = () => {
             ),
           }}
         >
+          {/* Enhanced background glow */}
           <motion.div
-            className="absolute w-96 h-96 rounded-full opacity-30 blur-3xl"
+            className="absolute w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full opacity-20 blur-3xl"
             style={{
               background: useTransform(dayNightProgress, (v) =>
                 v > 0.5 ? "rgba(96, 165, 250, 0.3)" : "rgba(252, 211, 77, 0.3)"
@@ -319,12 +336,12 @@ const TradeDayNightSection = () => {
               y: useTransform(scrollYProgress, [0.3, 0.7], [0, -30]),
             }}
           >
-            {/* Device frame */}
-            <div className="w-[300px] h-[600px] bg-gray-900 rounded-[40px] p-3 shadow-2xl overflow-hidden border-4 border-gray-800">
+            {/* Responsive device frame */}
+            <div className="w-[250px] sm:w-[280px] lg:w-[300px] h-[500px] sm:h-[560px] lg:h-[600px] bg-gray-900 rounded-[32px] lg:rounded-[40px] p-2 lg:p-3 shadow-2xl overflow-hidden border-4 border-gray-800">
               {/* Device screen */}
-              <div className="w-full h-full bg-gray-900 rounded-[32px] overflow-hidden relative">
+              <div className="w-full h-full bg-gray-900 rounded-[24px] lg:rounded-[32px] overflow-hidden relative">
                 {/* Status bar */}
-                <div className="h-8 w-full bg-black flex items-center justify-between px-5">
+                <div className="h-6 sm:h-8 w-full bg-black flex items-center justify-between px-3 sm:px-5">
                   <motion.div
                     className="text-white text-xs"
                     style={{
@@ -355,23 +372,26 @@ const TradeDayNightSection = () => {
                     </motion.span>
                     <span className="invisible">23:15</span>
                   </motion.div>
-                  <div className="flex space-x-1.5">
-                    <div className="w-4 h-1 bg-white rounded-sm"></div>
+                  <div className="flex space-x-1">
                     <div className="w-3 h-1 bg-white rounded-sm"></div>
                     <div className="w-2 h-1 bg-white rounded-sm"></div>
+                    <div className="w-1.5 h-1 bg-white rounded-sm"></div>
                   </div>
                 </div>
 
-                <div className="p-4">
+                <div className="p-3 sm:p-4">
                   {/* App header */}
-                  <div className="flex justify-between items-center mb-6">
-                    <div className="text-white font-bold">SarthiFX Trader</div>
-                    <div className="text-red-500 font-medium text-sm">
+                  <div className="flex justify-between items-center mb-4 sm:mb-6">
+                    <div className="text-white font-bold text-sm sm:text-base">
+                      SarthiFX Trader
+                    </div>
+                    <div className="text-red-500 font-medium text-xs sm:text-sm">
                       $4,580.00 USD
                     </div>
                   </div>
 
-                  <div className="flex space-x-2 mb-6 overflow-x-auto pb-2">
+                  {/* Tabs */}
+                  <div className="flex space-x-1 sm:space-x-2 mb-4 sm:mb-6 overflow-x-auto pb-2">
                     {[
                       "Rise/Fall",
                       "Higher/Lower",
@@ -380,12 +400,12 @@ const TradeDayNightSection = () => {
                     ].map((tab, index) => (
                       <motion.div
                         key={tab}
-                        className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap ${
+                        className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs whitespace-nowrap ${
                           index === 0
                             ? "bg-white text-black"
                             : "bg-gray-800 text-gray-400"
                         }`}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
                         {tab}
@@ -393,11 +413,12 @@ const TradeDayNightSection = () => {
                     ))}
                   </div>
 
-                  <div className="bg-gray-800 rounded-xl p-4 mb-4">
+                  {/* Chart section */}
+                  <div className="bg-gray-800 rounded-xl p-3 sm:p-4 mb-3 sm:mb-4">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center space-x-2">
                         <motion.span
-                          className="text-sm w-6 h-6 rounded-full flex items-center justify-center"
+                          className="text-xs w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center"
                           style={{
                             backgroundColor: useTransform(
                               dayNightProgress,
@@ -423,7 +444,7 @@ const TradeDayNightSection = () => {
                           </motion.span>
                           <span className="invisible">X</span>
                         </motion.span>
-                        <motion.span className="text-white font-medium">
+                        <motion.span className="text-white font-medium text-sm">
                           <motion.span
                             style={{
                               opacity: isDayProgress,
@@ -443,7 +464,7 @@ const TradeDayNightSection = () => {
                           <span className="invisible">ETH/USD</span>
                         </motion.span>
                       </div>
-                      <div className="text-green-400 text-sm">
+                      <div className="text-green-400 text-xs sm:text-sm">
                         <motion.span
                           style={{
                             opacity: isDayProgress,
@@ -464,13 +485,15 @@ const TradeDayNightSection = () => {
                       </div>
                     </div>
 
-                    <div className="h-40 w-full relative">
+                    {/* Chart area */}
+                    <div className="h-28 sm:h-32 lg:h-40 w-full relative">
                       <svg
                         width="100%"
                         height="100%"
                         viewBox="0 0 250 100"
                         preserveAspectRatio="none"
                       >
+                        {/* Day chart */}
                         <motion.path
                           d="M0,70 C20,60 40,30 60,50 C80,65 100,40 120,30 C140,20 160,40 180,50 C200,60 220,40 240,20"
                           fill="none"
@@ -495,6 +518,7 @@ const TradeDayNightSection = () => {
                           }}
                         />
 
+                        {/* Night chart */}
                         <motion.path
                           d="M0,50 C20,60 40,30 60,70 C80,80 100,60 120,50 C140,40 160,70 180,60 C200,50 220,30 240,60"
                           fill="none"
@@ -522,12 +546,13 @@ const TradeDayNightSection = () => {
                     </div>
                   </div>
 
-                  <div className="bg-gray-800 rounded-xl p-4 mb-4">
-                    <div className="text-gray-400 text-xs mb-3">
+                  {/* Trade settings */}
+                  <div className="bg-gray-800 rounded-xl p-3 sm:p-4 mb-3 sm:mb-4">
+                    <div className="text-gray-400 text-xs mb-2 sm:mb-3">
                       Set your trade
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <div className="flex justify-between items-center">
                         <span className="text-gray-400 text-xs">Duration</span>
                         <div className="bg-gray-700 px-2 py-1 rounded-md text-white text-xs">
@@ -549,53 +574,55 @@ const TradeDayNightSection = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2">
+                  {/* Trading buttons */}
+                  <div className="grid grid-cols-2 gap-2 relative">
                     <motion.button
-                      className="bg-green-500 text-white py-3 rounded-xl text-sm font-medium"
+                      className="bg-green-500 text-white py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium"
                       style={{
                         opacity: isDayProgress,
                       }}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       Rise
                     </motion.button>
                     <motion.button
-                      className="bg-red-500 text-white py-3 rounded-xl text-sm font-medium"
+                      className="bg-red-500 text-white py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium"
                       style={{
                         opacity: isDayProgress,
                       }}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       Fall
                     </motion.button>
 
                     <motion.button
-                      className="bg-cyan-500 text-white py-3 rounded-xl text-sm font-medium absolute left-0 bottom-0 w-[46%]"
+                      className="bg-cyan-500 text-white py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium absolute left-0 bottom-0 w-[48%]"
                       style={{
                         opacity: nightBackgroundOpacity,
                       }}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       Up
                     </motion.button>
                     <motion.button
-                      className="bg-purple-500 text-white py-3 rounded-xl text-sm font-medium absolute right-0 bottom-0 w-[46%]"
+                      className="bg-purple-500 text-white py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium absolute right-0 bottom-0 w-[48%]"
                       style={{
                         opacity: nightBackgroundOpacity,
                       }}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       Down
                     </motion.button>
                   </div>
                 </div>
 
+                {/* Screen reflection effect */}
                 <motion.div
-                  className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white to-transparent opacity-5"
+                  className="absolute top-0 left-0 w-full h-16 sm:h-20 bg-gradient-to-b from-white to-transparent opacity-5"
                   animate={{
                     opacity: [0.05, 0.02, 0.05],
                   }}
@@ -609,11 +636,11 @@ const TradeDayNightSection = () => {
             </div>
 
             {/* Device notch */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-6 bg-black rounded-b-3xl z-20"></div>
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 sm:w-36 lg:w-40 h-4 sm:h-5 lg:h-6 bg-black rounded-b-2xl lg:rounded-b-3xl z-20"></div>
 
-            {/* Floating chart elements */}
+            {/* Enhanced floating chart elements */}
             <motion.div
-              className="absolute -left-16 top-32 p-3 rounded-xl text-white text-xs font-medium shadow-lg"
+              className="absolute -left-12 sm:-left-16 top-24 sm:top-32 p-2 sm:p-3 rounded-lg sm:rounded-xl text-white text-xs font-medium shadow-lg backdrop-blur-md"
               style={{
                 backgroundColor: useTransform(dayNightProgress, (v) =>
                   v > 0.5 ? "rgba(59, 130, 246, 0.9)" : "rgba(34, 197, 94, 0.9)"
@@ -630,7 +657,7 @@ const TradeDayNightSection = () => {
             </motion.div>
 
             <motion.div
-              className="absolute -right-20 top-48 px-3 py-2 rounded-xl text-white text-xs font-medium shadow-lg"
+              className="absolute -right-16 sm:-right-20 top-36 sm:top-48 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-white text-xs font-medium shadow-lg backdrop-blur-md"
               style={{
                 backgroundColor: useTransform(dayNightProgress, (v) =>
                   v > 0.5

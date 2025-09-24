@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Clock, MessageCircle, Smartphone, Globe, User, Circle } from "lucide-react";
 
 const CustomerSupportSection = () => {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
@@ -54,14 +55,16 @@ const CustomerSupportSection = () => {
   // Typing indicator component
   const TypingIndicator = () => (
     <motion.div
-      className="flex space-x-1 p-3 rounded-2xl rounded-bl-sm max-w-xs"
+      className="flex space-x-1 p-3 rounded-2xl rounded-bl-sm max-w-xs backdrop-blur-sm"
       style={{
         backgroundColor: "var(--text-accent-orange)",
         color: "var(--text-primary)",
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
       }}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.8, y: 10 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
       <div className="flex space-x-1">
         {[...Array(3)].map((_, i) => (
@@ -70,13 +73,14 @@ const CustomerSupportSection = () => {
             className="w-2 h-2 rounded-full"
             style={{ backgroundColor: "var(--text-primary)" }}
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.5, 1, 0.5],
+              scale: [1, 1.3, 1],
+              opacity: [0.6, 1, 0.6],
             }}
             transition={{
-              duration: 1,
+              duration: 1.2,
               repeat: Infinity,
               delay: i * 0.2,
+              ease: "easeInOut",
             }}
           />
         ))}
@@ -84,12 +88,46 @@ const CustomerSupportSection = () => {
     </motion.div>
   );
 
+  // Features data with lucide icons
+  const features = [
+    { 
+      icon: Clock, 
+      label: "24/7 Support",
+      description: "Always available",
+      gradient: "from-blue-500 to-cyan-500"
+    },
+    { 
+      icon: MessageCircle, 
+      label: "Live Chat",
+      description: "Instant responses",
+      gradient: "from-green-500 to-emerald-500"
+    },
+    { 
+      icon: Smartphone, 
+      label: "Multi-platform",
+      description: "Any device",
+      gradient: "from-purple-500 to-violet-500"
+    },
+    { 
+      icon: Globe, 
+      label: "Global Team",
+      description: "Worldwide coverage",
+      gradient: "from-orange-500 to-red-500"
+    },
+  ];
+
   return (
     <section
-      className="py-12 sm:py-16 lg:py-20 overflow-hidden"
+      className="py-12 sm:py-16 lg:py-20 overflow-hidden relative"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-32 h-32 rounded-full blur-xl opacity-20 bg-gradient-to-br from-blue-400 to-purple-400"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 rounded-full blur-xl opacity-20 bg-gradient-to-br from-orange-400 to-pink-400"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Side - Content */}
           <motion.div
@@ -100,7 +138,7 @@ const CustomerSupportSection = () => {
             viewport={{ once: true }}
           >
             <motion.h2
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight"
               style={{ color: "var(--text-primary)" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -111,7 +149,7 @@ const CustomerSupportSection = () => {
             </motion.h2>
 
             <motion.p
-              className="text-base sm:text-lg leading-relaxed max-w-lg"
+              className="text-sm sm:text-base leading-relaxed max-w-lg"
               style={{ color: "var(--text-secondary)" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +160,7 @@ const CustomerSupportSection = () => {
               to our Support whenever you need, wherever you are.
             </motion.p>
 
-            {/* Features */}
+            {/* Enhanced Features Grid */}
             <motion.div
               className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 lg:pt-8"
               initial={{ opacity: 0, y: 20 }}
@@ -130,36 +168,88 @@ const CustomerSupportSection = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              {[
-                { icon: "🕐", label: "24/7 Support" },
-                { icon: "💬", label: "Live Chat" },
-                { icon: "📱", label: "Multi-platform" },
-                { icon: "🌍", label: "Global Team" },
-              ].map((feature, _index) => (
-                <motion.div
-                  key={feature.label}
-                  className="flex items-center space-x-3 p-3 sm:p-4 rounded-xl transition-all duration-300"
-                  style={{
-                    backgroundColor: "var(--bg-secondary)",
-                    border: "1px solid var(--border-secondary)",
-                  }}
-                  whileHover={{
-                    scale: 1.02,
-                  }}
-                >
-                  <div className="text-xl sm:text-2xl">{feature.icon}</div>
-                  <div
-                    className="font-medium text-sm sm:text-base"
-                    style={{ color: "var(--text-primary)" }}
+              {features.map((feature, index) => {
+                const IconComponent = feature.icon;
+                return (
+                  <motion.div
+                    key={feature.label}
+                    className="group relative p-4 rounded-xl transition-all duration-300 overflow-hidden"
+                    style={{
+                      backgroundColor: "var(--bg-secondary)",
+                      border: "1px solid var(--border-secondary)",
+                    }}
+                    whileHover={{
+                      scale: 1.03,
+                      y: -2,
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    viewport={{ once: true }}
                   >
-                    {feature.label}
-                  </div>
-                </motion.div>
-              ))}
+                    {/* Gradient background on hover */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                    />
+                    
+                    <div className="flex items-center space-x-3 relative z-10">
+                      <motion.div
+                        className={`p-2 rounded-lg bg-gradient-to-r ${feature.gradient}`}
+                        whileHover={{ rotate: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <IconComponent 
+                          size={18} 
+                          className="text-white"
+                        />
+                      </motion.div>
+                      <div className="flex-1">
+                        <div
+                          className="font-semibold text-sm"
+                          style={{ color: "var(--text-primary)" }}
+                        >
+                          {feature.label}
+                        </div>
+                        <div
+                          className="text-xs opacity-75"
+                          style={{ color: "var(--text-secondary)" }}
+                        >
+                          {feature.description}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* Call-to-action */}
+            <motion.div
+              className="pt-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.button
+                className="group flex items-center space-x-2 px-6 py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300"
+                style={{
+                  backgroundColor: "var(--text-accent-orange)",
+                  color: "var(--text-primary)",
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <MessageCircle size={18} />
+                <span>Start live chat</span>
+              </motion.button>
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Animated Chat Interface */}
+          {/* Right Side - Enhanced Chat Interface */}
           <motion.div
             className="relative order-1 lg:order-2"
             initial={{ opacity: 0, y: 30 }}
@@ -167,54 +257,111 @@ const CustomerSupportSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Background Chat Interface */}
+            {/* Enhanced Chat Interface */}
             <div
-              className="relative w-full h-[400px] sm:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden"
+              className="relative w-full h-[380px] sm:h-[420px] lg:h-[480px] rounded-2xl overflow-hidden shadow-2xl"
               style={{
                 background: `linear-gradient(135deg, var(--bg-secondary), var(--bg-accent))`,
+                border: "1px solid var(--border-primary)",
               }}
             >
-              {/* Background Design Elements */}
-              <div className="absolute inset-0">
-                {/* Person representation */}
-                <div
-                  className="absolute bottom-0 right-4 sm:right-8 w-24 sm:w-32 h-32 sm:h-40 rounded-t-full opacity-80"
-                  style={{
-                    background: `linear-gradient(to top, var(--text-accent-blue), var(--text-accent-orange))`,
-                  }}
-                ></div>
-                <div
-                  className="absolute bottom-24 sm:bottom-32 right-8 sm:right-12 w-16 sm:w-24 h-16 sm:h-24 rounded-full shadow-inner"
-                  style={{ backgroundColor: "var(--border-primary)" }}
-                >
-                  {/* Face features */}
-                  <div
-                    className="absolute top-4 sm:top-6 left-4 sm:left-6 w-2 h-2 rounded-full"
-                    style={{ backgroundColor: "var(--bg-primary)" }}
-                  ></div>
-                  <div
-                    className="absolute top-4 sm:top-6 right-4 sm:right-6 w-2 h-2 rounded-full"
-                    style={{ backgroundColor: "var(--bg-primary)" }}
-                  ></div>
-                  <div
-                    className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 w-3 sm:w-4 h-1 sm:h-2 border-b-2 rounded-b-full"
-                    style={{ borderColor: "var(--bg-primary)" }}
-                  ></div>
+              {/* Header */}
+              <motion.div
+                className="absolute top-0 left-0 right-0 h-12 sm:h-14 flex items-center justify-between px-4 sm:px-6 backdrop-blur-md"
+                style={{
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  borderBottom: "1px solid var(--border-secondary)",
+                }}
+              >
+                <div className="flex items-center space-x-3">
+                  <motion.div
+                    className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center"
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  >
+                    <User size={16} className="text-white" />
+                  </motion.div>
+                  <div>
+                    <div 
+                      className="font-medium text-sm"
+                      style={{ color: "var(--text-primary)" }}
+                    >
+                      Support Team
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Circle 
+                        size={8} 
+                        className="fill-green-400 text-green-400"
+                      />
+                      <span 
+                        className="text-xs"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
+                        Online
+                      </span>
+                    </div>
+                  </div>
                 </div>
+                
+                <motion.div
+                  className="flex space-x-1"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                </motion.div>
+              </motion.div>
 
-                {/* Background decorative elements */}
-                <div
-                  className="absolute top-6 sm:top-8 left-6 sm:left-8 w-12 sm:w-16 h-12 sm:h-16 rounded-lg opacity-60"
+              {/* Background Design Elements */}
+              <div className="absolute inset-0 pt-12 sm:pt-14">
+                {/* Animated background patterns */}
+                <motion.div
+                  className="absolute top-1/4 left-1/4 w-16 h-16 rounded-lg opacity-20"
                   style={{ backgroundColor: "var(--text-accent-blue)" }}
-                ></div>
-                <div
-                  className="absolute top-12 sm:top-16 right-12 sm:right-16 w-8 sm:w-12 h-8 sm:h-12 rounded-full opacity-60"
+                  animate={{
+                    rotate: [0, 180, 360],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+                
+                <motion.div
+                  className="absolute bottom-1/3 right-1/4 w-12 h-12 rounded-full opacity-20"
                   style={{ backgroundColor: "var(--text-accent-orange)" }}
-                ></div>
+                  animate={{
+                    y: [0, -10, 0],
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+
+                {/* Agent avatar in background */}
+                <motion.div
+                  className="absolute bottom-4 right-6 w-16 sm:w-20 h-20 sm:h-24 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center shadow-lg"
+                  animate={{
+                    y: [0, -5, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <User size={24} className="text-white" />
+                </motion.div>
               </div>
 
-              {/* Chat Overlay */}
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 space-y-2 sm:space-y-3">
+              {/* Chat Messages Container */}
+              <div className="absolute inset-0 pt-12 sm:pt-14 flex flex-col justify-end p-4 sm:p-6 space-y-2 sm:space-y-3 max-h-full overflow-hidden">
                 <AnimatePresence>
                   {chatMessages
                     .slice(0, currentMessageIndex + 1)
@@ -228,17 +375,17 @@ const CustomerSupportSection = () => {
                             ? "justify-end"
                             : "justify-start"
                         }`}
-                        initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -20, scale: 0.8 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.9 }}
                         transition={{
                           type: "spring",
-                          stiffness: 500,
-                          damping: 30,
+                          stiffness: 400,
+                          damping: 25,
                         }}
                       >
-                        <div
-                          className={`max-w-xs p-3 rounded-2xl shadow-lg text-sm sm:text-base ${
+                        <motion.div
+                          className={`max-w-[280px] sm:max-w-xs p-3 rounded-2xl shadow-lg text-sm backdrop-blur-sm ${
                             message.type === "agent"
                               ? "rounded-bl-sm"
                               : "rounded-br-sm"
@@ -253,7 +400,10 @@ const CustomerSupportSection = () => {
                               message.type === "user"
                                 ? "1px solid var(--border-secondary)"
                                 : "none",
+                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                           }}
+                          whileHover={{ scale: 1.02 }}
+                          transition={{ duration: 0.2 }}
                         >
                           <motion.div
                             initial={{ opacity: 0 }}
@@ -262,11 +412,11 @@ const CustomerSupportSection = () => {
                           >
                             {message.text}
                           </motion.div>
-                        </div>
+                        </motion.div>
                       </motion.div>
                     ))}
 
-                  {/* Show typing indicator when agent is about to respond */}
+                  {/* Enhanced typing indicator */}
                   {currentMessageIndex < chatMessages.length - 1 &&
                     chatMessages[currentMessageIndex + 1]?.type === "agent" &&
                     currentMessageIndex >= 0 && (
@@ -283,12 +433,12 @@ const CustomerSupportSection = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Online status indicator */}
+              {/* Enhanced online status indicator */}
               <motion.div
-                className="absolute top-3 sm:top-4 left-3 sm:left-4 flex items-center space-x-2 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                className="absolute top-16 sm:top-18 left-4 sm:left-6 flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-md"
                 style={{
-                  backgroundColor: "var(--text-accent-blue)",
-                  color: "var(--text-primary)",
+                  backgroundColor: "rgba(34, 197, 94, 0.9)",
+                  color: "white",
                 }}
                 animate={{
                   scale: [1, 1.05, 1],
@@ -299,10 +449,10 @@ const CustomerSupportSection = () => {
                 }}
               >
                 <motion.div
-                  className="w-2 h-2 rounded-full"
-                  style={{ backgroundColor: "var(--text-primary)" }}
+                  className="w-2 h-2 rounded-full bg-white"
                   animate={{
                     opacity: [1, 0.5, 1],
+                    scale: [1, 1.2, 1],
                   }}
                   transition={{
                     duration: 1.5,
@@ -311,6 +461,19 @@ const CustomerSupportSection = () => {
                 />
                 <span>Tony is online</span>
               </motion.div>
+
+              {/* Subtle screen reflection effect */}
+              <motion.div
+                className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent opacity-5 pointer-events-none"
+                animate={{
+                  opacity: [0.05, 0.02, 0.05],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
             </div>
           </motion.div>
         </div>

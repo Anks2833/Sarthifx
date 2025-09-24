@@ -119,34 +119,34 @@ const AllMarkets = () => {
           {/* Left Content */}
           <div className="flex flex-col justify-center order-2 lg:order-1">
             <h2
-              className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6"
+              className="text-2xl sm:text-3xl lg:text-4xl font-black mb-4 sm:mb-6"
               style={{ color: "var(--text-primary)" }}
             >
               {market.title}
             </h2>
 
             <p
-              className="text-lg sm:text-xl mb-8 max-w-md leading-relaxed"
+              className="text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 max-w-md leading-relaxed"
               style={{ color: "var(--text-secondary)" }}
             >
               {market.description}
             </p>
 
             {/* Trading Cards - Mobile */}
-            <div className="flex flex-wrap gap-4 mb-8 lg:hidden">
+            <div className="flex flex-wrap gap-3 mb-6 sm:mb-8 lg:hidden">
               {market.cards.map((card: Card) => (
                 <div
                   key={`${market.title}-${card.pair}-mobile`}
-                  className="p-4 rounded-xl shadow-lg"
+                  className="p-3 rounded-xl shadow-lg"
                   style={{
                     backgroundColor: "var(--bg-secondary)",
                     border: "1px solid var(--border-secondary)",
                   }}
                 >
-                  <div className="flex items-center space-x-3">
-                    <div className="text-xl">{card.flag}</div>
+                  <div className="flex items-center space-x-2">
+                    <div className="text-lg">{card.flag}</div>
                     <div
-                      className="font-bold text-base"
+                      className="font-bold text-sm"
                       style={{ color: "var(--text-primary)" }}
                     >
                       {card.pair}
@@ -158,7 +158,7 @@ const AllMarkets = () => {
 
             <a
               href="#"
-              className="flex items-center space-x-2 font-semibold text-lg lg:text-xl group"
+              className="flex items-center space-x-2 font-semibold text-sm sm:text-base group"
               style={{ color: "var(--text-accent-orange)" }}
             >
               <span>Learn more</span>
@@ -167,22 +167,22 @@ const AllMarkets = () => {
           </div>
 
           {/* Right Content - Desktop Only */}
-          <div className="relative hidden lg:flex items-center justify-center min-h-[500px] xl:min-h-[600px] order-1 lg:order-2">
+          <div className="relative hidden lg:flex items-center justify-center min-h-[400px] xl:min-h-[500px] order-1 lg:order-2">
             {/* Trading Cards - Desktop */}
-            <div className="absolute left-0 top-1/2 transform -translate-y-1/2 space-y-6 z-10">
+            <div className="absolute left-0 top-1/2 transform -translate-y-1/2 space-y-4 z-10">
               {market.cards.map((card: Card) => (
                 <div
                   key={`${market.title}-${card.pair}-desktop`}
-                  className="p-4 rounded-xl shadow-xl"
+                  className="p-3 lg:p-4 rounded-xl shadow-xl"
                   style={{
                     backgroundColor: "var(--bg-secondary)",
                     border: "2px solid var(--border-primary)",
                   }}
                 >
-                  <div className="flex items-center space-x-3">
-                    <div className="text-2xl">{card.flag}</div>
+                  <div className="flex items-center space-x-2 lg:space-x-3">
+                    <div className="text-lg lg:text-xl">{card.flag}</div>
                     <div
-                      className="font-bold text-lg"
+                      className="font-bold text-sm lg:text-base"
                       style={{ color: "var(--text-primary)" }}
                     >
                       {card.pair}
@@ -193,11 +193,11 @@ const AllMarkets = () => {
             </div>
 
             {/* Phone Mockup */}
-            <div className="relative z-0 ml-32">
+            <div className="relative z-0 ml-24 lg:ml-32">
               <img
                 src={market.mobileImage}
                 alt={`${market.title} Trading App`}
-                className="h-[500px] xl:h-[650px] w-auto object-contain drop-shadow-2xl"
+                className="h-[400px] lg:h-[500px] xl:h-[600px] w-auto object-contain drop-shadow-2xl"
               />
             </div>
           </div>
@@ -207,7 +207,7 @@ const AllMarkets = () => {
             <img
               src={market.mobileImage}
               alt={`${market.title} Trading App`}
-              className="h-[350px] sm:h-[400px] w-auto object-contain drop-shadow-xl"
+              className="h-[280px] sm:h-[320px] w-auto object-contain drop-shadow-xl"
             />
           </div>
         </div>
@@ -220,11 +220,11 @@ const AllMarkets = () => {
       className="overflow-hidden"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      <div className="py-12 lg:py-20">
+      <div className="py-10 lg:py-16">
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-16 px-4">
+        <div className="text-center mb-10 lg:mb-14 px-4">
           <h2
-            className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4"
+            className="text-2xl sm:text-3xl lg:text-4xl font-black mb-3"
             style={{ color: "var(--text-primary)" }}
           >
             All your markets in one place

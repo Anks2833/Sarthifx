@@ -64,14 +64,14 @@ const TradeWithConfidenceSection = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-12 lg:mb-16"
+          className="text-center mb-10 lg:mb-14"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-3"
             style={{ color: "var(--text-primary)" }}
           >
             Trade with confidence
@@ -97,7 +97,7 @@ const TradeWithConfidenceSection = () => {
             {leftAwards.map((award, index) => (
               <motion.div
                 key={index}
-                className="relative text-center p-6 lg:p-8 rounded-lg"
+                className="relative text-center p-4 lg:p-6 rounded-lg"
                 style={{
                   backgroundColor: "var(--bg-secondary)",
                   border: "1px solid var(--border-primary)",
@@ -108,7 +108,7 @@ const TradeWithConfidenceSection = () => {
                 viewport={{ once: true }}
               >
                 {/* Left Wheat SVG */}
-                <div className="absolute left-2 lg:left-0 top-1/2 transform -translate-y-1/2 w-8 h-12 lg:w-12 lg:h-20">
+                <div className="absolute left-2 lg:left-0 top-1/2 transform -translate-y-1/2 w-6 h-8 lg:w-8 lg:h-12">
                   <img
                     src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c6992_right%20wheat.svg"
                     alt="Award decoration"
@@ -117,7 +117,7 @@ const TradeWithConfidenceSection = () => {
                 </div>
 
                 {/* Right Wheat SVG */}
-                <div className="absolute right-2 lg:right-0 top-1/2 transform -translate-y-1/2 w-8 h-12 lg:w-12 lg:h-20">
+                <div className="absolute right-2 lg:right-0 top-1/2 transform -translate-y-1/2 w-6 h-8 lg:w-8 lg:h-12">
                   <img
                     src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c6991_left%20wheat.svg"
                     alt="Award decoration"
@@ -126,13 +126,13 @@ const TradeWithConfidenceSection = () => {
                 </div>
 
                 <h3
-                  className="font-bold mb-3 text-sm sm:text-base lg:text-lg leading-tight"
+                  className="font-bold mb-2 text-xs sm:text-sm lg:text-base leading-tight"
                   style={{ color: "var(--text-primary)" }}
                 >
                   {award.title}
                 </h3>
                 <p
-                  className="text-xs sm:text-sm font-medium"
+                  className="text-xs font-medium"
                   style={{ color: "var(--text-secondary)" }}
                 >
                   {award.organization}
@@ -147,14 +147,14 @@ const TradeWithConfidenceSection = () => {
 
           {/* Center Auto-Scrolling Stats */}
           <motion.div
-            className="text-center relative min-h-[300px] sm:min-h-[350px] lg:min-h-[400px] flex items-center justify-center"
+            className="text-center relative min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] flex items-center justify-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
             <div
-              className="relative p-8 rounded-2xl"
+              className="relative p-6 lg:p-8 rounded-2xl"
               style={{
                 backgroundColor: "var(--bg-secondary)",
                 border: "2px solid var(--border-primary)",
@@ -185,7 +185,7 @@ const TradeWithConfidenceSection = () => {
                   className="text-center"
                 >
                   <motion.div
-                    className="text-5xl sm:text-6xl lg:text-8xl font-black mb-4 tracking-tight"
+                    className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black mb-3 tracking-tight"
                     style={{ color: "var(--text-accent-blue)" }}
                     animate={{
                       textShadow: [
@@ -203,7 +203,7 @@ const TradeWithConfidenceSection = () => {
                     {stats[currentStatIndex].value}
                   </motion.div>
                   <motion.p
-                    className="text-base sm:text-lg lg:text-xl font-medium"
+                    className="text-sm sm:text-base lg:text-lg font-medium"
                     style={{ color: "var(--text-secondary)" }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -227,7 +227,7 @@ const TradeWithConfidenceSection = () => {
             {rightAwards.map((award, index) => (
               <motion.div
                 key={index}
-                className="relative text-center p-6 lg:p-8 rounded-lg"
+                className="relative text-center p-4 lg:p-6 rounded-lg"
                 style={{
                   backgroundColor: "var(--bg-secondary)",
                   border: "1px solid var(--border-primary)",
@@ -238,7 +238,7 @@ const TradeWithConfidenceSection = () => {
                 viewport={{ once: true }}
               >
                 {/* Left Wheat SVG */}
-                <div className="absolute left-2 lg:left-0 top-1/2 transform -translate-y-1/2 w-8 h-12 lg:w-12 lg:h-20">
+                <div className="absolute left-2 lg:left-0 top-1/2 transform -translate-y-1/2 w-6 h-8 lg:w-8 lg:h-12">
                   <img
                     src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c6992_right%20wheat.svg"
                     alt="Award decoration"
@@ -247,7 +247,7 @@ const TradeWithConfidenceSection = () => {
                 </div>
 
                 {/* Right Wheat SVG */}
-                <div className="absolute right-2 lg:right-0 top-1/2 transform -translate-y-1/2 w-8 h-12 lg:w-12 lg:h-20">
+                <div className="absolute right-2 lg:right-0 top-1/2 transform -translate-y-1/2 w-6 h-8 lg:w-8 lg:h-12">
                   <img
                     src="https://cdn.prod.website-files.com/66585fe0e1dc7e70cc75d440/6757df573bf331c84b6c6991_left%20wheat.svg"
                     alt="Award decoration"
@@ -256,13 +256,13 @@ const TradeWithConfidenceSection = () => {
                 </div>
 
                 <h3
-                  className="font-bold mb-3 text-sm sm:text-base lg:text-lg leading-tight"
+                  className="font-bold mb-2 text-xs sm:text-sm lg:text-base leading-tight"
                   style={{ color: "var(--text-primary)" }}
                 >
                   {award.title}
                 </h3>
                 <p
-                  className="text-xs sm:text-sm font-medium"
+                  className="text-xs font-medium"
                   style={{ color: "var(--text-secondary)" }}
                 >
                   {award.organization}

@@ -1,5 +1,13 @@
 import { useRef, useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import {
+  DollarSign,
+  TrendingUp,
+  Cpu,
+  Briefcase,
+  Bitcoin,
+  Activity,
+} from "lucide-react";
 
 // Type definitions
 interface Card {
@@ -30,8 +38,16 @@ const AllMarkets = () => {
       description:
         "Trade the most popular currency pairs with high leverage, tight spreads, and fast execution.",
       cards: [
-        { pair: "EUR/USD", color: "bg-blue-400", flag: "🇪🇺" },
-        { pair: "GBP/USD", color: "bg-red-400", flag: "🇬🇧" },
+        {
+          pair: "EUR/USD",
+          color: "bg-blue-400",
+          icon: <DollarSign className="w-5 h-5" />,
+        },
+        {
+          pair: "GBP/USD",
+          color: "bg-red-400",
+          icon: <DollarSign className="w-5 h-5" />,
+        },
       ],
       mobileImage: "/MobileMockups/mobileMockup1.webp",
       mockupPosition: "right",
@@ -41,8 +57,16 @@ const AllMarkets = () => {
       description:
         "Trade 24/7 on exclusive Synthetic and Derived Indices. Choose volatility levels that match your strategy.",
       cards: [
-        { pair: "VOL 100", color: "bg-teal-400", flag: "📈" },
-        { pair: "USD BASKET", color: "bg-blue-400", flag: "💱" },
+        {
+          pair: "VOL 100",
+          color: "bg-teal-400",
+          icon: <Activity className="w-5 h-5" />,
+        },
+        {
+          pair: "USD BASKET",
+          color: "bg-blue-400",
+          icon: <Cpu className="w-5 h-5" />,
+        },
       ],
       mobileImage: "/MobileMockups/mobileMockup2.webp",
       mockupPosition: "right",
@@ -51,8 +75,16 @@ const AllMarkets = () => {
       title: "Stocks",
       description: "Trade global market leaders like Apple, Tesla, and NVIDIA.",
       cards: [
-        { pair: "AAPL", color: "bg-gray-800", flag: "🍎" },
-        { pair: "TSLA", color: "bg-gray-400", flag: "🚗" },
+        {
+          pair: "AAPL",
+          color: "bg-gray-800",
+          icon: <Briefcase className="w-5 h-5" />,
+        },
+        {
+          pair: "TSLA",
+          color: "bg-gray-400",
+          icon: <TrendingUp className="w-5 h-5" />,
+        },
       ],
       mobileImage: "/MobileMockups/mobileMockup3.webp",
       mockupPosition: "right",
@@ -61,8 +93,16 @@ const AllMarkets = () => {
       title: "Commodities",
       description: "Trade gold, silver, oil, natural gas, sugar, and more.",
       cards: [
-        { pair: "GOLD", color: "bg-yellow-500", flag: "🥇" },
-        { pair: "SILVER", color: "bg-gray-400", flag: "🥈" },
+        {
+          pair: "GOLD",
+          color: "bg-yellow-500",
+          icon: <TrendingUp className="w-5 h-5" />,
+        },
+        {
+          pair: "SILVER",
+          color: "bg-gray-400",
+          icon: <TrendingUp className="w-5 h-5" />,
+        },
       ],
       mobileImage: "/MobileMockups/mobileMockup4.webp",
       mockupPosition: "right",
@@ -72,8 +112,16 @@ const AllMarkets = () => {
       description:
         "Trade round the clock on the volatility of cryptocurrencies like Bitcoin and Ethereum.",
       cards: [
-        { pair: "BTC/USD", color: "bg-orange-500", flag: "₿" },
-        { pair: "ETH/USD", color: "bg-gray-700", flag: "Ξ" },
+        {
+          pair: "BTC/USD",
+          color: "bg-orange-500",
+          icon: <Bitcoin className="w-5 h-5" />,
+        },
+        {
+          pair: "ETH/USD",
+          color: "bg-gray-700",
+          icon: <Cpu className="w-5 h-5" />,
+        },
       ],
       mobileImage: "/MobileMockups/mobileMockup5.webp",
       mockupPosition: "right",
@@ -82,8 +130,16 @@ const AllMarkets = () => {
       title: "Stock Indices",
       description: "Trade offerings that track the top global stock indices.",
       cards: [
-        { pair: "WALL ST 30", color: "bg-green-500", flag: "🏛️" },
-        { pair: "US 500", color: "bg-blue-400", flag: "📊" },
+        {
+          pair: "WALL ST 30",
+          color: "bg-green-500",
+          icon: <Briefcase className="w-5 h-5" />,
+        },
+        {
+          pair: "US 500",
+          color: "bg-blue-400",
+          icon: <TrendingUp className="w-5 h-5" />,
+        },
       ],
       mobileImage: "/MobileMockups/mobileMockup6.webp",
       mockupPosition: "right",
@@ -137,20 +193,18 @@ const AllMarkets = () => {
               {market.cards.map((card: Card) => (
                 <div
                   key={`${market.title}-${card.pair}-mobile`}
-                  className="p-3 rounded-xl shadow-lg"
+                  className="p-3 rounded-xl shadow-lg flex items-center space-x-2"
                   style={{
                     backgroundColor: "var(--bg-secondary)",
                     border: "1px solid var(--border-secondary)",
                   }}
                 >
-                  <div className="flex items-center space-x-2">
-                    <div className="text-lg">{card.flag}</div>
-                    <div
-                      className="font-bold text-sm"
-                      style={{ color: "var(--text-primary)" }}
-                    >
-                      {card.pair}
-                    </div>
+                  <div className="text-lg">{card.icon}</div>
+                  <div
+                    className="font-bold text-sm"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {card.pair}
                   </div>
                 </div>
               ))}
@@ -169,24 +223,23 @@ const AllMarkets = () => {
           {/* Right Content - Desktop Only */}
           <div className="relative hidden lg:flex items-center justify-center min-h-[400px] xl:min-h-[500px] order-1 lg:order-2">
             {/* Trading Cards - Desktop */}
+            {/* Trading Cards - Desktop */}
             <div className="absolute left-0 top-1/2 transform -translate-y-1/2 space-y-4 z-10">
               {market.cards.map((card: Card) => (
                 <div
                   key={`${market.title}-${card.pair}-desktop`}
-                  className="p-3 lg:p-4 rounded-xl shadow-xl"
+                  className="p-3 lg:p-4 rounded-xl shadow-xl flex items-center space-x-3"
                   style={{
                     backgroundColor: "var(--bg-secondary)",
                     border: "2px solid var(--border-primary)",
                   }}
                 >
-                  <div className="flex items-center space-x-2 lg:space-x-3">
-                    <div className="text-lg lg:text-xl">{card.flag}</div>
-                    <div
-                      className="font-bold text-sm lg:text-base"
-                      style={{ color: "var(--text-primary)" }}
-                    >
-                      {card.pair}
-                    </div>
+                  <div className="text-lg lg:text-xl">{card.icon}</div>
+                  <div
+                    className="font-bold text-sm lg:text-base"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {card.pair}
                   </div>
                 </div>
               ))}

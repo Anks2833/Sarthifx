@@ -135,7 +135,7 @@ const Navbar = () => {
           <div>
             <div className="mb-8">
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Trade
@@ -143,7 +143,7 @@ const Navbar = () => {
               <ul className="space-y-3">
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trade/cfds"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -152,7 +152,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trade/options"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -163,7 +163,7 @@ const Navbar = () => {
             </div>
             <div>
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Markets
@@ -171,7 +171,7 @@ const Navbar = () => {
               <ul className="space-y-3">
                 <li>
                   <NavLink
-                    to="#"
+                    to="/markets/forex"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -180,7 +180,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/markets/derived-indices"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -189,7 +189,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/markets/stocks"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -198,7 +198,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/markets/stocks-indices"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -207,7 +207,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/markets/commodities"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -216,7 +216,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/markets/crypto"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -225,7 +225,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/markets/etf"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -238,7 +238,7 @@ const Navbar = () => {
           <div>
             <div className="mb-8">
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Deposits & withdrawals
@@ -246,7 +246,7 @@ const Navbar = () => {
               <ul className="space-y-3">
                 <li>
                   <NavLink
-                    to="#"
+                    to="/payment-methods"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -257,7 +257,7 @@ const Navbar = () => {
             </div>
             <div>
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Tools
@@ -265,7 +265,7 @@ const Navbar = () => {
               <ul className="space-y-3">
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trading-view"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -274,7 +274,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/mt5-signals"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -283,7 +283,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trading-calculator"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -292,7 +292,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trading-central"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -301,11 +301,30 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/economic-calendar"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Economic Calendar
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                className="font-medium mt-6 underline"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Promotions
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <NavLink
+                    to="/spread-advantage-hours"
+                    className="transition-colors duration-200 hover:opacity-80"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    Spread Advantage Hours
                   </NavLink>
                 </li>
               </ul>
@@ -371,7 +390,7 @@ const Navbar = () => {
           <div>
             <div className="mb-8">
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 CFDs trading
@@ -399,7 +418,7 @@ const Navbar = () => {
             </div>
             <div>
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Copy trading
@@ -416,7 +435,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trading-platforms/sarthi-ctrader"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -429,7 +448,7 @@ const Navbar = () => {
           <div>
             <div>
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Options trading
@@ -437,7 +456,7 @@ const Navbar = () => {
               <ul className="space-y-3">
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trading-platforms/sarthi-trader"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -446,7 +465,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trading-platforms/sarthi-bot"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -455,7 +474,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="#"
+                    to="/trading-platforms/sarthi-go"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
@@ -533,7 +552,7 @@ const Navbar = () => {
           <div>
             <div>
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Learn
@@ -563,7 +582,7 @@ const Navbar = () => {
           <div>
             <div>
               <h3
-                className="font-medium mb-4"
+                className="font-medium underline"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Get support
@@ -728,7 +747,7 @@ const Navbar = () => {
             </div>
             <div className="mt-auto">
               <NavLink
-                to="#"
+                to="/why-choose-us"
                 className="inline-flex items-center space-x-2 group"
                 style={{ color: "var(--text-accent-blue)" }}
               >
@@ -1420,9 +1439,9 @@ const Navbar = () => {
       <LanguageMenu />
 
       {/* Mobile menu overlay */}
-      {isMobileMenuOpen && (
+      {/* {isMobileMenuOpen && (
         <div className="lg:hidden fixed z-50" onClick={toggleMobileMenu} />
-      )}
+      )} */}
     </header>
   );
 };

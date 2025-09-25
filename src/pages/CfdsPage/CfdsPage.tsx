@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 const CfdsPage = () => {
-  const [selectedPlatform, setSelectedPlatform] = useState("mt5");
-
   const assetClasses = [
     {
       name: "Forex",
@@ -87,6 +83,7 @@ const CfdsPage = () => {
 
   return (
     <div
+    className="pt-20"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",
@@ -325,11 +322,11 @@ const CfdsPage = () => {
                 className="text-lg mb-6 leading-relaxed"
                 style={{ color: "var(--text-secondary)" }}
               >
-                Sarthifx MT5 offers a comprehensive trading environment, equipped
-                with intuitive charts, 21 timeframes, and 38 advanced indicators
-                for in-depth price analysis. Plus, the MT5 community provides a
-                network of support for traders of all levels to share insights
-                and strategies.
+                Sarthifx MT5 offers a comprehensive trading environment,
+                equipped with intuitive charts, 21 timeframes, and 38 advanced
+                indicators for in-depth price analysis. Plus, the MT5 community
+                provides a network of support for traders of all levels to share
+                insights and strategies.
               </p>
 
               <button className="px-6 py-3 border-2 border-white/20 rounded-full hover:border-white/40 hover:bg-white/10 transition-colors">
@@ -396,23 +393,6 @@ const CfdsPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Background Pattern */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 border-2 border-current rounded-full animate-pulse"></div>
-        <div
-          className="absolute top-40 right-20 w-16 h-16 border-2 border-current rounded animate-spin"
-          style={{ animationDuration: "10s" }}
-        ></div>
-        <div
-          className="absolute bottom-40 left-20 w-24 h-24 border-2 border-current rounded-full animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
-        <div
-          className="absolute bottom-20 right-40 w-20 h-20 border-2 border-current rounded animate-spin"
-          style={{ animationDuration: "8s", animationDelay: "1s" }}
-        ></div>
-      </div>
     </div>
   );
 };

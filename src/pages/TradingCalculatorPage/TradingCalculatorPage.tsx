@@ -21,30 +21,31 @@ const TradingCalculatorPage = () => {
     swapShortRate: 0,
   });
 
-  const [expandedSections, setExpandedSections] = useState({
+  const [expandedSections, setExpandedSections] = useState<
+    Record<string, boolean>
+  >({
     margin: false,
     pip: false,
     swapPoints: false,
     swapPercentage: false,
   });
 
-  const [expandedFAQ, setExpandedFAQ] = useState({});
+  const [expandedFAQ, setExpandedFAQ] = useState<Record<string, boolean>>({});
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: string) => {
     setExpandedSections((prev) => ({
       ...prev,
       [section]: !prev[section],
     }));
   };
-
-  const toggleFAQ = (faqId) => {
+  const toggleFAQ = (faqId: string) => {
     setExpandedFAQ((prev) => ({
       ...prev,
       [faqId]: !prev[faqId],
     }));
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -151,7 +152,7 @@ const TradingCalculatorPage = () => {
 
   return (
     <div
-    className="pt-20"
+      className="pt-20"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",

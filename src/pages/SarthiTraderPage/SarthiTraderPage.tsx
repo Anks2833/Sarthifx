@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const SarthiTraderPage = () => {
-  const [selectedStep, setSelectedStep] = useState(1);
+  const [_selectedStep, setSelectedStep] = useState(1);
 
   const tradingSteps = [
     { id: 1, title: "Choose a trade type", color: "var(--text-accent-orange)" },
@@ -205,7 +205,7 @@ const SarthiTraderPage = () => {
 
             {/* Steps List */}
             <div className="space-y-8">
-              {tradingSteps.map((step, index) => (
+              {tradingSteps.map((step, _index) => (
                 <div
                   key={step.id}
                   className="flex items-center gap-4 cursor-pointer"

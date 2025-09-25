@@ -2,17 +2,17 @@ import { useState } from "react";
 
 const EconomicCalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState(25);
-  const [selectedMonth, setSelectedMonth] = useState("SEP 2025");
+  const [selectedMonth, _setSelectedMonth] = useState("SEP 2025");
   const [importanceFilter, setImportanceFilter] = useState([
     "LOW",
     "MEDIUM",
     "HIGH",
   ]);
-  const [eventTypeFilter, setEventTypeFilter] = useState(["ECONOMIC EVENTS"]);
-  const [countryFilter, setCountryFilter] = useState([]);
-  const [expandedFAQ, setExpandedFAQ] = useState({ "what-show": true });
+  const [expandedFAQ, setExpandedFAQ] = useState<Record<string, boolean>>({
+    "what-show": true,
+  });
 
-  const toggleFAQ = (faqId) => {
+  const toggleFAQ = (faqId: string) => {
     setExpandedFAQ((prev) => ({
       ...prev,
       [faqId]: !prev[faqId],
@@ -190,7 +190,7 @@ const EconomicCalendarPage = () => {
     return days;
   };
 
-  const toggleImportanceFilter = (level) => {
+  const toggleImportanceFilter = (level: string) => {
     setImportanceFilter((prev) =>
       prev.includes(level) ? prev.filter((l) => l !== level) : [...prev, level]
     );

@@ -1,9 +1,11 @@
 import { useState } from "react";
 
 const SpreadAdvantageHoursPage = () => {
-  const [expandedFAQ, setExpandedFAQ] = useState({ "benefit-strategy": true });
+  const [expandedFAQ, setExpandedFAQ] = useState<Record<string, boolean>>({
+    "benefit-strategy": true,
+  });
 
-  const toggleFAQ = (faqId) => {
+  const toggleFAQ = (faqId: string) => {
     setExpandedFAQ((prev) => ({
       ...prev,
       [faqId]: !prev[faqId],

@@ -1,48 +1,16 @@
 import { useState } from "react";
 
 const ForexMarket = () => {
-  const [expandedFAQ, setExpandedFAQ] = useState({});
+  const [expandedFAQ, setExpandedFAQ] = useState<{ [key: string]: boolean }>(
+    {}
+  );
 
-  const toggleFAQ = (faqId) => {
+  const toggleFAQ = (faqId: string) => {
     setExpandedFAQ((prev) => ({
       ...prev,
       [faqId]: !prev[faqId],
     }));
   };
-
-  const accountTypes = [
-    {
-      title: "Standard account",
-      description:
-        "Trade derived and financial assets with competitive spreads and swap fees.",
-      highlighted: true,
-    },
-    {
-      title: "Zero Spread account",
-      description:
-        "Trade CFDs with spreads from 0 pips for cost-effective market entries and exits.",
-    },
-    {
-      title: "Swap-Free account",
-      description:
-        "Trade without worrying about overnight swap fees on derived and financial instruments.",
-    },
-    {
-      title: "Financial account",
-      description:
-        "Trade financial markets with the tightest spreads for quick, frequent trades.",
-    },
-    {
-      title: "Gold account",
-      description:
-        "Trade gold and precious metals in a dedicated account with tight spreads optimised for value.",
-    },
-    {
-      title: "Financial STP account",
-      description:
-        "Trade financial assets with zero commission, wider spreads, and direct access to global markets.",
-    },
-  ];
 
   const faqs = [
     {

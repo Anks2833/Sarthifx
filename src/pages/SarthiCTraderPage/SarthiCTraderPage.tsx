@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const SarthiCTraderPage = () => {
-  const [expandedFAQ, setExpandedFAQ] = useState({});
+  const [expandedFAQ, setExpandedFAQ] = useState<Record<string, boolean>>({});
 
-  const toggleFAQ = (faqId) => {
+  const toggleFAQ = (faqId: string) => {
     setExpandedFAQ((prev) => ({
       ...prev,
       [faqId]: !prev[faqId],
@@ -90,7 +90,7 @@ const SarthiCTraderPage = () => {
 
   return (
     <div
-    className="pt-20"
+      className="pt-20"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",
@@ -567,7 +567,6 @@ const SarthiCTraderPage = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };

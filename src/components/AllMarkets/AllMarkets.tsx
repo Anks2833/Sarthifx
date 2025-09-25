@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, type JSX } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import {
   DollarSign,
@@ -13,9 +13,9 @@ import {
 interface Card {
   pair: string;
   color: string;
-  flag: string;
+  icon: JSX.Element;
+  flag?: string;
 }
-
 interface Market {
   title: string;
   description: string;

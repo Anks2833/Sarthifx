@@ -1,10 +1,12 @@
 import { useState } from "react";
 
 const Mt5SignalsPage = () => {
-  const [activeTab, setActiveTab] = useState("subscriber");
-  const [expandedFAQ, setExpandedFAQ] = useState({});
+  const [activeTab, setActiveTab] = useState<"subscriber" | "provider">(
+    "subscriber"
+  );
+  const [expandedFAQ, setExpandedFAQ] = useState<Record<string, boolean>>({});
 
-  const toggleFAQ = (faqId) => {
+  const toggleFAQ = (faqId: string) => {
     setExpandedFAQ((prev) => ({
       ...prev,
       [faqId]: !prev[faqId],

@@ -1,5 +1,34 @@
 import { useState } from "react";
 
+type SectionKey =
+  | "cards"
+  | "banking"
+  | "mobile"
+  | "wallets"
+  | "crypto"
+  | "onramp"
+  | "voucher"
+  | "p2p";
+
+type Method = {
+  name: string;
+  logo: string;
+  currencies?: string;
+  minMaxDeposit?: string;
+  minMaxWithdrawal?: string;
+  depositTime?: string;
+  withdrawalTime?: string;
+  supportedAccounts?: string;
+  dailyDepositLimits?: string;
+  dailyWithdrawalLimits?: string;
+  processingTime?: string;
+};
+
+type PaymentTableProps = {
+  methods: Method[];
+  isP2P?: boolean;
+};
+
 const PaymentMethodsPage = () => {
   const [expandedSections, setExpandedSections] = useState({
     cards: true,
@@ -12,7 +41,7 @@ const PaymentMethodsPage = () => {
     p2p: false,
   });
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: SectionKey) => {
     setExpandedSections((prev) => ({
       ...prev,
       [section]: !prev[section],
@@ -461,7 +490,7 @@ const PaymentMethodsPage = () => {
     },
   };
 
-  const PaymentTable = ({ methods, isP2P = false }) => (
+  const PaymentTable = ({ methods, isP2P = false }: PaymentTableProps) => (
     <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
@@ -543,7 +572,7 @@ const PaymentMethodsPage = () => {
 
   return (
     <div
-    className="pt-20"
+      className="pt-20"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",
@@ -565,54 +594,58 @@ const PaymentMethodsPage = () => {
 
       {/* Payment Methods Sections */}
       <section className="px-4 sm:px-8 max-w-7xl mx-auto pb-16 sm:pb-20">
-        {Object.entries(paymentMethods).map(([key, section]) => (
-          <div key={key} className="mb-8">
-            <div
-              className="bg-white/5 rounded-t-2xl border-b border-white/10 hover:bg-white/10 transition-colors cursor-pointer"
-              onClick={() => toggleSection(key)}
-            >
-              <div className="flex items-center justify-between p-4 sm:p-6">
-                <h2 className="text-xl sm:text-2xl font-bold">
-                  {section.title}
-                </h2>
-                <svg
-                  className={`w-6 h-6 transform transition-transform ${
-                    expandedSections[key] ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
-            </div>
+        {Object.entries(paymentMethods).map(([key, section]) => {
+          const sectionKey = key as SectionKey; // assert type
 
-            {expandedSections[key] && (
-              <div className="bg-white/5 rounded-b-2xl">
-                <div className="p-4 sm:p-6 border-b border-white/10">
-                  <p
-                    className="text-base sm:text-lg"
-                    style={{ color: "var(--text-secondary)" }}
+          return (
+            <div key={sectionKey} className="mb-8">
+              <div
+                className="bg-white/5 rounded-t-2xl border-b border-white/10 hover:bg-white/10 transition-colors cursor-pointer"
+                onClick={() => toggleSection(sectionKey)} // use the typed key
+              >
+                <div className="flex items-center justify-between p-4 sm:p-6">
+                  <h2 className="text-xl sm:text-2xl font-bold">
+                    {section.title}
+                  </h2>
+                  <svg
+                    className={`w-6 h-6 transform transition-transform ${
+                      expandedSections[sectionKey] ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    {section.description}
-                  </p>
-                </div>
-                <div className="p-4 sm:p-6">
-                  <PaymentTable
-                    methods={section.methods}
-                    isP2P={key === "p2p"}
-                  />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </div>
               </div>
-            )}
-          </div>
-        ))}
+
+              {expandedSections[sectionKey] && (
+                <div className="bg-white/5 rounded-b-2xl">
+                  <div className="p-4 sm:p-6 border-b border-white/10">
+                    <p
+                      className="text-base sm:text-lg"
+                      style={{ color: "var(--text-secondary)" }}
+                    >
+                      {section.description}
+                    </p>
+                  </div>
+                  <div className="p-4 sm:p-6">
+                    <PaymentTable
+                      methods={section.methods}
+                      isP2P={sectionKey === "p2p"}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </section>
 
       {/* Sarthifx P2P Feature Section */}

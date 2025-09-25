@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const StockIndicesPage = () => {
-  const [expandedFAQ, setExpandedFAQ] = useState({});
+  const [expandedFAQ, setExpandedFAQ] = useState<Record<string, boolean>>({});
 
-  const toggleFAQ = (faqId) => {
+  const toggleFAQ = (faqId: string) => {
     setExpandedFAQ((prev) => ({
       ...prev,
       [faqId]: !prev[faqId],

@@ -34,8 +34,8 @@ const TradeYourWaySection = () => {
       title: "Copy expert traders",
       subtitle: "cTrader",
       description:
-        "On Deriv cTrader, tap into the expertise of seasoned traders. Follow their strategies, and mirror their trades automatically.",
-      cta: "Explore Deriv cTrader",
+        "On Sarthifx cTrader, tap into the expertise of seasoned traders. Follow their strategies, and mirror their trades automatically.",
+      cta: "Explore Sarthifx cTrader",
       badge: "CT",
       badgeColor: "bg-red-500",
       image: "https://i.ibb.co/NFVvnxj/copy-traders.jpg",
@@ -45,8 +45,8 @@ const TradeYourWaySection = () => {
       title: "Power of MT5 with 24/7 trading",
       subtitle: "MetaTrader 5",
       description:
-        "Deriv MT5 brings you the world's favourite platform with the widest range of forex, stocks, commodities, cryptocurrencies, and exclusive Derived Indices with zero commissions and swap-free trading.",
-      cta: "Explore Deriv MT5",
+        "Sarthifx MT5 brings you the world's favourite platform with the widest range of forex, stocks, commodities, cryptocurrencies, and exclusive Derived Indices with zero commissions and swap-free trading.",
+      cta: "Explore Sarthifx MT5",
       badge: "MT5",
       badgeColor: "bg-blue-500",
       image: "https://i.ibb.co/1RcHsTS/mt5-platform.jpg",
@@ -54,10 +54,10 @@ const TradeYourWaySection = () => {
     {
       id: 2,
       title: "Sharp insights with TradingView charts",
-      subtitle: "Deriv X",
+      subtitle: "Sarthifx X",
       description:
-        "Deriv X gives you access to TradingView charts, with 110+ tools to analyse markets, track trends, and execute trades instantly — all from a single screen.",
-      cta: "Explore Deriv X",
+        "Sarthifx X gives you access to TradingView charts, with 110+ tools to analyse markets, track trends, and execute trades instantly — all from a single screen.",
+      cta: "Explore Sarthifx X",
       badge: "DX",
       badgeColor: "bg-red-500",
       image: "https://i.ibb.co/WFJv8Jz/tradingview.jpg",
@@ -65,10 +65,10 @@ const TradeYourWaySection = () => {
     {
       id: 3,
       title: "Optimised payouts, limited downsides",
-      subtitle: "Deriv Trader",
+      subtitle: "Sarthifx Trader",
       description:
-        "On Deriv Trader, you'll never lose more than you put in. Know your maximum risk upfront when trading global markets and round-the-clock indices.",
-      cta: "Explore Deriv Trader",
+        "On Sarthifx Trader, you'll never lose more than you put in. Know your maximum risk upfront when trading global markets and round-the-clock indices.",
+      cta: "Explore Sarthifx Trader",
       badge: "DT",
       badgeColor: "bg-red-500",
       image: "https://i.ibb.co/Bnd9PQk/mobile-trader.jpg",
@@ -76,10 +76,10 @@ const TradeYourWaySection = () => {
     {
       id: 4,
       title: "Automate your trades",
-      subtitle: "Deriv Bot",
+      subtitle: "Sarthifx Bot",
       description:
-        "Deriv Bot keeps your strategies running on 24/7 exclusive indices and traditional markets. Trade with predetermined risk - no surprises, no coding required.",
-      cta: "Explore Deriv Bot",
+        "Sarthifx Bot keeps your strategies running on 24/7 exclusive indices and traditional markets. Trade with predetermined risk - no surprises, no coding required.",
+      cta: "Explore Sarthifx Bot",
       badge: "DB",
       badgeColor: "bg-red-500",
       image: "https://i.ibb.co/CBYxSQH/automate-trades.jpg",

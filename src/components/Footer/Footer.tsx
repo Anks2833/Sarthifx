@@ -2,7 +2,7 @@ import Qr from "../Icons/QrCode/Qr";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white border-t border-t-zinc-800">
       <div className="container mx-auto px-6 py-10">
         <div className="flex flex-col lg:flex-row justify-between items-center mb-12">
           <div className="flex items-center space-x-2 mb-6 lg:mb-0">
@@ -561,7 +561,6 @@ const Footer = () => {
                   alt="logo"
                   className="w-28 h-24 rounded-xl"
                 />
-                <h3 className="text-lg font-bold mb-2">Sarthifx GO</h3>
                 <p className="text-sm text-gray-300 mb-4">
                   Trade Multipliers and Accumulator Options on our mobile app.
                 </p>

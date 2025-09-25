@@ -313,53 +313,6 @@ const CustomerSupportSection = () => {
                 </motion.div>
               </motion.div>
 
-              {/* Background Design Elements */}
-              <div className="absolute inset-0 pt-12 sm:pt-14">
-                {/* Animated background patterns */}
-                <motion.div
-                  className="absolute top-1/4 left-1/4 w-16 h-16 rounded-lg opacity-20"
-                  style={{ backgroundColor: "var(--text-accent-blue)" }}
-                  animate={{
-                    rotate: [0, 180, 360],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-                
-                <motion.div
-                  className="absolute bottom-1/3 right-1/4 w-12 h-12 rounded-full opacity-20"
-                  style={{ backgroundColor: "var(--text-accent-orange)" }}
-                  animate={{
-                    y: [0, -10, 0],
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-
-                {/* Agent avatar in background */}
-                <motion.div
-                  className="absolute bottom-4 right-6 w-16 sm:w-20 h-20 sm:h-24 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center shadow-lg"
-                  animate={{
-                    y: [0, -5, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <User size={24} className="text-white" />
-                </motion.div>
-              </div>
-
               {/* Chat Messages Container */}
               <div className="absolute inset-0 pt-12 sm:pt-14 flex flex-col justify-end p-4 sm:p-6 space-y-2 sm:space-y-3 max-h-full overflow-hidden">
                 <AnimatePresence>
@@ -433,34 +386,6 @@ const CustomerSupportSection = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Enhanced online status indicator */}
-              <motion.div
-                className="absolute top-16 sm:top-18 left-4 sm:left-6 flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-md"
-                style={{
-                  backgroundColor: "rgba(34, 197, 94, 0.9)",
-                  color: "white",
-                }}
-                animate={{
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-              >
-                <motion.div
-                  className="w-2 h-2 rounded-full bg-white"
-                  animate={{
-                    opacity: [1, 0.5, 1],
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                  }}
-                />
-                <span>Tony is online</span>
-              </motion.div>
 
               {/* Subtle screen reflection effect */}
               <motion.div

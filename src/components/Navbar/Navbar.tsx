@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 
 type DropdownType =
   | "trading"
@@ -141,22 +142,22 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     CFDs
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Options
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -169,67 +170,67 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Forex
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Derived Indices
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Stocks
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Stock Indices
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Commodities
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Cryptocurrencies
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     ETFs
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -244,13 +245,13 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Payment methods
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -263,49 +264,49 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     TradingView
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     MT5 Signals
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Trading Calculator
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Trading Central
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Economic Calendar
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -333,14 +334,14 @@ const Navbar = () => {
               </p>
             </div>
             <div className="mt-auto">
-              <a
-                href="#"
+              <NavLink
+                to="#"
                 className="inline-flex items-center space-x-2 group"
                 style={{ color: "var(--text-accent-blue)" }}
               >
                 <span>Learn more</span>
                 <ArrowRight />
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -377,22 +378,22 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/trading-platforms/sarthi-mt5"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx MT5
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/trading-platforms/sarthi-x"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx X
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -405,22 +406,22 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/trading-platforms/sarthi-nakala"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Nakala
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx cTrader
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -435,42 +436,42 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Trader
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Bot
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Go
-                  </a>
+                  </NavLink>
                 </li>
-                <li>
-                  <a
-                    href="#"
+                {/* <li>
+                  <NavLink
+                    to="#"
                     className="inline-flex items-center space-x-2 transition-colors duration-200 group hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     <span>SmartTrader</span>
                     <ExternalLink />
-                  </a>
-                </li>
+                  </NavLink>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -496,14 +497,14 @@ const Navbar = () => {
               </p>
             </div>
             <div className="mt-auto">
-              <a
-                href="#"
+              <NavLink
+                to="#"
                 className="inline-flex items-center space-x-2 group"
                 style={{ color: "var(--text-accent-blue)" }}
               >
                 <span>Learn more</span>
                 <ArrowRight />
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -539,32 +540,22 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
-                    className="inline-flex items-center space-x-2 transition-colors duration-200 group hover:opacity-80"
-                    style={{ color: "var(--text-primary)" }}
-                  >
-                    <span>Sarthifx Academy</span>
-                    <ExternalLink />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/blog"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Sarthifx Blog
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/glossary"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Glossary
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -579,32 +570,32 @@ const Navbar = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/help-centre"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Help centre
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/contact-us"
                     className="inline-flex items-center space-x-2 transition-colors duration-200 group hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     <span>Community</span>
                     <ExternalLink />
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/contact-us"
                     className="transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Contact us
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -631,14 +622,14 @@ const Navbar = () => {
               </p>
             </div>
             <div className="mt-auto">
-              <a
-                href="#"
+              <NavLink
+                to="#"
                 className="inline-flex items-center space-x-2 group"
                 style={{ color: "var(--text-accent-blue)" }}
               >
                 <span>Learn more</span>
                 <ArrowRight />
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -667,58 +658,49 @@ const Navbar = () => {
           <div className="lg:col-span-1">
             <ul className="space-y-3">
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to="/who-we-are"
                   className="transition-colors duration-200 hover:opacity-80"
                   style={{ color: "var(--text-primary)" }}
                 >
                   Who we are
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to="/why-choose-us"
                   className="transition-colors duration-200 hover:opacity-80"
                   style={{ color: "var(--text-primary)" }}
                 >
                   Why choose us
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="transition-colors duration-200 hover:opacity-80"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Regulatory information
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                <NavLink
+                  to="/secure-trading"
                   className="transition-colors duration-200 hover:opacity-80"
                   style={{ color: "var(--text-primary)" }}
                 >
                   Secure & responsible trading
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to="/careers"
                   className="transition-colors duration-200 hover:opacity-80"
                   style={{ color: "var(--text-primary)" }}
                 >
                   Careers
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to="/newsroom"
                   className="transition-colors duration-200 hover:opacity-80"
                   style={{ color: "var(--text-primary)" }}
                 >
                   Newsroom
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -745,14 +727,14 @@ const Navbar = () => {
               </p>
             </div>
             <div className="mt-auto">
-              <a
-                href="#"
+              <NavLink
+                to="#"
                 className="inline-flex items-center space-x-2 group"
                 style={{ color: "var(--text-accent-blue)" }}
               >
                 <span>Learn more</span>
                 <ArrowRight />
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -779,136 +761,136 @@ const Navbar = () => {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6 lg:p-8">
           <div className="space-y-4">
-            <a
-              href="#"
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               English
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Português
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Tiếng Việt
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Türkçe
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               繁體中文
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Deutsch
-            </a>
+            </NavLink>
           </div>
           <div className="space-y-4">
-            <a
-              href="#"
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Français
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Español
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               বাংলা
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Kiswahili
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               한국어
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Polski
-            </a>
+            </NavLink>
           </div>
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
-            <a
-              href="#"
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               العربية
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Pусский
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               हिन्दी
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               简体中文
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               Italiano
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to="#"
               className="block transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--text-primary)" }}
             >
               O'zbek
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -1044,13 +1026,13 @@ const Navbar = () => {
             <ul className="space-y-2">
               {section.items.map((item, itemIndex) => (
                 <li key={itemIndex}>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="#"
                     className="block py-2 transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
                   >
                     {item}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -1075,13 +1057,13 @@ const Navbar = () => {
               : "opacity-100 translate-y-0"
           }`}
         >
-          <div className="flex items-center space-x-2">
+          <NavLink to="/" className="flex items-center space-x-2">
             <img
               src="/logo.jpeg"
               alt="Sarthifx-logo"
               className="w-16 h-12 md:w-20 md:h-16 rounded-xl"
             />
-          </div>
+          </NavLink>
         </div>
 
         {/* Desktop Navigation */}
@@ -1103,7 +1085,7 @@ const Navbar = () => {
               style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("trading")}
             >
-              <a href="#" className="flex items-center space-x-1.5">
+              <NavLink to="#" className="flex items-center space-x-1.5">
                 <span
                   className={`font-medium transition-colors duration-200 ${
                     activeDropdown === "trading" ? "" : "group-hover:opacity-80"
@@ -1118,7 +1100,7 @@ const Navbar = () => {
                   Trading
                 </span>
                 <ChevronDown isActive={activeDropdown === "trading"} />
-              </a>
+              </NavLink>
             </li>
 
             <li
@@ -1126,7 +1108,7 @@ const Navbar = () => {
               style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("platforms")}
             >
-              <a href="#" className="flex items-center space-x-1.5">
+              <NavLink to="#" className="flex items-center space-x-1.5">
                 <span
                   className={`font-medium transition-colors duration-200 ${
                     activeDropdown === "platforms"
@@ -1143,7 +1125,7 @@ const Navbar = () => {
                   Platforms
                 </span>
                 <ChevronDown isActive={activeDropdown === "platforms"} />
-              </a>
+              </NavLink>
             </li>
 
             <li
@@ -1151,7 +1133,7 @@ const Navbar = () => {
               style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("learning")}
             >
-              <a href="#" className="flex items-center space-x-1.5">
+              <NavLink to="#" className="flex items-center space-x-1.5">
                 <span
                   className={`font-medium transition-colors duration-200 ${
                     activeDropdown === "learning"
@@ -1168,7 +1150,7 @@ const Navbar = () => {
                   Learning & support
                 </span>
                 <ChevronDown isActive={activeDropdown === "learning"} />
-              </a>
+              </NavLink>
             </li>
 
             <li
@@ -1176,7 +1158,7 @@ const Navbar = () => {
               style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("about")}
             >
-              <a href="#" className="flex items-center space-x-1.5">
+              <NavLink to="#" className="flex items-center space-x-1.5">
                 <span
                   className={`font-medium transition-colors duration-200 ${
                     activeDropdown === "about" ? "" : "group-hover:opacity-80"
@@ -1191,27 +1173,27 @@ const Navbar = () => {
                   About
                 </span>
                 <ChevronDown isActive={activeDropdown === "about"} />
-              </a>
+              </NavLink>
             </li>
 
-            <li
+            {/* <li
               className="relative group"
               style={{ color: "var(--text-primary)" }}
             >
-              <a href="#" className="flex items-center space-x-1.5 group">
+              <NavLink to="#" className="flex items-center space-x-1.5 group">
                 <span className="font-medium transition-colors duration-200 group-hover:opacity-80">
                   Partners
                 </span>
                 <ExternalLink />
-              </a>
-            </li>
+              </NavLink>
+            </li> */}
 
             <li
               className="relative group"
               style={{ color: "var(--text-primary)" }}
               onMouseEnter={() => handleMouseEnter("language")}
             >
-              <a href="#" className="flex items-center space-x-1.5">
+              <NavLink to="#" className="flex items-center space-x-1.5">
                 <Globe />
                 <span
                   className={`font-medium transition-colors duration-200 ${
@@ -1228,7 +1210,7 @@ const Navbar = () => {
                 >
                   EN
                 </span>
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>
@@ -1241,8 +1223,8 @@ const Navbar = () => {
               : "opacity-100 translate-y-0"
           }`}
         >
-          <a
-            href="/login"
+          <NavLink
+            to="/login"
             className="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:opacity-80"
             style={{
               border: `1px solid var(--border-primary)`,
@@ -1250,9 +1232,9 @@ const Navbar = () => {
             }}
           >
             Log in
-          </a>
-          <a
-            href="/register"
+          </NavLink>
+          <NavLink
+            to="/register"
             className="px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105"
             style={{
               backgroundColor: "var(--text-accent-orange)",
@@ -1260,7 +1242,7 @@ const Navbar = () => {
             }}
           >
             Open account
-          </a>
+          </NavLink>
         </div>
 
         {/* Mobile menu button */}
@@ -1370,14 +1352,14 @@ const Navbar = () => {
               </li>
 
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to="#"
                   className="w-full flex items-center justify-between px-4 py-3 transition-colors duration-200 hover:opacity-80"
                   style={{ color: "var(--text-primary)" }}
                 >
                   <span className="font-medium">Partners</span>
                   <ExternalLink />
-                </a>
+                </NavLink>
               </li>
 
               <li>
@@ -1404,8 +1386,8 @@ const Navbar = () => {
               style={{ borderColor: "var(--border-primary)" }}
             >
               <div className="flex flex-col space-y-3">
-                <a
-                  href="/login"
+                <NavLink
+                  to="/login"
                   className="px-6 py-3 rounded-full font-medium text-center transition-all duration-300 hover:opacity-80"
                   style={{
                     border: `1px solid var(--border-primary)`,
@@ -1413,9 +1395,9 @@ const Navbar = () => {
                   }}
                 >
                   Log in
-                </a>
-                <a
-                  href="/register"
+                </NavLink>
+                <NavLink
+                  to="/register"
                   className="px-6 py-3 rounded-full font-medium text-center transition-all duration-300 transform hover:scale-105"
                   style={{
                     backgroundColor: "var(--text-accent-orange)",
@@ -1423,7 +1405,7 @@ const Navbar = () => {
                   }}
                 >
                   Open account
-                </a>
+                </NavLink>
               </div>
             </div>
           </nav>
@@ -1439,10 +1421,7 @@ const Navbar = () => {
 
       {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
-        <div
-          className="lg:hidden fixed z-50"
-          onClick={toggleMobileMenu}
-        />
+        <div className="lg:hidden fixed z-50" onClick={toggleMobileMenu} />
       )}
     </header>
   );

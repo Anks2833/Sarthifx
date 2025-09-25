@@ -140,7 +140,7 @@ const HelpCenterPage = () => {
 
   return (
     <div
-    className="pt-20"
+      className="pt-20"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",
@@ -148,7 +148,7 @@ const HelpCenterPage = () => {
       }}
     >
       {/* Hero Section */}
-      <section className="py-20 px-6 sm:px-8 lg:px-12 max-w-5xl mx-auto text-center">
+      <section className="pt-20 px-6 sm:px-8 lg:px-12 max-w-5xl mx-auto text-center">
         <h1
           className="text-4xl sm:text-5xl font-bold mb-6"
           style={{ color: "var(--text-secondary)" }}
@@ -196,7 +196,7 @@ const HelpCenterPage = () => {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center gap-6 sm:gap-10 mb-12 sm:mb-16">
+        <div className="flex justify-center gap-6 sm:gap-10">
           <button
             onClick={() => setActiveTab("general")}
             className={`px-6 py-2 font-medium transition relative ${
@@ -227,10 +227,7 @@ const HelpCenterPage = () => {
       </section>
 
       {/* FAQ Categories */}
-      <section
-        className="py-12 sm:py-16 px-6 sm:px-8 lg:px-12"
-        style={{ background: "var(--bg-secondary)" }}
-      >
+      <section className="py-12 sm:py-16 px-6 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
             {currentCategories.map((category, index) => (
@@ -261,14 +258,6 @@ const HelpCenterPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Background Pattern */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 border-2 border-current rounded-full"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 border-2 border-current rounded"></div>
-        <div className="absolute bottom-40 left-20 w-24 h-24 border-2 border-current rounded-full"></div>
-        <div className="absolute bottom-20 right-40 w-20 h-20 border-2 border-current rounded"></div>
-      </div>
     </div>
   );
 };

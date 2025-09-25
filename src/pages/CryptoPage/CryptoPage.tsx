@@ -3,7 +3,7 @@ import { useState } from "react";
 const CryptoPage = () => {
   const [expandedFAQ, setExpandedFAQ] = useState<Record<string, boolean>>({});
 
-  const toggleFAQ = (faqId: string)=> {
+  const toggleFAQ = (faqId: string) => {
     setExpandedFAQ((prev) => ({
       ...prev,
       [faqId]: !prev[faqId],
@@ -298,26 +298,6 @@ const CryptoPage = () => {
                     LTC
                   </div>
                 </div>
-              </div>
-
-              {/* Background elements */}
-              <div className="absolute inset-0 z-0">
-                <div
-                  className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full"
-                  style={{
-                    background:
-                      "linear-gradient(to right, var(--gradient-start), var(--gradient-mid-1))",
-                    opacity: "0.1",
-                  }}
-                ></div>
-                <div
-                  className="absolute -top-20 -right-20 w-64 h-64 rounded-full"
-                  style={{
-                    background:
-                      "linear-gradient(to right, var(--gradient-mid-2), var(--gradient-end))",
-                    opacity: "0.1",
-                  }}
-                ></div>
               </div>
             </div>
           </div>

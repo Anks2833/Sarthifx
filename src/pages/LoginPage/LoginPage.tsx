@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { ChangeEvent, ReactNode } from "react";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion"
 import {
   FaGoogle,
   FaFacebookF,
@@ -11,17 +11,15 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-// Props interface for FloatingLabelInput component
 interface FloatingLabelInputProps {
   id: string;
   label: string;
   type: string;
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  rightIcon?: ReactNode; // Optional prop
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  rightIcon?: React.ReactNode;
 }
 
-// Enhanced Floating Label Input Component
 const FloatingLabelInput = ({
   id,
   label,
@@ -33,7 +31,9 @@ const FloatingLabelInput = ({
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const handleFocus = (): void => setIsFocused(true);
-  const handleBlur = (): void => setIsFocused(value ? true : false);
+  const handleBlur = (): void => setIsFocused(value.length > 0);
+
+  const isLabelFloating = isFocused || value.length > 0;
 
   return (
     <div className="relative">
@@ -45,39 +45,50 @@ const FloatingLabelInput = ({
           onChange={onChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className={`w-full px-4 py-3 ${
-            rightIcon ? "pr-12" : ""
-          } border border-gray-300 rounded-md focus:outline-none focus:border-red-400 transition-all duration-200`}
+          className={`
+            w-full px-4 py-4 ${rightIcon ? "pr-12" : ""} 
+            bg-white/5 border border-white/10 rounded-xl
+            text-white placeholder-transparent
+            focus:outline-none focus:border-blue-400 focus:bg-white/10
+            transition-all duration-300
+            backdrop-blur-sm
+          `}
           placeholder=""
-        />
-        <motion.div
-          className="absolute pointer-events-none"
           style={{
-            left: "16px",
-            top: isFocused || value ? "8px" : "50%",
-            transform:
-              isFocused || value
-                ? "translateY(0) scale(0.85)"
-                : "translateY(-50%) scale(1)",
+            backgroundColor: "var(--bg-accent)",
+            borderColor: isFocused
+              ? "var(--border-secondary)"
+              : "var(--border-primary)",
+            color: "var(--text-primary)",
+          }}
+        />
+
+        <motion.label
+          htmlFor={id}
+          className={`
+            absolute left-4 cursor-text select-none pointer-events-none
+            transition-all duration-300 ease-out
+            ${isFocused ? "text-blue-400" : "text-gray-400"}
+          `}
+          style={{
+            color: isFocused
+              ? "var(--text-accent-blue)"
+              : "var(--text-secondary)",
           }}
           initial={false}
           animate={{
-            top: isFocused || value ? "8px" : "50%",
-            y: isFocused || value ? 0 : "-50%",
-            scale: isFocused || value ? 0.85 : 1,
+            top: isLabelFloating ? "8px" : "50%",
+            fontSize: isLabelFloating ? "12px" : "16px",
+            transform: isLabelFloating ? "translateY(0)" : "translateY(-50%)",
+            fontWeight: isLabelFloating ? "500" : "400",
           }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
         >
-          <span
-            className={`${
-              isFocused ? "text-red-500" : "text-gray-500"
-            } transition-all duration-200`}
-          >
-            {label}
-          </span>
-        </motion.div>
+          {label}
+        </motion.label>
+
         {rightIcon && (
-          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
             {rightIcon}
           </div>
         )}
@@ -91,7 +102,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -102,86 +113,105 @@ const LoginPage = () => {
     },
   };
 
-  const itemVariants = {
-    hidden: { y: 10, opacity: 0 },
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
-  const buttonVariants = {
+  const buttonVariants: Variants = {
     initial: { scale: 1 },
     hover: {
-      scale: 1.03,
-      boxShadow: "0 10px 15px -3px rgba(239, 68, 68, 0.3)",
+      scale: 1.02,
+      transition: { duration: 0.2 },
     },
     tap: { scale: 0.98 },
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center px-4">
-      <motion.div
-        className="max-w-md w-full"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        {/* Logo */}
-        <NavLink to="/" className="w-full flex justify-center mb-8">
-          <img
-            src="/logo.jpeg"
-            alt="Sarthifx Logo"
-            className="h-16 rounded-xl"
-          />
-        </NavLink>
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)`,
+        color: "var(--text-primary)",
+      }}
+    >
 
-        {/* Welcome Title */}
+      <motion.div
+        className="max-w-md w-full relative z-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        {/* Logo Section */}
         <motion.div
-          className="text-left mb-6"
-          initial={{ x: -20, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mb-2"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h2 className="text-2xl font-light text-gray-700">Welcome back</h2>
+          <NavLink to="/" className="flex justify-center items-center">
+            <img
+              src="/logo.jpeg"
+              alt="Sarthifx-logo"
+              className="w-16 h-12 md:w-20 md:h-16 rounded-xl"
+            />
+          </NavLink>
+        </motion.div>
+
+        {/* Welcome Section */}
+        <motion.div
+          className="text-center mb-10"
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <h1
+            className="text-3xl font-bold mb-2"
+            style={{ color: "var(--text-primary)" }}
+          >
+            Welcome back
+          </h1>
+          <p style={{ color: "var(--text-secondary)" }}>
+            Sign in to access your trading account
+          </p>
         </motion.div>
 
         {/* Login Form */}
         <motion.form
-          className="space-y-6"
+          className="space-y-6 mb-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          onSubmit={(e) => e.preventDefault()}
         >
-          {/* Email Field with Floating Label */}
+          {/* Email Field */}
           <motion.div variants={itemVariants}>
             <FloatingLabelInput
               id="email"
               type="email"
-              label="Email"
+              label="Email address"
               value={email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setEmail(e.target.value)
-              }
+              onChange={(e) => setEmail(e.target.value)}
             />
           </motion.div>
 
-          {/* Password Field with Floating Label */}
+          {/* Password Field */}
           <motion.div variants={itemVariants}>
             <FloatingLabelInput
               id="password"
               type={showPassword ? "text" : "password"}
               label="Password"
               value={password}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setPassword(e.target.value)
-              }
+              onChange={(e) => setPassword(e.target.value)}
               rightIcon={
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   {showPassword ? (
                     <FaEyeSlash size={18} />
@@ -196,12 +226,13 @@ const LoginPage = () => {
           {/* Forgot Password */}
           <motion.div className="text-right" variants={itemVariants}>
             <motion.a
-              href="/forgot-password"
-              className="text-red-500 hover:text-red-600 text-sm font-medium"
+              href="#"
+              className="text-sm font-medium hover:underline"
+              style={{ color: "var(--text-accent-blue)" }}
               whileHover={{ x: 3 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              Forgot password?
+              Forgot your password?
             </motion.a>
           </motion.div>
 
@@ -209,44 +240,60 @@ const LoginPage = () => {
           <motion.div variants={itemVariants}>
             <motion.button
               type="submit"
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-full font-medium shadow-md"
+              className="w-full py-4 rounded-xl font-semibold text-white shadow-lg"
+              style={{
+                background: `linear-gradient(135deg, var(--text-accent-blue) 0%, var(--text-accent-orange) 100%)`,
+              }}
               variants={buttonVariants}
               initial="initial"
               whileHover="hover"
               whileTap="tap"
-              transition={{ duration: 0.3 }}
             >
-              Log in
+              Sign In
             </motion.button>
           </motion.div>
         </motion.form>
 
         {/* Divider */}
         <motion.div
-          className="my-8 relative flex items-center"
+          className="relative flex items-center my-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="flex-grow border-t border-gray-300"></div>
-          <span className="flex-shrink mx-4 text-gray-500 text-sm">
+          <div
+            className="flex-grow border-t"
+            style={{ borderColor: "var(--bg-accent)" }}
+          ></div>
+          <span
+            className="flex-shrink mx-4 text-sm"
+            style={{ color: "var(--text-secondary)" }}
+          >
             Or continue with
           </span>
-          <div className="flex-grow border-t border-gray-300"></div>
+          <div
+            className="flex-grow border-t"
+            style={{ borderColor: "var(--bg-accent)" }}
+          ></div>
         </motion.div>
 
         {/* Social Login Buttons */}
         <motion.div
-          className="grid grid-cols-3 gap-3"
-          initial={{ opacity: 0, y: 10 }}
+          className="grid grid-cols-3 gap-4 mb-6"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
         >
           <motion.button
-            className="flex items-center justify-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+            className="flex items-center justify-center p-4 rounded-xl border transition-all duration-200"
+            style={{
+              backgroundColor: "var(--bg-accent)",
+              borderColor: "var(--bg-accent)",
+            }}
             whileHover={{
               y: -2,
-              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+              backgroundColor: "var(--bg-secondary)",
+              borderColor: "var(--border-secondary)",
             }}
             whileTap={{ y: 0 }}
           >
@@ -254,61 +301,85 @@ const LoginPage = () => {
           </motion.button>
 
           <motion.button
-            className="flex items-center justify-center p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+            className="flex items-center justify-center p-4 rounded-xl border transition-all duration-200"
+            style={{
+              backgroundColor: "var(--bg-accent)",
+              borderColor: "var(--bg-accent)",
+            }}
             whileHover={{
               y: -2,
-              boxShadow: "0 4px 6px -1px rgba(59, 130, 246, 0.5)",
+              backgroundColor: "var(--bg-secondary)",
+              borderColor: "var(--border-secondary)",
             }}
             whileTap={{ y: 0 }}
           >
-            <FaFacebookF size={20} />
+            <FaFacebookF className="text-[#1877F2]" size={20} />
           </motion.button>
 
           <motion.button
-            className="flex items-center justify-center p-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors duration-200"
+            className="flex items-center justify-center p-4 rounded-xl border transition-all duration-200"
+            style={{
+              backgroundColor: "var(--bg-accent)",
+              borderColor: "var(--bg-accent)",
+            }}
             whileHover={{
               y: -2,
-              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.3)",
+              backgroundColor: "var(--bg-secondary)",
+              borderColor: "var(--border-secondary)",
             }}
             whileTap={{ y: 0 }}
           >
-            <FaApple size={20} />
+            <FaApple className="text-white" size={20} />
           </motion.button>
         </motion.div>
 
-        {/* Biometrics Login */}
+        {/* Biometric Login */}
         <motion.div
-          className="mt-5"
+          className="mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
         >
           <motion.button
-            className="w-full flex items-center justify-center gap-2 p-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+            className="w-full flex items-center justify-center gap-3 p-4 rounded-xl border transition-all duration-200"
+            style={{
+              backgroundColor: "var(--bg-accent)",
+              borderColor: "var(--bg-accent)",
+            }}
             whileHover={{
               y: -2,
-              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+              backgroundColor: "var(--bg-secondary)",
+              borderColor: "var(--border-accent)",
             }}
             whileTap={{ y: 0 }}
           >
-            <FaFingerprint className="text-red-500" size={18} />
-            <span className="font-medium text-gray-700">
-              Log in with biometrics
+            <FaFingerprint
+              size={18}
+              style={{ color: "var(--text-accent-orange)" }}
+            />
+            <span
+              className="font-medium"
+              style={{ color: "var(--text-primary)" }}
+            >
+              Sign in with biometrics
             </span>
           </motion.button>
         </motion.div>
 
         {/* Sign Up Link */}
         <motion.div
-          className="text-center mt-8"
+          className="text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
+          transition={{ duration: 0.6, delay: 1.1 }}
         >
-          <span className="text-gray-600">Don't have an account yet? </span>
+          <span style={{ color: "var(--text-secondary)" }}>
+            Don't have an account yet?{" "}
+          </span>
           <motion.a
-            href="/register"
-            className="text-red-500 hover:text-red-600 font-medium"
+            href="#"
+            className="font-semibold hover:underline"
+            style={{ color: "var(--text-accent-orange)" }}
             whileHover={{ x: 3 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >

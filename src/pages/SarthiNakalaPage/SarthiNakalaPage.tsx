@@ -34,6 +34,7 @@ const SarthiNakalaPage = () => {
 
   return (
     <div
+      className="pt-20"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",
@@ -535,14 +536,6 @@ const SarthiNakalaPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Background Pattern */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 border-2 border-current rounded-full"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 border-2 border-current rounded"></div>
-        <div className="absolute bottom-40 left-20 w-24 h-24 border-2 border-current rounded-full"></div>
-        <div className="absolute bottom-20 right-40 w-20 h-20 border-2 border-current rounded"></div>
-      </div>
     </div>
   );
 };

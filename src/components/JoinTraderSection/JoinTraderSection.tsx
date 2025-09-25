@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Smartphone,
@@ -35,7 +35,7 @@ const JoinTradersSection = () => {
   }, []);
 
   // Enhanced Mobile mockup component
-  const MobileMockup = () => {
+  const MobileMockup = React.memo(() => {
     const accounts = [
       {
         id: 1,
@@ -64,7 +64,7 @@ const JoinTradersSection = () => {
       <motion.div
         className="relative w-64 sm:w-72 lg:w-80 h-[420px] sm:h-[480px] lg:h-[520px] rounded-[2rem] sm:rounded-[2.5rem] p-2 mx-auto shadow-2xl"
         style={{ backgroundColor: "var(--bg-primary)" }}
-        initial={{ opacity: 0, y: 50, rotateY: -15 }}
+        // initial={{ opacity: 0, y: 50, rotateY: -15 }}
         animate={{ opacity: 1, y: 0, rotateY: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
         whileHover={{
@@ -85,7 +85,7 @@ const JoinTradersSection = () => {
           <motion.div
             className="flex justify-between items-center px-4 sm:px-5 py-2 sm:py-3 backdrop-blur-md"
             style={{ backgroundColor: "rgba(0,0,0,0.1)" }}
-            initial={{ opacity: 0 }}
+            // initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
@@ -113,7 +113,7 @@ const JoinTradersSection = () => {
               borderBottomColor: "var(--border-secondary)",
               borderBottomWidth: "1px",
             }}
-            initial={{ x: -50, opacity: 0 }}
+            // initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
@@ -197,7 +197,6 @@ const JoinTradersSection = () => {
                   <motion.div
                     className="text-lg sm:text-xl font-bold flex items-center mt-1"
                     style={{ color: "var(--text-primary)" }}
-                    key={Math.floor(currentBalance)}
                   >
                     <span>USD {currentBalance.toFixed(2)}</span>
                     <motion.div
@@ -228,7 +227,7 @@ const JoinTradersSection = () => {
           {/* Enhanced Trading Accounts */}
           <motion.div
             className="px-4 sm:px-5 py-3 sm:py-4"
-            initial={{ y: 30, opacity: 0 }}
+            // initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.8 }}
           >
@@ -247,7 +246,7 @@ const JoinTradersSection = () => {
                     key={account.id}
                     className="rounded-xl p-3 flex items-center space-x-3 transition-all duration-200 backdrop-blur-sm"
                     style={{ backgroundColor: "var(--bg-accent)" }}
-                    initial={{ x: -30, opacity: 0 }}
+                    // initial={{ x: -30, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.9 + index * 0.1 }}
                     viewport={{ once: true }}
@@ -299,7 +298,7 @@ const JoinTradersSection = () => {
               borderTopColor: "var(--border-secondary)",
               borderTopWidth: "1px",
             }}
-            initial={{ y: 50, opacity: 0 }}
+            // initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.2 }}
           >
@@ -352,7 +351,7 @@ const JoinTradersSection = () => {
         <div className="absolute inset-0 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl pointer-events-none" />
       </motion.div>
     );
-  };
+  });
 
   return (
     <section

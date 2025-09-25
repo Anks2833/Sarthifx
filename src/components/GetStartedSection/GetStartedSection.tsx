@@ -308,8 +308,8 @@ const GetStartedSection = () => {
                           transition={{ delay: fieldIndex * 0.2 }}
                         >
                           <label
-                            className="block text-xs font-medium mb-1.5 flex items-center space-x-2"
-                            style={{ color: "var(--text-secondary)" }}
+                            className="block text-xs text-white font-medium mb-1.5 flex items-center space-x-2"
+                            // style={{ color: "var(--text-secondary)" }}
                           >
                             {IconComponent && <IconComponent size={14} />}
                             <span>{field.label}</span>

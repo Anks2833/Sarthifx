@@ -1,7 +1,19 @@
 import { motion } from "framer-motion";
-import { FaArrowRight, FaEthereum } from "react-icons/fa";
-import { SiVisa, SiMastercard, SiBinance } from "react-icons/si";
 import type { ReactNode } from "react";
+import { FaArrowRight, FaEthereum, FaBitcoin, FaPaypal } from "react-icons/fa";
+import {
+  SiVisa,
+  SiMastercard,
+  SiBinance,
+  SiDogecoin,
+  SiLitecoin,
+  SiCardano,
+  SiAutodeskrevit,
+  SiNetlify, // we'll use for Neteller (no direct logo)
+} from "react-icons/si";
+import { RiBankFill } from "react-icons/ri";
+import { MdPhoneIphone } from "react-icons/md";
+import { BsCreditCard2Front } from "react-icons/bs";
 
 // Type definitions
 interface PaymentMethod {
@@ -17,7 +29,6 @@ interface PaymentCardProps {
 }
 
 const PaymentMethodsSection = () => {
-  // Payment methods data with colors and logos
   const paymentMethods: PaymentMethod[] = [
     {
       name: "VISA",
@@ -29,37 +40,37 @@ const PaymentMethodsSection = () => {
       name: "AstroPay",
       color: "bg-orange-500",
       textColor: "text-white",
-      icon: "💳",
+      icon: <BsCreditCard2Front size={18} />,
     },
     {
       name: "MTN",
       color: "bg-yellow-500",
       textColor: "text-black",
-      icon: "📱",
+      icon: <MdPhoneIphone size={18} />,
     },
     {
       name: "BitcoinCash",
       color: "bg-green-500",
       textColor: "text-white",
-      icon: "₿",
+      icon: <FaBitcoin size={18} />,
     },
     {
       name: "Jetonbank",
       color: "bg-gray-800",
       textColor: "text-white",
-      icon: "🏦",
+      icon: <RiBankFill size={18} />,
     },
     {
-      name: "vodafone",
+      name: "Vodafone",
       color: "bg-red-600",
       textColor: "text-white",
-      icon: "📶",
+      icon: <MdPhoneIphone size={18} />,
     },
     {
       name: "DOGECOIN",
       color: "bg-yellow-400",
       textColor: "text-black",
-      icon: "🐕",
+      icon: <SiDogecoin size={18} />,
     },
     {
       name: "BINANCE PAY",
@@ -68,20 +79,25 @@ const PaymentMethodsSection = () => {
       icon: <SiBinance size={16} />,
     },
     {
-      name: "maestro",
+      name: "Maestro",
       color: "bg-blue-500",
       textColor: "text-white",
       icon: <SiMastercard size={16} />,
     },
-    { name: "TRON", color: "bg-red-500", textColor: "text-white", icon: "⚡" },
+    {
+      name: "TRON",
+      color: "bg-red-500",
+      textColor: "text-white",
+      icon: <FaBitcoin size={16} />, // Replace with proper Tron logo if available
+    },
     {
       name: "NETELLER",
       color: "bg-green-600",
       textColor: "text-white",
-      icon: "💰",
+      icon: <SiNetlify size={18} />, // fallback
     },
     {
-      name: "mastercard",
+      name: "Mastercard",
       color: "bg-red-500",
       textColor: "text-white",
       icon: <SiMastercard size={16} />,
@@ -90,25 +106,25 @@ const PaymentMethodsSection = () => {
       name: "CARDANO",
       color: "bg-blue-400",
       textColor: "text-white",
-      icon: "₳",
+      icon: <SiCardano size={18} />,
     },
     {
       name: "M-pesa",
       color: "bg-green-500",
       textColor: "text-white",
-      icon: "📱",
+      icon: <MdPhoneIphone size={18} />,
     },
     {
       name: "Skrill",
       color: "bg-purple-600",
       textColor: "text-white",
-      icon: "💳",
+      icon: <SiAutodeskrevit size={18} />,
     },
     {
       name: "PayPal",
       color: "bg-blue-500",
       textColor: "text-white",
-      icon: "🅿️",
+      icon: <FaPaypal size={18} />,
     },
     {
       name: "Ethereum",
@@ -120,7 +136,7 @@ const PaymentMethodsSection = () => {
       name: "Litecoin",
       color: "bg-gray-400",
       textColor: "text-white",
-      icon: "Ł",
+      icon: <SiLitecoin size={18} />,
     },
   ];
 

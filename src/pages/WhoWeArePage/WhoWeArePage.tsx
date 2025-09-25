@@ -220,10 +220,7 @@ const WhoWeArePage = () => {
       </section>
 
       {/* Leaders Section */}
-      <section
-        className="py-20 px-6 md:px-12"
-        style={{ background: "var(--bg-secondary)" }}
-      >
+      <section className="py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
             Our leaders

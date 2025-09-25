@@ -726,39 +726,6 @@ const ForexMarket = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section
-        className="py-16 px-8"
-        style={{ background: "var(--bg-secondary)" }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Ready to start trading Forex with Sarthifx MT5?
-          </h2>
-          <p
-            className="text-lg mb-8"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            Join over 475,000 traders worldwide and experience the power of MT5
-            with Sarthifx.
-          </p>
-          <div className="flex justify-center gap-4">
-            <button
-              className="px-8 py-4 rounded-full text-white font-semibold hover:opacity-90 transition-opacity"
-              style={{ background: "var(--text-accent-orange)" }}
-            >
-              Try free demo
-            </button>
-            <button
-              className="px-8 py-4 rounded-full text-white font-semibold hover:opacity-90 transition-opacity"
-              style={{ background: "var(--text-accent-blue)" }}
-            >
-              Open account
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

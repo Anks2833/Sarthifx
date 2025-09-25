@@ -34,6 +34,71 @@ const Navbar = () => {
     };
   }, []);
 
+  const itemRoutes: Record<string, string> = {
+    // Trading
+    CFDs: "/trade/cfds",
+    Options: "/trade/options",
+    Forex: "/markets/forex",
+    "Derived Indices": "/markets/derived-indices",
+    Stocks: "/markets/stocks",
+    "Stock Indices": "/markets/stocks-indices",
+    Commodities: "/markets/commodities",
+    Cryptocurrencies: "/markets/crypto",
+    ETFs: "/markets/etf",
+    "Payment methods": "/payment-methods",
+    TradingView: "/trading-view",
+    "MT5 Signals": "/mt5-signals",
+    "Trading Calculator": "/trading-calculator",
+    "Trading Central": "/trading-central",
+    "Economic Calendar": "/economic-calendar",
+
+    // Platforms
+    "Sarthifx MT5": "/trading-platforms/sarthi-mt5",
+    "Sarthifx X": "/trading-platforms/sarthi-x",
+    "Sarthifx Nakala": "/trading-platforms/sarthi-nakala",
+    "Sarthifx cTrader": "/trading-platforms/sarthi-ctrader",
+    "Sarthifx Trader": "/trading-platforms/sarthi-trader",
+    "Sarthifx Bot": "/trading-platforms/sarthi-bot",
+    "Sarthifx Go": "/trading-platforms/sarthi-go",
+    // "SmartTrader": "#" // optional placeholder
+
+    // Learning & support
+    "Sarthifx Academy": "#", // you can add a route if available
+    "Sarthifx Blog": "/blog",
+    Glossary: "/glossary",
+    "Help centre": "/help-centre",
+    Community: "/contact-us", // placeholder
+    "Contact us": "/contact-us",
+
+    // About
+    "Who we are": "/who-we-are",
+    "Why choose us": "/why-choose-us",
+    "Regulatory information": "#", // add route if available
+    "Secure & responsible trading": "/secure-trading",
+    Careers: "/careers",
+    Newsroom: "/newsroom",
+
+    // Languages
+    English: "#",
+    Português: "#",
+    "Tiếng Việt": "#",
+    Türkçe: "#",
+    繁體中文: "#",
+    Deutsch: "#",
+    Français: "#",
+    Español: "#",
+    বাংলা: "#",
+    Kiswahili: "#",
+    한국어: "#",
+    Polski: "#",
+    العربية: "#",
+    Pусский: "#",
+    हिन्दी: "#",
+    简体中文: "#",
+    Italiano: "#",
+    "O'zbek": "#",
+  };
+
   const handleMouseEnter = (dropdown: DropdownType) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -965,12 +1030,7 @@ const Navbar = () => {
           },
           {
             title: "Options trading",
-            items: [
-              "Sarthifx Trader",
-              "Sarthifx Bot",
-              "Sarthifx Go",
-              "SmartTrader",
-            ],
+            items: ["Sarthifx Trader", "Sarthifx Bot", "Sarthifx Go"],
           },
         ],
       },
@@ -1046,9 +1106,10 @@ const Navbar = () => {
               {section.items.map((item, itemIndex) => (
                 <li key={itemIndex}>
                   <NavLink
-                    to="#"
+                    to={itemRoutes[item] || "#"}
                     className="block py-2 transition-colors duration-200 hover:opacity-80"
                     style={{ color: "var(--text-primary)" }}
+                    onClick={() => setIsMobileMenuOpen(false)} // close mobile menu
                   >
                     {item}
                   </NavLink>
@@ -1370,7 +1431,7 @@ const Navbar = () => {
                 )}
               </li>
 
-              <li>
+              {/* <li>
                 <NavLink
                   to="#"
                   className="w-full flex items-center justify-between px-4 py-3 transition-colors duration-200 hover:opacity-80"
@@ -1379,7 +1440,7 @@ const Navbar = () => {
                   <span className="font-medium">Partners</span>
                   <ExternalLink />
                 </NavLink>
-              </li>
+              </li> */}
 
               <li>
                 <button

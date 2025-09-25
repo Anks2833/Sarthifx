@@ -83,7 +83,7 @@ const CfdsPage = () => {
 
   return (
     <div
-    className="pt-20"
+      className="pt-20"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",

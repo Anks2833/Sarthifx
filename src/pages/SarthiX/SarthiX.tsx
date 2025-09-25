@@ -1,4 +1,15 @@
 import { useState } from "react";
+import {
+  Apple,
+  Globe,
+  Signal,
+  BatteryFull,
+  BarChart3,
+  LineChart,
+  Settings,
+  ClipboardList,
+} from "lucide-react";
+import { FaGooglePlay } from "react-icons/fa";
 
 interface FAQ {
   id: string;
@@ -37,6 +48,7 @@ const SarthiXPage = () => {
 
   return (
     <div
+      className="pt-20"
       style={{
         background: "var(--bg-primary)",
         color: "var(--text-primary)",
@@ -134,7 +146,7 @@ const SarthiXPage = () => {
 
             <div className="absolute -bottom-4 -right-8 bg-red-600 text-white rounded-lg p-3 shadow-lg">
               <div className="text-center">
-                <div className="text-xs">🥤</div>
+                <LineChart className="w-4 h-4 mx-auto mb-1" />
                 <span className="text-sm font-semibold">Coca-Cola</span>
               </div>
             </div>
@@ -204,9 +216,9 @@ const SarthiXPage = () => {
                     <div className="flex justify-between items-center p-2 text-white text-xs">
                       <span>9:41</span>
                       <div className="flex items-center gap-1">
-                        <span>📶</span>
-                        <span>📶</span>
-                        <span>🔋</span>
+                        <Signal className="w-3 h-3" />
+                        <Signal className="w-3 h-3" />
+                        <BatteryFull className="w-4 h-4" />
                       </div>
                     </div>
 
@@ -239,16 +251,16 @@ const SarthiXPage = () => {
                       {/* Trading Tools */}
                       <div className="grid grid-cols-4 gap-2">
                         <div className="bg-white/10 rounded p-2 text-center">
-                          <div className="text-white text-xs">📈</div>
+                          <LineChart className="w-4 h-4 text-white mx-auto" />
                         </div>
                         <div className="bg-white/10 rounded p-2 text-center">
-                          <div className="text-white text-xs">📊</div>
+                          <BarChart3 className="w-4 h-4 text-white mx-auto" />
                         </div>
                         <div className="bg-white/10 rounded p-2 text-center">
-                          <div className="text-white text-xs">⚙️</div>
+                          <Settings className="w-4 h-4 text-white mx-auto" />
                         </div>
                         <div className="bg-white/10 rounded p-2 text-center">
-                          <div className="text-white text-xs">📋</div>
+                          <ClipboardList className="w-4 h-4 text-white mx-auto" />
                         </div>
                       </div>
                     </div>
@@ -314,13 +326,13 @@ const SarthiXPage = () => {
 
             <div className="flex flex-wrap gap-4">
               <button className="flex items-center gap-2 px-4 py-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                <span>▶</span> Google Play
+                <FaGooglePlay className="w-5 h-5" /> Google Play
               </button>
               <button className="flex items-center gap-2 px-4 py-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                <span>🍎</span> App Store
+                <Apple className="w-5 h-5" /> App Store
               </button>
               <button className="flex items-center gap-2 px-4 py-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                <span>🌐</span> Web browser
+                <Globe className="w-5 h-5" /> Web browser
               </button>
             </div>
           </div>
@@ -344,56 +356,50 @@ const SarthiXPage = () => {
             </div>
 
             <div className="space-y-8">
-              <div className="flex gap-6">
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold text-white flex-shrink-0"
-                  style={{ background: "var(--text-accent-orange)" }}
-                >
-                  1
+              {[1, 2, 3].map((step) => (
+                <div key={step} className="flex gap-6">
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold text-white flex-shrink-0"
+                    style={{ background: "var(--text-accent-orange)" }}
+                  >
+                    {step}
+                  </div>
+                  <div>
+                    {step === 1 && (
+                      <>
+                        <h3 className="text-2xl font-bold mb-3">
+                          Open a Sarthifx account
+                        </h3>
+                        <p style={{ color: "var(--text-secondary)" }}>
+                          Sign up for a Sarthifx account for free, or log in if
+                          you already have one.
+                        </p>
+                      </>
+                    )}
+                    {step === 2 && (
+                      <>
+                        <h3 className="text-2xl font-bold mb-3">
+                          Get a Sarthifx X account
+                        </h3>
+                        <p style={{ color: "var(--text-secondary)" }}>
+                          Open a Sarthifx X account in the Trader's Hub.
+                        </p>
+                      </>
+                    )}
+                    {step === 3 && (
+                      <>
+                        <h3 className="text-2xl font-bold mb-3">
+                          Start trading
+                        </h3>
+                        <p style={{ color: "var(--text-secondary)" }}>
+                          Choose your favourite instrument and start trading
+                          with TradingView charts.
+                        </p>
+                      </>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3">
-                    Open a Sarthifx account
-                  </h3>
-                  <p style={{ color: "var(--text-secondary)" }}>
-                    Sign up for a Sarthifx account for free, or log in if you
-                    already have one.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6">
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold text-white flex-shrink-0"
-                  style={{ background: "var(--text-accent-orange)" }}
-                >
-                  2
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3">
-                    Get a Sarthifx X account
-                  </h3>
-                  <p style={{ color: "var(--text-secondary)" }}>
-                    Open a Sarthifx X account in the Trader's Hub.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6">
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold text-white flex-shrink-0"
-                  style={{ background: "var(--text-accent-orange)" }}
-                >
-                  3
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3">Start trading</h3>
-                  <p style={{ color: "var(--text-secondary)" }}>
-                    Choose your favourite instrument and start trading with
-                    TradingView charts.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

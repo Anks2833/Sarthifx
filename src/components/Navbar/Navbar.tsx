@@ -525,7 +525,7 @@ const Navbar = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-10">
           <div className="space-y-8">
             <div>
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-2">
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center"
                   style={{ background: "var(--text-accent-blue)" }}
@@ -573,7 +573,7 @@ const Navbar = () => {
             </div>
 
             <div>
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-2">
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center"
                   style={{ background: "var(--text-accent-orange)" }}
@@ -623,7 +623,7 @@ const Navbar = () => {
 
           <div>
             <div>
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-2">
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center"
                   style={{ background: "var(--border-primary)" }}
@@ -739,7 +739,7 @@ const Navbar = () => {
       >
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-10">
           <div>
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2 mb-2">
               <BookOpen
                 className="w-5 h-5"
                 style={{ color: "var(--text-accent-blue)" }}
@@ -775,7 +775,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div>
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2 mb-2">
               <HelpCircle
                 className="w-5 h-5"
                 style={{ color: "var(--text-accent-orange)" }}

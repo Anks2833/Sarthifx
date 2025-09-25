@@ -16,7 +16,6 @@ const JoinTradersSection = () => {
 
   const words = ["Join", "3M+", "Traders"];
 
-  // Auto-cycle through words
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveWordIndex((prev) => (prev + 1) % words.length);
@@ -355,30 +354,8 @@ const JoinTradersSection = () => {
 
   return (
     <section
-      className="relative min-h-screen overflow-hidden"
-      style={{
-        background: `linear-gradient(135deg, var(--bg-primary), var(--bg-accent))`,
-      }}
+      className="relative min-h-screen overflow-hidden bg-[var(--bg-primary)]"
     >
-      {/* Enhanced Background Pattern */}
-      <div className="absolute inset-0 opacity-30">
-        <motion.div
-          className="absolute top-20 left-10 w-32 h-32 rounded-full blur-xl bg-gradient-to-br from-blue-400 to-purple-400"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-40 h-40 rounded-full blur-xl bg-gradient-to-br from-orange-400 to-pink-400"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            rotate: [360, 180, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-      </div>
 
       {/* Floating particles */}
       <div className="absolute inset-0">

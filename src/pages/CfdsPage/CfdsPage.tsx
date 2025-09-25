@@ -1,44 +1,62 @@
+import {
+  BarChart3,
+  Globe2,
+  Database,
+  Diamond,
+  ShieldCheck,
+  Trophy,
+  Cog,
+  Zap,
+  Coins,
+} from "lucide-react";
+
+import {
+  FaBitcoin,
+  FaChartLine,
+  FaBalanceScale,
+} from "react-icons/fa";
+
 const CfdsPage = () => {
   const assetClasses = [
     {
       name: "Forex",
-      icon: "💱",
+      icon: <FaBalanceScale size={20} />, // 💱
       spreads: "0.3",
       leverage: "1:1000",
     },
     {
       name: "Derived Indices",
-      icon: "🌐",
+      icon: <Globe2 size={20} />, // 🌐
       spreads: "0.24",
       leverage: "1:4000",
     },
     {
       name: "Stocks",
-      icon: "📈",
+      icon: <FaChartLine size={20} />, // 📈
       spreads: "0.6",
       leverage: "1:50",
     },
     {
       name: "Stock Indices",
-      icon: "📊",
+      icon: <BarChart3 size={20} />, // 📊
       spreads: "0.6",
       leverage: "1:100",
     },
     {
       name: "ETFs",
-      icon: "📋",
+      icon: <Database size={20} />, // 📋
       spreads: "1",
       leverage: "1:5",
     },
     {
       name: "Commodities",
-      icon: "🏗️",
+      icon: <Coins size={20} />, // 🏗️
       spreads: "0.6",
       leverage: "1:500",
     },
     {
       name: "Cryptocurrencies",
-      icon: "₿",
+      icon: <FaBitcoin size={20} />, // ₿
       spreads: "0.8",
       leverage: "1:100",
     },
@@ -46,35 +64,35 @@ const CfdsPage = () => {
 
   const benefits = [
     {
-      icon: "⚡",
+      icon: <Zap size={28} />, // ⚡
       title: "High leverage up to 1:1000",
       description: "Unlock bigger opportunities with smaller initial capitals.",
     },
     {
-      icon: "💎",
+      icon: <Diamond size={28} />, // 💎
       title: "Tight spreads from 0 pips",
       description: "Get the most value from every trade.",
     },
     {
-      icon: "🔢",
+      icon: <Database size={28} />, // 🔢
       title: "Over 250 diverse instruments",
       description:
         "From 24/7 Synthetic Indices to FX, Stocks, ETFs, Gold, and Cryptocurrencies.",
     },
     {
-      icon: "🛡️",
+      icon: <ShieldCheck size={28} />, // 🛡️
       title: "Zero-balance protection",
       description:
         "Guarantees that you'll never lose more funds than you have deposited.",
     },
     {
-      icon: "🏆",
+      icon: <Trophy size={28} />, // 🏆
       title: "Leading platforms",
       description:
         "MetaTrader or cTrader – choose from the world's leading CFD trading platforms.",
     },
     {
-      icon: "⚙️",
+      icon: <Cog size={28} />, // ⚙️
       title: "Multiple account types",
       description:
         "Standard, swap-free, or zero spread accounts to match your strategy.",

@@ -211,7 +211,7 @@ const TradeDayNightSection = () => {
 
           {/* Enhanced button */}
           <motion.button
-            className="group relative bg-gradient-to-r from-red-500 to-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-semibold overflow-hidden shadow-xl flex items-center"
+            className="group relative bg-[#ff8c42] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-semibold overflow-hidden shadow-xl flex items-center"
             whileHover={{
               scale: 1.05,
               boxShadow: "0 10px 25px -5px rgba(239, 68, 68, 0.4)",
@@ -275,7 +275,7 @@ const TradeDayNightSection = () => {
                 transition={{ duration: 0.2 }}
               >
                 <motion.div
-                  className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 text-red-500"
+                  className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 text-[var(--text-accent-orange)]"
                   animate={{
                     textShadow: [
                       "0 0 0px rgba(239, 68, 68, 0)",

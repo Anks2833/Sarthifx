@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SignalHigh, BatteryFull, Play, Apple } from "lucide-react";
 
 const SarthiNakalaPage = () => {
   const [expandedFAQ, setExpandedFAQ] = useState<Record<string, boolean>>({});
@@ -85,8 +86,8 @@ const SarthiNakalaPage = () => {
                 <div className="flex justify-between items-center p-2 text-white text-xs">
                   <span>9:41</span>
                   <div className="flex items-center gap-1">
-                    <span>📶</span>
-                    <span>🔋</span>
+                    <SignalHigh className="w-4 h-4" />
+                    <BatteryFull className="w-4 h-4" />
                   </div>
                 </div>
 
@@ -95,25 +96,6 @@ const SarthiNakalaPage = () => {
                   <div className="text-center mb-4">
                     <div className="text-white text-sm font-semibold">
                       Spotlight
-                    </div>
-                  </div>
-
-                  {/* ROI Card */}
-                  <div className="bg-blue-500/20 rounded-xl p-4 mb-4 relative">
-                    <div className="absolute -left-4 -top-4">
-                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white">
-                        <img
-                          src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=64&h=64&fit=crop&crop=face"
-                          alt="Trader"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
-                    <div className="ml-8">
-                      <div className="text-white font-bold text-lg">
-                        ROI +135%
-                      </div>
-                      <div className="text-white/70 text-sm">Sarah</div>
                     </div>
                   </div>
 
@@ -133,56 +115,6 @@ const SarthiNakalaPage = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Floating Elements */}
-            <div className="absolute -top-4 -right-8 bg-yellow-400 rounded-full w-16 h-16 flex items-center justify-center">
-              <span className="text-black font-bold text-sm">Gold</span>
-            </div>
-
-            <div className="absolute top-24 -right-12 bg-white rounded-lg p-3 shadow-lg">
-              <div className="text-center">
-                <div className="w-12 h-12 rounded-full overflow-hidden mb-2">
-                  <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=48&h=48&fit=crop&crop=face"
-                    alt="Felix"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-black font-bold text-sm">Felix</div>
-                <div className="text-gray-600 text-xs">Live return</div>
-                <div className="text-black font-bold">4,788.68%</div>
-                <button
-                  className="mt-2 px-3 py-1 rounded text-white text-xs font-semibold"
-                  style={{ background: "var(--text-accent-orange)" }}
-                >
-                  Copy
-                </button>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-8 -left-8 bg-pink-200 rounded-lg p-3 shadow-lg">
-              <div className="flex items-center gap-2">
-                <img
-                  src="https://flagcdn.com/w40/eu.png"
-                  alt="EUR"
-                  className="w-6 h-4"
-                />
-                <img
-                  src="https://flagcdn.com/w40/us.png"
-                  alt="USD"
-                  className="w-6 h-4"
-                />
-                <span className="text-black font-semibold text-sm">
-                  EUR/USD
-                </span>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-4 right-8 bg-gray-200 rounded-lg p-3 shadow-lg">
-              <div className="text-center">
-                <div className="text-black font-bold text-sm">MSFT</div>
               </div>
             </div>
           </div>
@@ -351,10 +283,10 @@ const SarthiNakalaPage = () => {
 
             <div className="flex flex-wrap gap-4">
               <button className="flex items-center gap-2 px-4 py-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                <span>▶</span> Google Play
+                <Play className="w-4 h-4" /> Google Play
               </button>
               <button className="flex items-center gap-2 px-4 py-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
-                <span>🍎</span> App Store
+                <Apple className="w-4 h-4" /> App Store
               </button>
             </div>
           </div>

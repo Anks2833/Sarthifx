@@ -1,35 +1,47 @@
+import {
+  TrendingUp,
+  Zap,
+  CheckCircle,
+  BarChart3,
+  XCircle,
+  Smartphone,
+  DollarSign,
+  Wallet,
+} from "lucide-react";
+
+
 const OptionsPage = () => {
   const optionTypes = [
     {
-      icon: "↕",
+      icon: <TrendingUp size={28} />, // ↕ Digital Options
       title: "Digital Options",
       description:
         "Predict the outcome and earn a fixed payout if your prediction is correct.",
       link: "Learn more",
     },
     {
-      icon: "⚡",
+      icon: <Zap size={28} />, // ⚡ Accumulators
       title: "Accumulators",
       description:
         "Amplify potential profits with up to 5% compounding growth per tick.",
       link: "Learn more",
     },
     {
-      icon: "✓",
+      icon: <CheckCircle size={28} />, // ✓ Vanillas
       title: "Vanillas",
       description:
         "Earn a high payout if your predictions are correct within the contract period.",
       link: "Learn more",
     },
     {
-      icon: "📊",
+      icon: <BarChart3 size={28} />, // 📊 Turbos
       title: "Turbos",
       description:
         "Earn a payout if your prediction is accurate and the price stays within the set barrier.",
       link: "Learn more",
     },
     {
-      icon: "✕",
+      icon: <XCircle size={28} />, // ✕ Multipliers
       title: "Multipliers",
       description:
         "Multiply your potential profit by up to 4,000x if the market moves in your favour.",
@@ -39,19 +51,19 @@ const OptionsPage = () => {
 
   const benefits = [
     {
-      icon: "📱",
+      icon: <Smartphone size={32} />, // 📱
       title: "Diverse contract types",
       description:
         "Pick from various contract types and durations to match your trading strategy.",
     },
     {
-      icon: "💲",
+      icon: <DollarSign size={32} />, // 💲
       title: "Low cost to entry",
       description:
         "Start trading with as little as USD 1, and a minimum of USD 5 in your account.",
     },
     {
-      icon: "💰",
+      icon: <Wallet size={32} />, // 💰
       title: "Flexible payouts",
       description: "Opt for fixed payouts or maximise with variable payouts.",
     },

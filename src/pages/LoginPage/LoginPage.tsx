@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import type { Variants } from "framer-motion"
+import type { Variants } from "framer-motion";
 import {
   FaGoogle,
   FaFacebookF,
@@ -139,7 +139,6 @@ const LoginPage = () => {
         color: "var(--text-primary)",
       }}
     >
-
       <motion.div
         className="max-w-md w-full relative z-10"
         initial={{ opacity: 0, y: 30 }}
@@ -154,11 +153,14 @@ const LoginPage = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <NavLink to="/" className="flex justify-center items-center">
-            <img
-              src="/logo.jpeg"
-              alt="Sarthifx-logo"
-              className="w-16 h-12 md:w-20 md:h-16 rounded-xl"
-            />
+            <div className="relative w-32 h-24">
+              <img
+                src="/sarthi_logo.png"
+                alt="Sarthifx-logo"
+                className="w-24 h-18 md:w-32 md:h-24 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+              />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
           </NavLink>
         </motion.div>
 

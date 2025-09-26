@@ -9,8 +9,13 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white border-t border-t-zinc-800">
       <div className="container mx-auto px-6 py-10">
         <div className="flex flex-col lg:flex-row justify-between items-center mb-12">
-          <div className="flex items-center space-x-2 mb-6 lg:mb-0">
-            <img src="/logo.jpeg" alt="logo" className="w-28 h-24 rounded-xl" />
+          <div className="relative w-32 h-24">
+            <img
+              src="/sarthi_logo.png"
+              alt="Sarthifx-logo"
+              className="w-32 h-24 md:w-32 md:h-24 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+            />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
 
           <div className="flex items-center justify-between w-full lg:w-auto">
@@ -520,11 +525,6 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="bg-gray-800 p-6 rounded-lg flex items-start">
               <div className="mr-4">
-                <img
-                  src="/logo.jpeg"
-                  alt="logo"
-                  className="w-28 h-24 rounded-xl mb-10"
-                />
 
                 <div className="flex flex-col space-y-4">
                   <div className="flex items-center mb-10">

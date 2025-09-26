@@ -80,17 +80,19 @@ const RegisterPage = () => {
         color: "var(--text-primary, #ffffff)",
       }}
     >
-
       {/* Header */}
       <header className="relative z-20 flex items-center justify-between px-6 lg:px-8 py-6">
         <div className="flex items-center space-x-3">
           <NavLink to="/" className="flex items-center space-x-3 group">
             <div className="relative">
-              <img
-                src="/logo.jpeg"
-                alt="Sarthifx-logo"
-                className="w-14 h-12 md:w-18 md:h-14 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
-              />
+              <div className="relative w-32 h-24">
+                <img
+                  src="/sarthi_logo.png"
+                  alt="Sarthifx-logo"
+                  className="w-24 h-18 md:w-32 md:h-24 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </NavLink>

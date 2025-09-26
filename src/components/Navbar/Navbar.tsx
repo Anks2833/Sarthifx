@@ -240,8 +240,8 @@ const Navbar = () => {
             "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-10">
-          <div className="space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-6">
+          <div className="space-y-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <div
@@ -349,7 +349,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <div
@@ -510,7 +510,7 @@ const Navbar = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className="rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl border"
+        className="rounded-3xl shadow-2xl overflow-hidden border"
         style={{
           background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
           borderColor: "var(--border-primary)",
@@ -518,8 +518,8 @@ const Navbar = () => {
             "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-10">
-          <div className="space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-6">
+          <div className="space-y-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <div
@@ -733,7 +733,7 @@ const Navbar = () => {
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <BookOpen
@@ -874,7 +874,7 @@ const Navbar = () => {
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-6">
           <div className="lg:col-span-1">
             <ul className="">
               {[
@@ -1213,7 +1213,7 @@ const Navbar = () => {
               <img
                 src="/sarthi_logo.png"
                 alt="Sarthifx-logo"
-                className="w-24 h-18 md:w-32 md:h-24 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                className="w-24 h-18 md:w-32 md:h-24 rounded-xl transition-all duration-300"
               />
             </div>
           </NavLink>

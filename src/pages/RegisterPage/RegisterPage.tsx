@@ -89,11 +89,9 @@ const RegisterPage = () => {
                 <img
                   src="/sarthi_logo.png"
                   alt="Sarthifx-logo"
-                  className="w-24 h-18 md:w-32 md:h-24 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                  className="w-24 h-18 md:w-32 md:h-24 rounded-xl transition-all duration-300"
                 />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </NavLink>
         </div>

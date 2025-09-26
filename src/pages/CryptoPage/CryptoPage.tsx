@@ -308,7 +308,7 @@ const CryptoPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Why trade Crypto with Deriv
+            Why trade Crypto with Sarthifx
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -364,7 +364,7 @@ const CryptoPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Crypto instruments available on Deriv
+            Crypto instruments available on Sarthifx
           </h2>
 
           <div className="space-y-12">
@@ -396,7 +396,7 @@ const CryptoPage = () => {
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            How to trade Crypto on Deriv
+            How to trade Crypto on Sarthifx
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -432,19 +432,19 @@ const CryptoPage = () => {
                     <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-xs font-bold">
                       MT5
                     </div>
-                    <span>Deriv MT5</span>
+                    <span>Sarthifx MT5</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded">
                     <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-xs font-bold">
                       cT
                     </div>
-                    <span>Deriv cTrader</span>
+                    <span>Sarthifx cTrader</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded">
                     <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center text-xs font-bold">
                       DX
                     </div>
-                    <span>Deriv X</span>
+                    <span>Sarthifx X</span>
                   </div>
                 </div>
               </div>
@@ -482,13 +482,13 @@ const CryptoPage = () => {
                     <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-xs font-bold">
                       DT
                     </div>
-                    <span>Deriv Trader</span>
+                    <span>Sarthifx Trader</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded">
                     <div className="w-8 h-8 bg-pink-500 rounded flex items-center justify-center text-xs font-bold">
                       GO
                     </div>
-                    <span>Deriv GO</span>
+                    <span>Sarthifx GO</span>
                   </div>
                 </div>
               </div>

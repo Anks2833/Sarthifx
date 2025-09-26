@@ -100,7 +100,7 @@ const TradingCentralPage = () => {
       id: "cost",
       question: "Is there any cost to access Trading Central?",
       answer:
-        "Trading Central is available free of charge to Deriv clients as part of our commitment to providing professional trading tools.",
+        "Trading Central is available free of charge to Sarthifx clients as part of our commitment to providing professional trading tools.",
     },
     {
       id: "updates",
@@ -118,7 +118,7 @@ const TradingCentralPage = () => {
       id: "newsletters",
       question: "How do I subscribe to Trading Central newsletters?",
       answer:
-        "Newsletter subscriptions will be available soon. You'll be able to subscribe directly through your Deriv account dashboard.",
+        "Newsletter subscriptions will be available soon. You'll be able to subscribe directly through your Sarthifx account dashboard.",
     },
     {
       id: "alpha",

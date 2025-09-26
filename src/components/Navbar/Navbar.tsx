@@ -7,7 +7,7 @@ import {
   Info,
   Globe,
   ChevronDown,
-  ExternalLink,
+  // ExternalLink,
   ArrowRight,
   Menu,
   X,
@@ -23,7 +23,7 @@ import {
   Shield,
   Award,
   Briefcase,
-  Newspaper,
+  // Newspaper,
   MessageCircle,
   HelpCircle,
   User,
@@ -102,7 +102,7 @@ const Navbar = () => {
     "Sarthifx Blog": "/blog",
     Glossary: "/glossary",
     "Help centre": "/help-centre",
-    Community: "/contact-us",
+    // Community: "/contact-us",
     "Contact us": "/contact-us",
 
     // About
@@ -110,8 +110,8 @@ const Navbar = () => {
     "Why choose us": "/why-choose-us",
     "Regulatory information": "#",
     "Secure & responsible trading": "/secure-trading",
-    Careers: "/careers",
-    Newsroom: "/newsroom",
+    // Careers: "/careers",
+    // Newsroom: "/newsroom",
 
     // Languages
     English: "#",
@@ -167,10 +167,6 @@ const Navbar = () => {
     />
   );
 
-  const AnimatedExternalLink = () => (
-    <ExternalLink className="w-4 h-4 transition-all duration-300 group-hover:translate-x-0.5 group-hover:scale-110" />
-  );
-
   const AnimatedGlobe = () => (
     <Globe className="w-4 h-4 transition-all duration-300 hover:rotate-12" />
   );
@@ -212,7 +208,7 @@ const Navbar = () => {
     "Sarthifx Blog": BookOpenText,
     Glossary: BookOpen,
     "Help centre": HelpCircle,
-    Community: Users,
+    // Community: Users,
     "Contact us": MessageCircle,
 
     // About
@@ -220,8 +216,8 @@ const Navbar = () => {
     "Why choose us": Star,
     "Regulatory information": Shield,
     "Secure & responsible trading": Shield,
-    Careers: Briefcase,
-    Newsroom: Newspaper,
+    // Careers: Briefcase,
+    // Newsroom: Newspaper,
   };
 
   // Enhanced Menu Components
@@ -788,7 +784,7 @@ const Navbar = () => {
               </h3>
             </div>
             <ul className="">
-              {["Help centre", "Community", "Contact us"].map((item) => (
+              {["Help centre", "Contact us"].map((item) => (
                 <li key={item}>
                   <NavLink
                     to={itemRoutes[item]}
@@ -804,16 +800,16 @@ const Navbar = () => {
                     {item === "Help centre" && (
                       <HelpCircle className="w-4 h-4 opacity-70 group-hover:opacity-100" />
                     )}
-                    {item === "Community" && (
+                    {/* {item === "Community" && (
                       <Users className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-                    )}
+                    )} */}
                     {item === "Contact us" && (
                       <MessageCircle className="w-4 h-4 opacity-70 group-hover:opacity-100" />
                     )}
                     <span className="group-hover:translate-x-1 transition-transform duration-300">
                       {item}
                     </span>
-                    {item === "Community" && <AnimatedExternalLink />}
+                    {/* {item === "Community" && <AnimatedExternalLink />} */}
                   </NavLink>
                 </li>
               ))}
@@ -885,8 +881,8 @@ const Navbar = () => {
                 "Who we are",
                 "Why choose us",
                 "Secure & responsible trading",
-                "Careers",
-                "Newsroom",
+                // "Careers",
+                // "Newsroom",
               ].map((item) => {
                 const IconComponent = menuIcons[item as keyof typeof menuIcons];
                 return (
@@ -1088,7 +1084,7 @@ const Navbar = () => {
           {
             title: "Get support",
             icon: HelpCircle,
-            items: ["Help centre", "Community", "Contact us"],
+            items: ["Help centre", "Contact us"],
           },
         ],
       },
@@ -1102,8 +1098,8 @@ const Navbar = () => {
               "Why choose us",
               "Regulatory information",
               "Secure & responsible trading",
-              "Careers",
-              "Newsroom",
+              // "Careers",
+              // "Newsroom",
             ],
           },
         ],
@@ -1244,7 +1240,7 @@ const Navbar = () => {
             {[
               { key: "trading", icon: TrendingUp, label: "Trading" },
               { key: "platforms", icon: Monitor, label: "Platforms" },
-              { key: "learning", icon: BookOpen, label: "Learning & support" },
+              { key: "learning", icon: BookOpen, label: "Support" },
               { key: "about", icon: Info, label: "About" },
             ].map(({ key, icon: IconComponent, label }) => (
               <li
@@ -1385,7 +1381,7 @@ const Navbar = () => {
                 {
                   key: "learning",
                   icon: BookOpen,
-                  label: "Learning & support",
+                  label: "Support",
                 },
                 { key: "about", icon: Info, label: "About" },
                 { key: "language", icon: Globe, label: "EN" },

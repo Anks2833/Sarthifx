@@ -46,7 +46,7 @@ const Mt5SignalsPage = () => {
       number: 2,
       title: "Add a signal",
       description:
-        'Click "Create signal" and complete the form with your Deriv MT5 account credentials.',
+        'Click "Create signal" and complete the form with your Sarthifx MT5 account credentials.',
       image: "add-signal",
     },
     {
@@ -74,7 +74,7 @@ const Mt5SignalsPage = () => {
       id: "requirements",
       question: "What are the requirements to become a signals provider?",
       answer:
-        "You need a valid Deriv MT5 account with a proven trading history and consistent performance.",
+        "You need a valid Sarthifx MT5 account with a proven trading history and consistent performance.",
     },
     {
       id: "subscribers",
@@ -102,7 +102,7 @@ const Mt5SignalsPage = () => {
       {/* Hero Section */}
       <section className="py-16 sm:py-20 px-4 sm:px-8 max-w-6xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-          Deriv MT5 signals
+          Sarthifx MT5 signals
         </h1>
         <p
           className="text-lg sm:text-xl max-w-4xl mx-auto mb-12 leading-relaxed"
@@ -147,9 +147,9 @@ const Mt5SignalsPage = () => {
               className="text-lg leading-relaxed"
               style={{ color: "var(--text-secondary)" }}
             >
-              Automatically copy expert trades on your Deriv MT5 account for
+              Automatically copy expert trades on your Sarthifx MT5 account for
               free or for a fee. Once you've subscribed to a trading signal, the
-              provider's deals will be automatically replicated on your Deriv
+              provider's deals will be automatically replicated on your Sarthifx
               MT5 trading account each time they place a trade.
             </p>
           </div>
@@ -370,7 +370,7 @@ const Mt5SignalsPage = () => {
             <div className="space-y-2 text-blue-800">
               <div>
                 <strong>a.</strong>{" "}
-                <span className="font-semibold">Deriv-Demo</span> if your signal
+                <span className="font-semibold">Sarthifx-Demo</span> if your signal
                 is for demo accounts only
               </div>
               <div>
@@ -378,7 +378,7 @@ const Mt5SignalsPage = () => {
                 <span className="font-semibold">DerivSVG-Server</span> or{" "}
                 <span className="font-semibold">DerivSVG-Server-02</span> if
                 your signal is for real accounts only. (You can find the account
-                server name on your Deriv MT5 dashboard.)
+                server name on your Sarthifx MT5 dashboard.)
               </div>
             </div>
           </div>
@@ -388,7 +388,7 @@ const Mt5SignalsPage = () => {
               className="px-8 py-4 rounded-full text-white font-semibold hover:opacity-90 transition-opacity"
               style={{ background: "var(--text-accent-orange)" }}
             >
-              Go to Deriv MT5
+              Go to Sarthifx MT5
             </button>
           </div>
         </div>

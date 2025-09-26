@@ -377,7 +377,7 @@ const LoginPage = () => {
             Don't have an account yet?{" "}
           </span>
           <motion.a
-            href="#"
+            href="/register"
             className="font-semibold hover:underline"
             style={{ color: "var(--text-accent-orange)" }}
             whileHover={{ x: 3 }}

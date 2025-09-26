@@ -111,7 +111,7 @@ const SpreadAdvantageHoursPage = () => {
           style={{ color: "var(--text-secondary)" }}
         >
           Enjoy reduced spreads up to 50% across Forex, Commodities, Crypto, and
-          more during dedicated time windows on Deriv MT5.
+          more during dedicated time windows on Sarthifx MT5.
         </p>
 
         <button
@@ -250,7 +250,7 @@ const SpreadAdvantageHoursPage = () => {
             className="mt-8 space-y-2 text-sm"
             style={{ color: "var(--text-secondary)" }}
           >
-            <p>* Available on Deriv MT5 Standard accounts.</p>
+            <p>* Available on Sarthifx MT5 Standard accounts.</p>
             <p>** Spread discount may vary depending on the instrument.</p>
           </div>
         </div>

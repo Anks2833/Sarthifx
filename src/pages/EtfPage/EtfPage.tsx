@@ -150,19 +150,19 @@ const EtfPage = () => {
       id: "types",
       question: "What types of ETFs are available for CFD trading?",
       answer:
-        "Deriv offers CFDs on various ETF types including: Equity ETFs tracking major indices (S&P 500, NASDAQ), Sector ETFs focusing on specific industries (technology, healthcare), Thematic ETFs targeting trends (clean energy, robotics), Commodity ETFs (gold, silver), Bond ETFs, and Strategy ETFs (leveraged, inverse). This diverse selection allows traders to gain exposure to different markets and investment strategies through a single instrument.",
+        "Sarthifx offers CFDs on various ETF types including: Equity ETFs tracking major indices (S&P 500, NASDAQ), Sector ETFs focusing on specific industries (technology, healthcare), Thematic ETFs targeting trends (clean energy, robotics), Commodity ETFs (gold, silver), Bond ETFs, and Strategy ETFs (leveraged, inverse). This diverse selection allows traders to gain exposure to different markets and investment strategies through a single instrument.",
     },
     {
       id: "costs",
       question: "What are the costs associated with trading ETFs?",
       answer:
-        "When trading ETF CFDs on Deriv, costs include spreads (the difference between buy and sell prices), overnight fees for positions held beyond the trading day (except on swap-free accounts), and potential market data fees for advanced charting. Deriv offers competitive zero-spread accounts and transparent fee structures, with no hidden commissions. The actual costs vary by account type and specific ETF being traded.",
+        "When trading ETF CFDs on Sarthifx, costs include spreads (the difference between buy and sell prices), overnight fees for positions held beyond the trading day (except on swap-free accounts), and potential market data fees for advanced charting. Sarthifx offers competitive zero-spread accounts and transparent fee structures, with no hidden commissions. The actual costs vary by account type and specific ETF being traded.",
     },
     {
       id: "dividends",
       question: "Do ETF CFDs pay dividends?",
       answer:
-        "While physical ETFs typically distribute dividends from their underlying assets, ETF CFDs work differently. When trading ETF CFDs on Deriv, you may receive dividend adjustments if you hold a long position when the ETF goes ex-dividend. The amount is typically credited to your account. However, if you hold a short position, a dividend adjustment will be debited from your account.",
+        "While physical ETFs typically distribute dividends from their underlying assets, ETF CFDs work differently. When trading ETF CFDs on Sarthifx, you may receive dividend adjustments if you hold a long position when the ETF goes ex-dividend. The amount is typically credited to your account. However, if you hold a short position, a dividend adjustment will be debited from your account.",
     },
   ];
 
@@ -277,7 +277,7 @@ const EtfPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Why trade ETFs with Deriv
+            Why trade ETFs with Sarthifx
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -333,7 +333,7 @@ const EtfPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            ETF instruments available on Deriv
+            ETF instruments available on Sarthifx
           </h2>
 
           <div className="space-y-12">
@@ -365,7 +365,7 @@ const EtfPage = () => {
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            How to trade ETFs on Deriv
+            How to trade ETFs on Sarthifx
           </h2>
 
           <div className="bg-white/5 p-8 rounded-xl text-center max-w-3xl mx-auto">
@@ -400,19 +400,19 @@ const EtfPage = () => {
                   <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-xs font-bold">
                     MT5
                   </div>
-                  <span>Deriv MT5</span>
+                  <span>Sarthifx MT5</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded">
                   <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-xs font-bold">
                     cT
                   </div>
-                  <span>Deriv cTrader</span>
+                  <span>Sarthifx cTrader</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded">
                   <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center text-xs font-bold">
                     DX
                   </div>
-                  <span>Deriv X</span>
+                  <span>Sarthifx X</span>
                 </div>
               </div>
             </div>

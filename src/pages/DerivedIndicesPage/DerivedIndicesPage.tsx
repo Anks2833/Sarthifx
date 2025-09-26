@@ -224,8 +224,8 @@ const DerivedIndicesPage = () => {
   ];
 
   const platforms = {
-    cfds: ["MT5", "cTrader", "Deriv X"],
-    options: ["Deriv Trader", "Deriv Bot", "Deriv GO"],
+    cfds: ["MT5", "cTrader", "Sarthifx X"],
+    options: ["Sarthifx Trader", "Sarthifx Bot", "Sarthifx GO"],
   };
 
   const faqs = {
@@ -234,7 +234,7 @@ const DerivedIndicesPage = () => {
         id: "swap-free",
         question: "Can I trade Synthetic Indices on swap-free accounts?",
         answer:
-          "Yes, selected Synthetic Indices are available on the Deriv MT5 swap-free account.",
+          "Yes, selected Synthetic Indices are available on the Sarthifx MT5 swap-free account.",
       },
       {
         id: "technical-indicators",
@@ -300,7 +300,7 @@ const DerivedIndicesPage = () => {
         id: "platforms-tactical",
         question: "On which platforms are Tactical Indices offered?",
         answer:
-          "Tactical Indices are available on Deriv MT5, Deriv cTrader, and Deriv X platforms.",
+          "Tactical Indices are available on Sarthifx MT5, Sarthifx cTrader, and Sarthifx X platforms.",
       },
     ],
     derivedFX: [
@@ -772,9 +772,9 @@ const DerivedIndicesPage = () => {
                         className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold text-white"
                         style={{ background: "var(--text-accent-orange)" }}
                       >
-                        {platform === "Deriv Trader"
+                        {platform === "Sarthifx Trader"
                           ? "DT"
-                          : platform === "Deriv Bot"
+                          : platform === "Sarthifx Bot"
                           ? "DB"
                           : "GO"}
                       </div>

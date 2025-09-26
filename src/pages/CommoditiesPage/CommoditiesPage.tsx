@@ -112,7 +112,7 @@ const CommoditiesPage = () => {
       id: "types",
       question: "What types of commodities are available for trading?",
       answer:
-        "Deriv offers multiple types of commodities for trading: Precious Metals (gold, silver), Base Metals (copper), Energy commodities (crude oil variants like Brent and WTI), and Soft Commodities (agricultural products such as coffee, cotton, and sugar). Each category provides unique trading opportunities based on different market drivers.",
+        "Sarthifx offers multiple types of commodities for trading: Precious Metals (gold, silver), Base Metals (copper), Energy commodities (crude oil variants like Brent and WTI), and Soft Commodities (agricultural products such as coffee, cotton, and sugar). Each category provides unique trading opportunities based on different market drivers.",
     },
     {
       id: "spot-vs-cfd",
@@ -126,7 +126,7 @@ const CommoditiesPage = () => {
       question:
         "Are there any storage or physical delivery requirements for trading certain commodities?",
       answer:
-        "When trading commodity CFDs or options on Deriv, there are no physical delivery or storage requirements. You're simply speculating on price movements rather than taking ownership of the actual commodities. This eliminates concerns about storage costs, insurance, and physical delivery logistics that are associated with trading physical commodities.",
+        "When trading commodity CFDs or options on Sarthifx, there are no physical delivery or storage requirements. You're simply speculating on price movements rather than taking ownership of the actual commodities. This eliminates concerns about storage costs, insurance, and physical delivery logistics that are associated with trading physical commodities.",
     },
     {
       id: "factors",
@@ -244,7 +244,7 @@ const CommoditiesPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Why trade Commodities with Deriv
+            Why trade Commodities with Sarthifx
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -292,7 +292,7 @@ const CommoditiesPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Commodities instruments available on Deriv
+            Commodities instruments available on Sarthifx
           </h2>
 
           <div className="space-y-12">
@@ -324,7 +324,7 @@ const CommoditiesPage = () => {
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            How to trade Commodities on Deriv
+            How to trade Commodities on Sarthifx
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -360,19 +360,19 @@ const CommoditiesPage = () => {
                     <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-xs font-bold">
                       MT5
                     </div>
-                    <span>Deriv MT5</span>
+                    <span>Sarthifx MT5</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded">
                     <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-xs font-bold">
                       cT
                     </div>
-                    <span>Deriv cTrader</span>
+                    <span>Sarthifx cTrader</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded">
                     <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center text-xs font-bold">
                       DX
                     </div>
-                    <span>Deriv X</span>
+                    <span>Sarthifx X</span>
                   </div>
                 </div>
               </div>
@@ -410,13 +410,13 @@ const CommoditiesPage = () => {
                     <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-xs font-bold">
                       DT
                     </div>
-                    <span>Deriv Trader</span>
+                    <span>Sarthifx Trader</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded">
                     <div className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center text-xs font-bold">
                       DB
                     </div>
-                    <span>Deriv Bot</span>
+                    <span>Sarthifx Bot</span>
                   </div>
                 </div>
               </div>

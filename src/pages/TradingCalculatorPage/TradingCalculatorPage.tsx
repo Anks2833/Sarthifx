@@ -122,7 +122,7 @@ const TradingCalculatorPage = () => {
       id: "what-is",
       question: "What is a trading calculator?",
       answer:
-        "Deriv's CFDs trading calculator is a trading tool that can help traders calculate relevant data like margin required, pip value of your trades, and swap charges required to keep positions open overnight. These values can help you make more informed decisions about your trades.",
+        "Sarthifx's CFDs trading calculator is a trading tool that can help traders calculate relevant data like margin required, pip value of your trades, and swap charges required to keep positions open overnight. These values can help you make more informed decisions about your trades.",
     },
     {
       id: "accuracy",
@@ -169,7 +169,7 @@ const TradingCalculatorPage = () => {
           style={{ color: "var(--text-secondary)" }}
         >
           Use our margin, pip value, and swap calculator to estimate these
-          values for all your CFD trades on Deriv MT5 and Deriv cTrader.
+          values for all your CFD trades on Sarthifx MT5 and Sarthifx cTrader.
         </p>
       </section>
 

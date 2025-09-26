@@ -77,44 +77,6 @@ const HeroSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Logo element at the top */}
-          <motion.div
-            className="mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="flex items-center justify-center lg:justify-start">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold">
-                <span
-                  className="bg-clip-text text-transparent bg-gradient-to-r"
-                  style={{
-                    background: `linear-gradient(to right, var(--text-accent-blue), var(--text-accent-blue))`,
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  Sarthi
-                </span>
-                <span
-                  className="bg-clip-text text-transparent bg-gradient-to-r"
-                  style={{
-                    background: `linear-gradient(to right, var(--text-accent-orange), var(--border-primary))`,
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  FX
-                </span>
-              </div>
-            </div>
-            <div
-              className="text-xs mt-1 tracking-wider"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              GLOBAL TRADING SOLUTIONS
-            </div>
-          </motion.div>
 
           <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight mb-4 sm:mb-6">
             <motion.div

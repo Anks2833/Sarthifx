@@ -1197,9 +1197,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 md:px-10 ${
-        isScrolled ? "py-3" : "py-4 md:py-6"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 md:px-10`}
     >
       <div className="container mx-auto flex items-center justify-between">
         {/* Enhanced Logo */}
@@ -1217,7 +1215,6 @@ const Navbar = () => {
                 alt="Sarthifx-logo"
                 className="w-24 h-18 md:w-32 md:h-24 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
               />
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </NavLink>
         </div>
@@ -1226,7 +1223,7 @@ const Navbar = () => {
         <nav
           className={`hidden lg:block ${
             isScrolled ? "shadow-2xl" : "backdrop-blur-xl"
-          } rounded-2xl px-8 py-4 transition-all duration-500 border`}
+          } rounded-2xl px-8 py-0 transition-all duration-500 border`}
           style={{
             background: isScrolled
               ? `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.98) 100%)`

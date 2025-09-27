@@ -55,7 +55,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/trade/cfds"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   CFDs
@@ -63,7 +63,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/trade/options"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Options
@@ -75,7 +75,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/markets/forex"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Forex
@@ -83,7 +83,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/markets/derived-indices"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Derived Indices
@@ -91,7 +91,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/markets/stocks"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Stocks
@@ -99,7 +99,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/markets/stocks-indices"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Stock Indices
@@ -107,7 +107,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/markets/commodities"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Commodities
@@ -115,7 +115,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/markets/crypto"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Cryptocurrencies
@@ -123,7 +123,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/markets/etf"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   ETFs
@@ -138,7 +138,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/trading-platforms/sarthi-mt5"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Sarthifx MT5
@@ -146,23 +146,15 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/trading-platforms/sarthi-copy"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
-                  Sarthifx Nakala
+                  Sarthifx Copy
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  Sarthifx cTrader
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                  href="/trading-platforms/sarthi-x"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Sarthifx X
@@ -170,7 +162,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/trading-platforms/sarthi-trader"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Sarthifx Trader
@@ -178,62 +170,18 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/trading-platforms/sarthi-app"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
-                  Sarthifx
+                  Sarthifx App
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/trading-platforms/sarthi-bot"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Sarthifx Bot
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>SmartTrader</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  Sarthifx P2P
-                </a>
-              </li>
-            </ul>
-
-            <h3 className="text-lg font-bold mt-8 mb-4">Developer tools</h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Sarthifx API</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
                 </a>
               </li>
             </ul>
@@ -245,7 +193,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/payment-methods"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Payment methods
@@ -257,23 +205,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Sarthifx Academy</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                  href="/blog"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Sarthifx Blog
@@ -281,7 +213,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/glossary"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Glossary
@@ -293,42 +225,10 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/help-centre"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Help centre
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Community</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Status page</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
                 </a>
               </li>
             </ul>
@@ -340,7 +240,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/who-we-are"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Who we are
@@ -348,137 +248,10 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/why-choose-us"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Why choose us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  Our principles
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  Contact us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Careers</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Sarthifx Tech</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Sarthifx Life</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  Newsroom
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Partner with us / Legal Column */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-bold mb-4">Partner with us</h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Sarthifx Partners</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>Sarthifx Prime</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  <span>API Partnerships</span>
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
                 </a>
               </li>
             </ul>
@@ -503,28 +276,19 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/secure-trading"
                   className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
                 >
                   Secure & responsible trading
                 </a>
               </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-[var(--text-accent-orange)] transition-colors"
-                >
-                  Fraud prevention
-                </a>
-              </li>
             </ul>
           </div>
 
-          {/* Sarthifx GO Column */}
+          {/* Sarthifx App Column */}
           <div className="lg:col-span-2">
             <div className="bg-gray-800 p-6 rounded-lg flex items-start">
               <div className="mr-4">
-
                 <div className="flex flex-col space-y-4">
                   <div className="flex items-center mb-10">
                     <div className="bg-white p-2 rounded mr-4">

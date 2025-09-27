@@ -14,10 +14,10 @@ const SarthiNakalaPage = () => {
   const faqs = [
     {
       id: "start-trading",
-      question: "How do I start trading on Sarthifx Nakala?",
+      question: "How do I start trading on Sarthifx Copy?",
       answer: "You'll need to:",
       steps: [
-        "Download the Sarthifx Nakala app from the Google Play Store or iOS App Store.",
+        "Download the Sarthifx Copy app from the Google Play Store or iOS App Store.",
         "Sign up with your Sarthifx account email.",
         "Link your Sarthifx MT5 Standard account with Nakala.",
       ],
@@ -29,7 +29,7 @@ const SarthiNakalaPage = () => {
     {
       id: "difference",
       question:
-        "What's the difference between copy trading on Sarthifx Nakala and Sarthifx cTrader?",
+        "What's the difference between copy trading on Sarthifx Copy and Sarthifx cTrader?",
     },
   ];
 
@@ -54,7 +54,7 @@ const SarthiNakalaPage = () => {
               >
                 DN
               </div>
-              <span className="text-2xl font-bold">sarthifx Nakala</span>
+              <span className="text-2xl font-bold">Sarthifx Copy</span>
             </div>
 
             <h1 className="text-5xl font-bold mb-6">
@@ -121,14 +121,14 @@ const SarthiNakalaPage = () => {
         </div>
       </section>
 
-      {/* Why Trade with Sarthifx Nakala */}
+      {/* Why Trade with Sarthifx Copy */}
       <section
         className="py-20 px-8"
         style={{ background: "var(--bg-secondary)" }}
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
-            Why trade with Sarthifx Nakala
+            Why trade with Sarthifx Copy
           </h2>
 
           <div className="grid lg:grid-cols-3 gap-12 items-center">
@@ -410,7 +410,7 @@ const SarthiNakalaPage = () => {
       <section className="py-20 px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
-            Sarthifx Nakala FAQs
+            Sarthifx Copy FAQs
           </h2>
 
           <div className="space-y-6">

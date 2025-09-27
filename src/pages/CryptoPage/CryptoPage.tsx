@@ -488,7 +488,7 @@ const CryptoPage = () => {
                     <div className="w-8 h-8 bg-pink-500 rounded flex items-center justify-center text-xs font-bold">
                       GO
                     </div>
-                    <span>Sarthifx GO</span>
+                    <span>Sarthifx App</span>
                   </div>
                 </div>
               </div>

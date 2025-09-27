@@ -91,11 +91,11 @@ const Navbar = () => {
     // Platforms
     "Sarthifx MT5": "/trading-platforms/sarthi-mt5",
     "Sarthifx X": "/trading-platforms/sarthi-x",
-    "Sarthifx Nakala": "/trading-platforms/sarthi-nakala",
-    "Sarthifx cTrader": "/trading-platforms/sarthi-ctrader",
+    "Sarthifx Copy": "/trading-platforms/sarthi-nakala",
+    // "Sarthifx cTrader": "/trading-platforms/sarthi-ctrader",
     "Sarthifx Trader": "/trading-platforms/sarthi-trader",
     "Sarthifx Bot": "/trading-platforms/sarthi-bot",
-    "Sarthifx Go": "/trading-platforms/sarthi-go",
+    "Sarthifx App": "/trading-platforms/sarthi-go",
 
     // Learning & support
     "Sarthifx Academy": "#",
@@ -197,11 +197,11 @@ const Navbar = () => {
     // Platforms
     "Sarthifx MT5": Monitor,
     "Sarthifx X": Zap,
-    "Sarthifx Nakala": Users,
-    "Sarthifx cTrader": BarChart3,
+    "Sarthifx Copy": Users,
+    // "Sarthifx cTrader": BarChart3,
     "Sarthifx Trader": User,
     "Sarthifx Bot": Bot,
-    "Sarthifx Go": Smartphone,
+    "Sarthifx App": Smartphone,
 
     // Learning
     "Sarthifx Academy": BookOpen,
@@ -584,7 +584,7 @@ const Navbar = () => {
                 </h3>
               </div>
               <ul className="">
-                {["Sarthifx Nakala", "Sarthifx cTrader"].map((item) => {
+                {["Sarthifx Copy"].map((item) => {
                   const IconComponent =
                     menuIcons[item as keyof typeof menuIcons];
                   return (
@@ -634,7 +634,7 @@ const Navbar = () => {
                 </h3>
               </div>
               <ul className="">
-                {["Sarthifx Trader", "Sarthifx Bot", "Sarthifx Go"].map(
+                {["Sarthifx Trader", "Sarthifx Bot", "Sarthifx App"].map(
                   (item) => {
                     const IconComponent =
                       menuIcons[item as keyof typeof menuIcons];
@@ -1065,12 +1065,12 @@ const Navbar = () => {
           {
             title: "Copy trading",
             icon: Users,
-            items: ["Sarthifx Nakala", "Sarthifx cTrader"],
+            items: ["Sarthifx Copy"],
           },
           {
             title: "Options trading",
             icon: Zap,
-            items: ["Sarthifx Trader", "Sarthifx Bot", "Sarthifx Go"],
+            items: ["Sarthifx Trader", "Sarthifx Bot", "Sarthifx App"],
           },
         ],
       },

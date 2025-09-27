@@ -225,7 +225,7 @@ const DerivedIndicesPage = () => {
 
   const platforms = {
     cfds: ["MT5", "cTrader", "Sarthifx X"],
-    options: ["Sarthifx Trader", "Sarthifx Bot", "Sarthifx GO"],
+    options: ["Sarthifx Trader", "Sarthifx Bot", "Sarthifx App"],
   };
 
   const faqs = {

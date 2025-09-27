@@ -78,11 +78,11 @@ const HelpCenterPage = () => {
 
   const platformCategories = [
     {
-      title: "Sarthifx Nakala",
+      title: "Sarthifx Copy",
       questions: [
         "How do I choose the correct Sarthifx MT5 server on Nakala?",
         "Can I link my Sarthifx MT5 demo account?",
-        "What is a strategy provider on Sarthifx Nakala?",
+        "What is a strategy provider on Sarthifx Copy?",
       ],
     },
     {
@@ -126,10 +126,10 @@ const HelpCenterPage = () => {
       ],
     },
     {
-      title: "Sarthifx GO",
+      title: "Sarthifx App",
       questions: [
-        "What trade types are available on Sarthifx GO?",
-        "How can I place a trade on Sarthifx GO?",
+        "What trade types are available on Sarthifx App?",
+        "How can I place a trade on Sarthifx App?",
         "Where can I get a view of my overall open and close positions?",
       ],
     },

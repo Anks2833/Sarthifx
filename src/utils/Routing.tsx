@@ -56,11 +56,7 @@ const Routing: React.FC = () => {
       <Route path="/trading-platforms/sarthi-mt5" element={<SarthiMt5Page />} />
       <Route path="/trading-platforms/sarthi-x" element={<SarthiX />} />
       <Route
-        path="/trading-platforms/sarthi-nakala"
-        element={<SarthiNakala />}
-      />
-      <Route
-        path="/trading-platforms/sarthi-nakala"
+        path="/trading-platforms/sarthi-copy"
         element={<SarthiNakala />}
       />
       <Route
@@ -72,7 +68,7 @@ const Routing: React.FC = () => {
         element={<SarthiTraderPage />}
       />
       <Route path="/trading-platforms/sarthi-bot" element={<SarthiBotPage />} />
-      <Route path="/trading-platforms/sarthi-go" element={<SarthiGo />} />
+      <Route path="/trading-platforms/sarthi-app" element={<SarthiGo />} />
 
       <Route path="/trade/cfds" element={<CfdsPage />} />
       <Route path="/trade/options" element={<OptionsPage />} />

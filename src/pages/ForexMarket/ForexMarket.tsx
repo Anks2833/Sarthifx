@@ -636,7 +636,7 @@ const ForexMarket = () => {
                 <div className="w-12 h-12 rounded bg-orange-600 flex items-center justify-center mb-2">
                   <span className="font-bold text-sm">GO</span>
                 </div>
-                <span className="text-sm">Sarthifx GO</span>
+                <span className="text-sm">Sarthifx App</span>
               </div>
             </div>
           </div>

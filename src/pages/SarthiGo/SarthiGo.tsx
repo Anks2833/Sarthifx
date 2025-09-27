@@ -110,7 +110,7 @@ const SarthiGo = () => {
               >
                 GO
               </div>
-              <span className="text-lg font-semibold">Sarthifx GO</span>
+              <span className="text-lg font-semibold">Sarthifx App</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -327,7 +327,7 @@ const SarthiGo = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              Why trade with Sarthifx GO
+              Why trade with Sarthifx App
             </h2>
           </div>
 
@@ -473,7 +473,7 @@ const SarthiGo = () => {
                   className="text-sm mt-2"
                   style={{ color: "var(--text-secondary)" }}
                 >
-                  *The availability of Sarthifx GO depends on your country of
+                  *The availability of Sarthifx App depends on your country of
                   residence.
                 </p>
               </div>
@@ -875,7 +875,7 @@ const SarthiGo = () => {
                   className="text-lg max-w-2xl mx-auto leading-relaxed"
                   style={{ color: "var(--text-secondary)" }}
                 >
-                  Download Sarthifx GO and take your trading anywhere. Available
+                  Download Sarthifx App and take your trading anywhere. Available
                   on Android, iOS, and Huawei devices.
                 </p>
               </div>

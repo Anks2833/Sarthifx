@@ -27,7 +27,7 @@ const HeroSection = () => {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative pt-0 md:pt-44 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
       style={{
         background: `linear-gradient(135deg, var(--bg-primary), var(--bg-accent))`,
       }}

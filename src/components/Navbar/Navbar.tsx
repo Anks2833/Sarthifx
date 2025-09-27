@@ -7,7 +7,6 @@ import {
   Info,
   Globe,
   ChevronDown,
-  // ExternalLink,
   ArrowRight,
   Menu,
   X,
@@ -23,7 +22,6 @@ import {
   Shield,
   Award,
   Briefcase,
-  // Newspaper,
   MessageCircle,
   HelpCircle,
   User,
@@ -31,7 +29,6 @@ import {
   PieChart,
   Coins,
   Building,
-  Wallet,
   Settings,
   BookOpenText,
   Star,
@@ -51,15 +48,45 @@ interface ChevronDownProps {
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState<boolean>(true);
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [activeMobileDropdown, setActiveMobileDropdown] =
     useState<DropdownType>(null);
   const timeoutRef = useRef<number | null>(null);
+  const lastScrollY = useRef<number>(0);
+  const scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+
+      // Update scrolled state
+      setIsScrolled(currentScrollY > 50);
+
+      // Calculate scroll direction and distance
+      const scrollDifference = currentScrollY - lastScrollY.current;
+
+      // Only trigger if scroll difference is significant enough
+      if (Math.abs(scrollDifference) > scrollThreshold) {
+        if (scrollDifference > 0 && currentScrollY > 100) {
+          // Scrolling down and past initial threshold - hide navbar
+          setIsNavbarVisible(false);
+          // Close dropdowns when hiding
+          setActiveDropdown(null);
+          setIsMobileMenuOpen(false);
+        } else if (scrollDifference < 0) {
+          // Scrolling up - show navbar
+          setIsNavbarVisible(true);
+        }
+
+        lastScrollY.current = currentScrollY;
+      }
+
+      // Always show navbar at top of page
+      if (currentScrollY <= 50) {
+        setIsNavbarVisible(true);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -92,7 +119,6 @@ const Navbar = () => {
     "Sarthifx MT5": "/trading-platforms/sarthi-mt5",
     "Sarthifx X": "/trading-platforms/sarthi-x",
     "Sarthifx Copy": "/trading-platforms/sarthi-nakala",
-    // "Sarthifx cTrader": "/trading-platforms/sarthi-ctrader",
     "Sarthifx Trader": "/trading-platforms/sarthi-trader",
     "Sarthifx Bot": "/trading-platforms/sarthi-bot",
     "Sarthifx App": "/trading-platforms/sarthi-go",
@@ -102,7 +128,6 @@ const Navbar = () => {
     "Sarthifx Blog": "/blog",
     Glossary: "/glossary",
     "Help centre": "/help-centre",
-    // Community: "/contact-us",
     "Contact us": "/contact-us",
 
     // About
@@ -110,8 +135,6 @@ const Navbar = () => {
     "Why choose us": "/why-choose-us",
     "Regulatory information": "#",
     "Secure & responsible trading": "/secure-trading",
-    // Careers: "/careers",
-    // Newsroom: "/newsroom",
 
     // Languages
     English: "#",
@@ -198,7 +221,6 @@ const Navbar = () => {
     "Sarthifx MT5": Monitor,
     "Sarthifx X": Zap,
     "Sarthifx Copy": Users,
-    // "Sarthifx cTrader": BarChart3,
     "Sarthifx Trader": User,
     "Sarthifx Bot": Bot,
     "Sarthifx App": Smartphone,
@@ -208,7 +230,6 @@ const Navbar = () => {
     "Sarthifx Blog": BookOpenText,
     Glossary: BookOpen,
     "Help centre": HelpCircle,
-    // Community: Users,
     "Contact us": MessageCircle,
 
     // About
@@ -216,14 +237,12 @@ const Navbar = () => {
     "Why choose us": Star,
     "Regulatory information": Shield,
     "Secure & responsible trading": Shield,
-    // Careers: Briefcase,
-    // Newsroom: Newspaper,
   };
 
-  // Enhanced Menu Components
+  // Compact Trading Menu
   const TradingMenu = () => (
     <div
-      className={`absolute top-full left-0 w-full px-4 md:px-10 py-6 z-40 transition-all duration-500 ease-out ${
+      className={`absolute top-full left-0 w-full px-6 py-4 z-40 transition-all duration-500 ease-out ${
         activeDropdown === "trading"
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-4 pointer-events-none"
@@ -232,7 +251,7 @@ const Navbar = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className="rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl border"
+        className="max-w-6xl mx-auto rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl border"
         style={{
           background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
           borderColor: "var(--border-primary)",
@@ -240,666 +259,41 @@ const Navbar = () => {
             "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-6">
-          <div className="space-y-6">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: "var(--text-accent-blue)" }}
-                >
-                  <BarChart3 className="w-4 h-4 text-white" />
-                </div>
-                <h3
-                  className="font-semibold text-lg"
-                  style={{ color: "var(--text-accent-blue)" }}
-                >
-                  Trade
-                </h3>
-              </div>
-              <ul className="">
-                {["CFDs", "Options"].map((item) => {
-                  const IconComponent =
-                    menuIcons[item as keyof typeof menuIcons];
-                  return (
-                    <li key={item}>
-                      <NavLink
-                        to={itemRoutes[item]}
-                        className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                        style={{
-                          color: "var(--text-primary)",
-                          background: "transparent",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = "var(--bg-accent)";
-                          e.currentTarget.style.borderColor =
-                            "var(--border-secondary)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = "transparent";
-                        }}
-                      >
-                        {IconComponent && (
-                          <IconComponent className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                        )}
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {item}
-                        </span>
-                      </NavLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: "var(--text-accent-orange)" }}
-                >
-                  <TrendingUp className="w-4 h-4 text-white" />
-                </div>
-                <h3
-                  className="font-semibold text-lg"
-                  style={{ color: "var(--text-accent-orange)" }}
-                >
-                  Markets
-                </h3>
-              </div>
-              <ul className="">
-                {[
-                  "Forex",
-                  "Derived Indices",
-                  "Stocks",
-                  "Stock Indices",
-                  "Commodities",
-                  "Cryptocurrencies",
-                  "ETFs",
-                ].map((item) => {
-                  const IconComponent =
-                    menuIcons[item as keyof typeof menuIcons];
-                  return (
-                    <li key={item}>
-                      <NavLink
-                        to={itemRoutes[item]}
-                        className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                        style={{
-                          color: "var(--text-primary)",
-                          background: "transparent",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = "var(--bg-accent)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = "transparent";
-                        }}
-                      >
-                        {IconComponent && (
-                          <IconComponent className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                        )}
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {item}
-                        </span>
-                      </NavLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: "var(--border-primary)" }}
-                >
-                  <Wallet className="w-4 h-4 text-black" />
-                </div>
-                <h3
-                  className="font-semibold text-lg"
-                  style={{ color: "var(--border-primary)" }}
-                >
-                  Deposits & withdrawals
-                </h3>
-              </div>
-              <ul className="">
-                {["Payment methods"].map((item) => {
-                  const IconComponent =
-                    menuIcons[item as keyof typeof menuIcons];
-                  return (
-                    <li key={item}>
-                      <NavLink
-                        to={itemRoutes[item]}
-                        className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                        style={{
-                          color: "var(--text-primary)",
-                          background: "transparent",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = "var(--bg-accent)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = "transparent";
-                        }}
-                      >
-                        {IconComponent && (
-                          <IconComponent className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                        )}
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {item}
-                        </span>
-                      </NavLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: "var(--text-accent-blue)" }}
-                >
-                  <Settings className="w-4 h-4 text-white" />
-                </div>
-                <h3
-                  className="font-semibold text-lg"
-                  style={{ color: "var(--text-accent-blue)" }}
-                >
-                  Tools
-                </h3>
-              </div>
-              <ul className="">
-                {[
-                  "TradingView",
-                  "MT5 Signals",
-                  "Trading Calculator",
-                  "Trading Central",
-                  "Economic Calendar",
-                ].map((item) => {
-                  const IconComponent =
-                    menuIcons[item as keyof typeof menuIcons];
-                  return (
-                    <li key={item}>
-                      <NavLink
-                        to={itemRoutes[item]}
-                        className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                        style={{
-                          color: "var(--text-primary)",
-                          background: "transparent",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = "var(--bg-accent)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = "transparent";
-                        }}
-                      >
-                        {IconComponent && (
-                          <IconComponent className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                        )}
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {item}
-                        </span>
-                      </NavLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-
-          <div
-            className="rounded-2xl p-8 border relative overflow-hidden group hover:scale-105 transition-all duration-500"
-            style={{
-              background: `linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-primary) 100%)`,
-              borderColor: "var(--border-secondary)",
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center"
-                  style={{ background: "var(--text-accent-orange)" }}
-                >
-                  <Award className="w-6 h-6 text-white" />
-                </div>
-                <h3
-                  className="text-xl font-bold"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Sarthifx trading competitions
-                </h3>
-              </div>
-              <p
-                className="mb-6 text-base leading-relaxed"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Compete risk-free with virtual funds and stand a chance to win
-                real cash prizes.
-              </p>
-              <NavLink
-                to="#"
-                className="inline-flex items-center gap-3 group/link font-medium"
-                style={{ color: "var(--text-accent-blue)" }}
-              >
-                <span>Learn more</span>
-                <AnimatedArrowRight />
-              </NavLink>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Similar enhanced treatment for other menus (abbreviated for space)
-  const PlatformsMenu = () => (
-    <div
-      className={`absolute top-full left-0 w-full px-4 md:px-10 py-6 z-40 transition-all duration-500 ease-out ${
-        activeDropdown === "platforms"
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4 pointer-events-none"
-      }`}
-      onMouseEnter={() => handleMouseEnter("platforms")}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div
-        className="rounded-3xl shadow-2xl overflow-hidden border"
-        style={{
-          background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
-          borderColor: "var(--border-primary)",
-          boxShadow:
-            "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
-        }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-6">
-          <div className="space-y-6">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: "var(--text-accent-blue)" }}
-                >
-                  <Monitor className="w-4 h-4 text-white" />
-                </div>
-                <h3
-                  className="font-semibold text-lg"
-                  style={{ color: "var(--text-accent-blue)" }}
-                >
-                  CFDs trading
-                </h3>
-              </div>
-              <ul className="">
-                {["Sarthifx MT5", "Sarthifx X"].map((item) => {
-                  const IconComponent =
-                    menuIcons[item as keyof typeof menuIcons];
-                  return (
-                    <li key={item}>
-                      <NavLink
-                        to={itemRoutes[item]}
-                        className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                        style={{
-                          color: "var(--text-primary)",
-                          background: "transparent",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = "var(--bg-accent)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = "transparent";
-                        }}
-                      >
-                        {IconComponent && (
-                          <IconComponent className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                        )}
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {item}
-                        </span>
-                      </NavLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: "var(--text-accent-orange)" }}
-                >
-                  <Users className="w-4 h-4 text-white" />
-                </div>
-                <h3
-                  className="font-semibold text-lg"
-                  style={{ color: "var(--text-accent-orange)" }}
-                >
-                  Copy trading
-                </h3>
-              </div>
-              <ul className="">
-                {["Sarthifx Copy"].map((item) => {
-                  const IconComponent =
-                    menuIcons[item as keyof typeof menuIcons];
-                  return (
-                    <li key={item}>
-                      <NavLink
-                        to={itemRoutes[item]}
-                        className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                        style={{
-                          color: "var(--text-primary)",
-                          background: "transparent",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = "var(--bg-accent)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = "transparent";
-                        }}
-                      >
-                        {IconComponent && (
-                          <IconComponent className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                        )}
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {item}
-                        </span>
-                      </NavLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+          {/* Trade Section */}
           <div>
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: "var(--border-primary)" }}
-                >
-                  <Zap className="w-4 h-4 text-black" />
-                </div>
-                <h3
-                  className="font-semibold text-lg"
-                  style={{ color: "var(--border-primary)" }}
-                >
-                  Options trading
-                </h3>
-              </div>
-              <ul className="">
-                {["Sarthifx Trader", "Sarthifx Bot", "Sarthifx App"].map(
-                  (item) => {
-                    const IconComponent =
-                      menuIcons[item as keyof typeof menuIcons];
-                    return (
-                      <li key={item}>
-                        <NavLink
-                          to={itemRoutes[item]}
-                          className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                          style={{
-                            color: "var(--text-primary)",
-                            background: "transparent",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background =
-                              "var(--bg-accent)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = "transparent";
-                          }}
-                        >
-                          {IconComponent && (
-                            <IconComponent className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                          )}
-                          <span className="group-hover:translate-x-1 transition-transform duration-300">
-                            {item}
-                          </span>
-                        </NavLink>
-                      </li>
-                    );
-                  }
-                )}
-              </ul>
-            </div>
-          </div>
-
-          <div
-            className="rounded-2xl p-8 border relative overflow-hidden group hover:scale-105 transition-all duration-500"
-            style={{
-              background: `linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-primary) 100%)`,
-              borderColor: "var(--border-secondary)",
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center"
-                  style={{ background: "var(--text-accent-blue)" }}
-                >
-                  <User className="w-6 h-6 text-white" />
-                </div>
-                <h3
-                  className="text-xl font-bold"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Sarthifx Trader
-                </h3>
-              </div>
-              <p
-                className="mb-6 text-base leading-relaxed"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                Trade options on financial markets and 24/7 Derived Indices.
-              </p>
-              <NavLink
-                to="#"
-                className="inline-flex items-center gap-3 group/link font-medium"
-                style={{ color: "var(--text-accent-blue)" }}
-              >
-                <span>Learn more</span>
-                <AnimatedArrowRight />
-              </NavLink>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Simplified versions of other menus for space (similar enhancement pattern)
-  const LearningMenu = () => (
-    <div
-      className={`absolute top-full left-0 w-full px-4 md:px-10 py-6 z-40 transition-all duration-500 ease-out ${
-        activeDropdown === "learning"
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4 pointer-events-none"
-      }`}
-      onMouseEnter={() => handleMouseEnter("learning")}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div
-        className="rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl border"
-        style={{
-          background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
-          borderColor: "var(--border-primary)",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-        }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-6">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <BookOpen
-                className="w-5 h-5"
-                style={{ color: "var(--text-accent-blue)" }}
-              />
-              <h3
-                className="font-semibold text-lg"
-                style={{ color: "var(--text-accent-blue)" }}
-              >
-                Learn
-              </h3>
-            </div>
-            <ul className="">
-              {["Sarthifx Blog", "Glossary"].map((item) => (
-                <li key={item}>
-                  <NavLink
-                    to={itemRoutes[item]}
-                    className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                    style={{ color: "var(--text-primary)" }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.background = "var(--bg-accent)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.background = "transparent")
-                    }
-                  >
-                    <BookOpenText className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
-                      {item}
-                    </span>
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <HelpCircle
-                className="w-5 h-5"
-                style={{ color: "var(--text-accent-orange)" }}
-              />
-              <h3
-                className="font-semibold text-lg"
-                style={{ color: "var(--text-accent-orange)" }}
-              >
-                Get support
-              </h3>
-            </div>
-            <ul className="">
-              {["Help centre", "Contact us"].map((item) => (
-                <li key={item}>
-                  <NavLink
-                    to={itemRoutes[item]}
-                    className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                    style={{ color: "var(--text-primary)" }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.background = "var(--bg-accent)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.background = "transparent")
-                    }
-                  >
-                    {item === "Help centre" && (
-                      <HelpCircle className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-                    )}
-                    {/* {item === "Community" && (
-                      <Users className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-                    )} */}
-                    {item === "Contact us" && (
-                      <MessageCircle className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-                    )}
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
-                      {item}
-                    </span>
-                    {/* {item === "Community" && <AnimatedExternalLink />} */}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div
-            className="rounded-2xl p-8 border relative overflow-hidden group hover:scale-105 transition-all duration-500"
-            style={{
-              background: `linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-primary) 100%)`,
-              borderColor: "var(--border-secondary)",
-            }}
-          >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-2 mb-3">
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ background: "var(--text-accent-orange)" }}
+                className="w-6 h-6 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--text-accent-blue)" }}
               >
-                <BookOpen className="w-6 h-6 text-white" />
+                <BarChart3 className="w-3 h-3 text-white" />
               </div>
               <h3
-                className="text-xl font-bold"
-                style={{ color: "var(--text-primary)" }}
+                className="font-semibold text-sm"
+                style={{ color: "var(--text-accent-blue)" }}
               >
-                Sarthifx Academy
+                Trade
               </h3>
             </div>
-            <p
-              className="mb-6 text-base leading-relaxed"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              Expert guides on how to become a trader
-            </p>
-            <NavLink
-              to="#"
-              className="inline-flex items-center gap-3 group/link font-medium"
-              style={{ color: "var(--text-accent-blue)" }}
-            >
-              <span>Learn more</span>
-              <AnimatedArrowRight />
-            </NavLink>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const AboutMenu = () => (
-    <div
-      className={`absolute top-full left-0 w-full px-4 md:px-10 py-6 z-40 transition-all duration-500 ease-out ${
-        activeDropdown === "about"
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4 pointer-events-none"
-      }`}
-      onMouseEnter={() => handleMouseEnter("about")}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div
-        className="rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl border"
-        style={{
-          background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
-          borderColor: "var(--border-primary)",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-        }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-6">
-          <div className="lg:col-span-1">
-            <ul className="">
-              {[
-                "Who we are",
-                "Why choose us",
-                "Secure & responsible trading",
-                // "Careers",
-                // "Newsroom",
-              ].map((item) => {
+            <ul className="space-y-1">
+              {["CFDs", "Options"].map((item) => {
                 const IconComponent = menuIcons[item as keyof typeof menuIcons];
                 return (
                   <li key={item}>
                     <NavLink
                       to={itemRoutes[item]}
-                      className="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
+                      className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
                       style={{ color: "var(--text-primary)" }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.background = "var(--bg-accent)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.background = "transparent")
-                      }
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "var(--bg-accent)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "transparent";
+                      }}
                     >
                       {IconComponent && (
-                        <IconComponent className="w-4 h-4 opacity-70 group-hover:opacity-100" />
+                        <IconComponent className="w-3 h-3 opacity-70 group-hover:opacity-100" />
                       )}
                       <span className="group-hover:translate-x-1 transition-transform duration-300">
                         {item}
@@ -910,37 +304,137 @@ const Navbar = () => {
               })}
             </ul>
           </div>
+
+          {/* Markets Section */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div
+                className="w-6 h-6 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--text-accent-orange)" }}
+              >
+                <TrendingUp className="w-3 h-3 text-white" />
+              </div>
+              <h3
+                className="font-semibold text-sm"
+                style={{ color: "var(--text-accent-orange)" }}
+              >
+                Markets
+              </h3>
+            </div>
+            <ul className="space-y-1">
+              {[
+                "Forex",
+                "Derived Indices",
+                "Stocks",
+                "Commodities",
+                "Cryptocurrencies",
+              ].map((item) => {
+                const IconComponent = menuIcons[item as keyof typeof menuIcons];
+                return (
+                  <li key={item}>
+                    <NavLink
+                      to={itemRoutes[item]}
+                      className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
+                      style={{ color: "var(--text-primary)" }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "var(--bg-accent)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "transparent";
+                      }}
+                    >
+                      {IconComponent && (
+                        <IconComponent className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                      )}
+                      <span className="group-hover:translate-x-1 transition-transform duration-300">
+                        {item}
+                      </span>
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Tools Section */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div
+                className="w-6 h-6 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--text-accent-blue)" }}
+              >
+                <Settings className="w-3 h-3 text-white" />
+              </div>
+              <h3
+                className="font-semibold text-sm"
+                style={{ color: "var(--text-accent-blue)" }}
+              >
+                Tools
+              </h3>
+            </div>
+            <ul className="space-y-1">
+              {["TradingView", "Trading Calculator", "Economic Calendar"].map(
+                (item) => {
+                  const IconComponent =
+                    menuIcons[item as keyof typeof menuIcons];
+                  return (
+                    <li key={item}>
+                      <NavLink
+                        to={itemRoutes[item]}
+                        className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
+                        style={{ color: "var(--text-primary)" }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = "var(--bg-accent)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = "transparent";
+                        }}
+                      >
+                        {IconComponent && (
+                          <IconComponent className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                        )}
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">
+                          {item}
+                        </span>
+                      </NavLink>
+                    </li>
+                  );
+                }
+              )}
+            </ul>
+          </div>
+
+          {/* Feature Card */}
           <div
-            className="lg:col-span-2 rounded-2xl p-8 border relative overflow-hidden group hover:scale-105 transition-all duration-500"
+            className="rounded-xl p-4 border relative overflow-hidden group"
             style={{
               background: `linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-primary) 100%)`,
               borderColor: "var(--border-secondary)",
             }}
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ background: "var(--border-primary)" }}
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--text-accent-orange)" }}
               >
-                <Star className="w-6 h-6 text-black" />
+                <Award className="w-4 h-4 text-white" />
               </div>
               <h3
-                className="text-xl font-bold"
+                className="text-sm font-bold"
                 style={{ color: "var(--text-primary)" }}
               >
-                Why choose us
+                Trading competitions
               </h3>
             </div>
             <p
-              className="mb-6 text-base leading-relaxed"
+              className="mb-3 text-xs leading-relaxed"
               style={{ color: "var(--text-secondary)" }}
             >
-              For over 25 years, Sarthifx has been a trusted partner of traders
-              worldwide.
+              Compete risk-free with virtual funds.
             </p>
             <NavLink
-              to="/why-choose-us"
-              className="inline-flex items-center gap-3 group/link font-medium"
+              to="#"
+              className="inline-flex items-center gap-2 group/link font-medium text-xs"
               style={{ color: "var(--text-accent-blue)" }}
             >
               <span>Learn more</span>
@@ -952,9 +446,328 @@ const Navbar = () => {
     </div>
   );
 
+  // Compact Platforms Menu
+  const PlatformsMenu = () => (
+    <div
+      className={`absolute top-full left-0 w-full px-6 py-4 z-40 transition-all duration-500 ease-out ${
+        activeDropdown === "platforms"
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-4 pointer-events-none"
+      }`}
+      onMouseEnter={() => handleMouseEnter("platforms")}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        className="max-w-4xl mx-auto rounded-2xl shadow-2xl overflow-hidden border"
+        style={{
+          background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
+          borderColor: "var(--border-primary)",
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+          {/* CFDs Trading */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div
+                className="w-6 h-6 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--text-accent-blue)" }}
+              >
+                <Monitor className="w-3 h-3 text-white" />
+              </div>
+              <h3
+                className="font-semibold text-sm"
+                style={{ color: "var(--text-accent-blue)" }}
+              >
+                CFDs trading
+              </h3>
+            </div>
+            <ul className="space-y-1">
+              {["Sarthifx MT5", "Sarthifx X"].map((item) => {
+                const IconComponent = menuIcons[item as keyof typeof menuIcons];
+                return (
+                  <li key={item}>
+                    <NavLink
+                      to={itemRoutes[item]}
+                      className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
+                      style={{ color: "var(--text-primary)" }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "var(--bg-accent)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "transparent";
+                      }}
+                    >
+                      {IconComponent && (
+                        <IconComponent className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                      )}
+                      <span className="group-hover:translate-x-1 transition-transform duration-300">
+                        {item}
+                      </span>
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Copy Trading */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div
+                className="w-6 h-6 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--text-accent-orange)" }}
+              >
+                <Users className="w-3 h-3 text-white" />
+              </div>
+              <h3
+                className="font-semibold text-sm"
+                style={{ color: "var(--text-accent-orange)" }}
+              >
+                Copy trading
+              </h3>
+            </div>
+            <ul className="space-y-1">
+              {["Sarthifx Copy"].map((item) => {
+                const IconComponent = menuIcons[item as keyof typeof menuIcons];
+                return (
+                  <li key={item}>
+                    <NavLink
+                      to={itemRoutes[item]}
+                      className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
+                      style={{ color: "var(--text-primary)" }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "var(--bg-accent)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "transparent";
+                      }}
+                    >
+                      {IconComponent && (
+                        <IconComponent className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                      )}
+                      <span className="group-hover:translate-x-1 transition-transform duration-300">
+                        {item}
+                      </span>
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Options Trading */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div
+                className="w-6 h-6 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--border-primary)" }}
+              >
+                <Zap className="w-3 h-3 text-black" />
+              </div>
+              <h3
+                className="font-semibold text-sm"
+                style={{ color: "var(--border-primary)" }}
+              >
+                Options trading
+              </h3>
+            </div>
+            <ul className="space-y-1">
+              {["Sarthifx Trader", "Sarthifx Bot", "Sarthifx App"].map(
+                (item) => {
+                  const IconComponent =
+                    menuIcons[item as keyof typeof menuIcons];
+                  return (
+                    <li key={item}>
+                      <NavLink
+                        to={itemRoutes[item]}
+                        className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
+                        style={{ color: "var(--text-primary)" }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = "var(--bg-accent)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = "transparent";
+                        }}
+                      >
+                        {IconComponent && (
+                          <IconComponent className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                        )}
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">
+                          {item}
+                        </span>
+                      </NavLink>
+                    </li>
+                  );
+                }
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Compact Learning Menu
+  const LearningMenu = () => (
+    <div
+      className={`absolute top-full left-0 w-full px-6 py-4 z-40 transition-all duration-500 ease-out ${
+        activeDropdown === "learning"
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-4 pointer-events-none"
+      }`}
+      onMouseEnter={() => handleMouseEnter("learning")}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        className="max-w-3xl mx-auto rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl border"
+        style={{
+          background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
+          borderColor: "var(--border-primary)",
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <BookOpen
+                className="w-4 h-4"
+                style={{ color: "var(--text-accent-blue)" }}
+              />
+              <h3
+                className="font-semibold text-sm"
+                style={{ color: "var(--text-accent-blue)" }}
+              >
+                Learn
+              </h3>
+            </div>
+            <ul className="space-y-1">
+              {["Sarthifx Blog", "Glossary"].map((item) => (
+                <li key={item}>
+                  <NavLink
+                    to={itemRoutes[item]}
+                    className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
+                    style={{ color: "var(--text-primary)" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.background = "var(--bg-accent)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.background = "transparent")
+                    }
+                  >
+                    <BookOpenText className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      {item}
+                    </span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <HelpCircle
+                className="w-4 h-4"
+                style={{ color: "var(--text-accent-orange)" }}
+              />
+              <h3
+                className="font-semibold text-sm"
+                style={{ color: "var(--text-accent-orange)" }}
+              >
+                Get support
+              </h3>
+            </div>
+            <ul className="space-y-1">
+              {["Help centre", "Contact us"].map((item) => (
+                <li key={item}>
+                  <NavLink
+                    to={itemRoutes[item]}
+                    className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
+                    style={{ color: "var(--text-primary)" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.background = "var(--bg-accent)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.background = "transparent")
+                    }
+                  >
+                    {item === "Help centre" && (
+                      <HelpCircle className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                    )}
+                    {item === "Contact us" && (
+                      <MessageCircle className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                    )}
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      {item}
+                    </span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const AboutMenu = () => (
+    <div
+      className={`absolute top-full left-0 w-full px-6 py-4 z-40 transition-all duration-500 ease-out ${
+        activeDropdown === "about"
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-4 pointer-events-none"
+      }`}
+      onMouseEnter={() => handleMouseEnter("about")}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        className="max-w-2xl mx-auto rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl border"
+        style={{
+          background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
+          borderColor: "var(--border-primary)",
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        <div className="p-6">
+          <ul className="space-y-1">
+            {[
+              "Who we are",
+              "Why choose us",
+              "Secure & responsible trading",
+            ].map((item) => {
+              const IconComponent = menuIcons[item as keyof typeof menuIcons];
+              return (
+                <li key={item}>
+                  <NavLink
+                    to={itemRoutes[item]}
+                    className="flex items-center gap-2 p-2 rounded-lg transition-all duration-300 group text-sm"
+                    style={{ color: "var(--text-primary)" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.background = "var(--bg-accent)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.background = "transparent")
+                    }
+                  >
+                    {IconComponent && (
+                      <IconComponent className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                    )}
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      {item}
+                    </span>
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+
   const LanguageMenu = () => (
     <div
-      className={`absolute top-full left-0 w-full px-4 md:px-10 py-6 z-40 transition-all duration-500 ease-out ${
+      className={`absolute top-full left-0 w-full px-6 py-4 z-40 transition-all duration-500 ease-out ${
         activeDropdown === "language"
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-4 pointer-events-none"
@@ -963,14 +776,14 @@ const Navbar = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className="rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl border max-w-4xl mx-auto"
+        className="max-w-3xl mx-auto rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl border"
         style={{
           background: `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.95) 100%)`,
           borderColor: "var(--border-primary)",
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
         }}
       >
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-8">
+        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 p-6">
           {[
             "English",
             "Português",
@@ -984,21 +797,14 @@ const Navbar = () => {
             "Kiswahili",
             "한국어",
             "Polski",
-            "العربية",
-            "Pусский",
-            "हिन्दी",
-            "简体中文",
-            "Italiano",
-            "O'zbek",
           ].map((lang) => (
             <NavLink
               key={lang}
               to="#"
-              className="p-3 rounded-xl transition-all duration-300 hover:scale-105 text-center group"
+              className="p-2 rounded-lg transition-all duration-300 text-center group text-sm"
               style={{ color: "var(--text-primary)" }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "var(--bg-accent)";
-                e.currentTarget.style.borderColor = "var(--border-secondary)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "transparent";
@@ -1014,7 +820,7 @@ const Navbar = () => {
     </div>
   );
 
-  // Enhanced Mobile Dropdown Component
+  // Mobile Dropdown Content (unchanged functionality, keeping compact)
   const MobileDropdownContent = ({ type }: { type: DropdownType }) => {
     const dropdownData = {
       trading: {
@@ -1027,31 +833,12 @@ const Navbar = () => {
           {
             title: "Markets",
             icon: TrendingUp,
-            items: [
-              "Forex",
-              "Derived Indices",
-              "Stocks",
-              "Stock Indices",
-              "Commodities",
-              "Cryptocurrencies",
-              "ETFs",
-            ],
-          },
-          {
-            title: "Deposits & withdrawals",
-            icon: Wallet,
-            items: ["Payment methods"],
+            items: ["Forex", "Derived Indices", "Stocks", "Commodities"],
           },
           {
             title: "Tools",
             icon: Settings,
-            items: [
-              "TradingView",
-              "MT5 Signals",
-              "Trading Calculator",
-              "Trading Central",
-              "Economic Calendar",
-            ],
+            items: ["TradingView", "Trading Calculator"],
           },
         ],
       },
@@ -1063,11 +850,6 @@ const Navbar = () => {
             items: ["Sarthifx MT5", "Sarthifx X"],
           },
           {
-            title: "Copy trading",
-            icon: Users,
-            items: ["Sarthifx Copy"],
-          },
-          {
             title: "Options trading",
             icon: Zap,
             items: ["Sarthifx Trader", "Sarthifx Bot", "Sarthifx App"],
@@ -1077,14 +859,9 @@ const Navbar = () => {
       learning: {
         sections: [
           {
-            title: "Learn",
+            title: "Learn & Support",
             icon: BookOpen,
-            items: ["Sarthifx Academy", "Sarthifx Blog", "Glossary"],
-          },
-          {
-            title: "Get support",
-            icon: HelpCircle,
-            items: ["Help centre", "Contact us"],
+            items: ["Sarthifx Blog", "Help centre", "Contact us"],
           },
         ],
       },
@@ -1096,10 +873,7 @@ const Navbar = () => {
             items: [
               "Who we are",
               "Why choose us",
-              "Regulatory information",
               "Secure & responsible trading",
-              // "Careers",
-              // "Newsroom",
             ],
           },
         ],
@@ -1112,22 +886,10 @@ const Navbar = () => {
             items: [
               "English",
               "Português",
-              "Tiếng Việt",
-              "Türkçe",
-              "繁體中文",
               "Deutsch",
               "Français",
               "Español",
-              "বাংলা",
-              "Kiswahili",
               "한국어",
-              "Polski",
-              "العربية",
-              "Pусский",
-              "हिन्दी",
-              "简体中文",
-              "Italiano",
-              "O'zbek",
             ],
           },
         ],
@@ -1137,57 +899,36 @@ const Navbar = () => {
     if (!type || !dropdownData[type]) return null;
 
     return (
-      <div className="px-4 pb-6 space-y-6">
+      <div className="px-4 pb-4 space-y-4">
         {dropdownData[type].sections.map((section, sectionIndex) => (
           <div key={sectionIndex}>
             <div
-              className="flex items-center gap-3 mb-4 pb-2 border-b"
+              className="flex items-center gap-2 mb-2 pb-1 border-b"
               style={{ borderColor: "var(--border-primary)" }}
             >
-              <div
-                className="w-6 h-6 rounded-lg flex items-center justify-center"
-                style={{
-                  background:
-                    sectionIndex % 2 === 0
-                      ? "var(--text-accent-blue)"
-                      : "var(--text-accent-orange)",
-                }}
-              >
-                <section.icon className="w-3 h-3 text-white" />
-              </div>
+              <section.icon
+                className="w-4 h-4"
+                style={{ color: "var(--text-accent-blue)" }}
+              />
               <h4
-                className="font-semibold text-sm"
+                className="font-semibold text-xs"
                 style={{ color: "var(--text-primary)" }}
               >
                 {section.title}
               </h4>
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              {section.items.map((item, itemIndex) => {
-                const IconComponent = menuIcons[item as keyof typeof menuIcons];
-                return (
-                  <NavLink
-                    key={itemIndex}
-                    to={itemRoutes[item] || "#"}
-                    className="flex items-center gap-2 py-3 px-3 rounded-lg transition-all duration-300 hover:scale-105 group"
-                    style={{ color: "var(--text-primary)" }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    onTouchStart={(e) =>
-                      (e.currentTarget.style.background = "var(--bg-accent)")
-                    }
-                    onTouchEnd={(e) =>
-                      (e.currentTarget.style.background = "transparent")
-                    }
-                  >
-                    {IconComponent && (
-                      <IconComponent className="w-3 h-3 opacity-60 group-hover:opacity-100 flex-shrink-0" />
-                    )}
-                    <span className="text-sm group-hover:translate-x-1 transition-transform duration-300">
-                      {item}
-                    </span>
-                  </NavLink>
-                );
-              })}
+            <div className="grid grid-cols-2 gap-1">
+              {section.items.map((item, itemIndex) => (
+                <NavLink
+                  key={itemIndex}
+                  to={itemRoutes[item] || "#"}
+                  className="flex items-center gap-1 py-2 px-2 rounded-lg transition-all duration-300 group"
+                  style={{ color: "var(--text-primary)" }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span className="text-xs">{item}</span>
+                </NavLink>
+              ))}
             </div>
           </div>
         ))}
@@ -1197,23 +938,19 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 md:px-10`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
+        isNavbarVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
-      <div className="container mx-auto flex items-center justify-between">
-        {/* Enhanced Logo */}
-        <div
-          className={`flex items-center space-x-3 transition-all duration-700 ${
-            isScrolled && !isMobileMenuOpen
-              ? "opacity-0 -translate-y-12 scale-90"
-              : "opacity-100 translate-y-0 scale-100"
-          }`}
-        >
+      <div className="w-full flex items-center justify-between px-4 lg:px-8 py-3">
+        {/* Enhanced Logo - Always Visible */}
+        <div className="flex items-center space-x-3">
           <NavLink to="/" className="flex items-center space-x-3 group">
-            <div className="relative w-32 h-24">
+            <div className="relative">
               <img
                 src="/sarthi_logo.png"
                 alt="Sarthifx-logo"
-                className="w-24 h-18 md:w-32 md:h-24 rounded-xl transition-all duration-300"
+                className="w-20 h-16 md:w-32 md:h-24 rounded-lg transition-all duration-300 group-hover:scale-105"
               />
             </div>
           </NavLink>
@@ -1223,7 +960,7 @@ const Navbar = () => {
         <nav
           className={`hidden lg:block ${
             isScrolled ? "shadow-2xl" : "backdrop-blur-xl"
-          } rounded-2xl px-8 py-0 transition-all duration-500 border`}
+          } rounded-2xl px-6 py-2 transition-all duration-500 border`}
           style={{
             background: isScrolled
               ? `linear-gradient(135deg, var(--bg-secondary) 0%, rgba(30, 31, 46, 0.98) 100%)`
@@ -1233,7 +970,7 @@ const Navbar = () => {
           }}
           onMouseLeave={handleMouseLeave}
         >
-          <ul className="flex items-center space-x-8">
+          <ul className="flex items-center space-x-6">
             {[
               { key: "trading", icon: TrendingUp, label: "Trading" },
               { key: "platforms", icon: Monitor, label: "Platforms" },
@@ -1252,7 +989,7 @@ const Navbar = () => {
                 >
                   <IconComponent className="w-4 h-4 transition-all duration-300 group-hover:scale-110" />
                   <span
-                    className={`font-medium transition-all duration-300 ${
+                    className={`font-medium transition-all duration-300 text-sm ${
                       activeDropdown === key
                         ? "scale-105"
                         : "group-hover:scale-105"
@@ -1282,7 +1019,7 @@ const Navbar = () => {
               >
                 <AnimatedGlobe />
                 <span
-                  className={`font-medium transition-all duration-300 ${
+                  className={`font-medium transition-all duration-300 text-sm ${
                     activeDropdown === "language"
                       ? "scale-105"
                       : "group-hover:scale-105"
@@ -1302,16 +1039,10 @@ const Navbar = () => {
         </nav>
 
         {/* Enhanced Desktop CTAs */}
-        <div
-          className={`hidden lg:flex items-center space-x-4 transition-all duration-700 ${
-            isScrolled
-              ? "opacity-0 -translate-y-12 scale-90"
-              : "opacity-100 translate-y-0 scale-100"
-          }`}
-        >
+        <div className="hidden lg:flex items-center space-x-3">
           <NavLink
             to="/login"
-            className="px-6 py-3 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg border backdrop-blur-sm group"
+            className="px-4 py-2 rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg border backdrop-blur-sm group text-sm"
             style={{
               borderColor: "var(--border-primary)",
               color: "var(--text-primary)",
@@ -1325,7 +1056,7 @@ const Navbar = () => {
           </NavLink>
           <NavLink
             to="/register"
-            className="px-6 py-3 rounded-2xl font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-xl relative overflow-hidden group"
+            className="px-4 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-xl relative overflow-hidden group text-sm"
             style={{
               background: `linear-gradient(135deg, var(--text-accent-orange) 0%, #ff6b35 100%)`,
               color: "var(--text-primary)",
@@ -1341,7 +1072,7 @@ const Navbar = () => {
 
         {/* Enhanced Mobile menu button */}
         <button
-          className="lg:hidden z-50 relative p-3 rounded-xl transition-all duration-300 hover:scale-110 hover:bg-white/10"
+          className="lg:hidden z-50 relative p-2 rounded-xl transition-all duration-300 hover:scale-110 hover:bg-white/10"
           style={{ color: "var(--text-primary)" }}
           onClick={toggleMobileMenu}
         >
@@ -1369,29 +1100,25 @@ const Navbar = () => {
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
         }}
       >
-        <div className="max-h-[80vh] overflow-y-auto">
-          <nav className="py-6">
-            <ul className="space-y-2">
+        <div className="max-h-[70vh] overflow-y-auto">
+          <nav className="py-4">
+            <ul className="space-y-1">
               {[
                 { key: "trading", icon: TrendingUp, label: "Trading" },
                 { key: "platforms", icon: Monitor, label: "Platforms" },
-                {
-                  key: "learning",
-                  icon: BookOpen,
-                  label: "Support",
-                },
+                { key: "learning", icon: BookOpen, label: "Support" },
                 { key: "about", icon: Info, label: "About" },
-                { key: "language", icon: Globe, label: "EN" },
+                { key: "language", icon: Globe, label: "Language" },
               ].map(({ key, icon: IconComponent, label }) => (
                 <li key={key}>
                   <button
-                    className="w-full flex items-center justify-between px-6 py-4 transition-all duration-300 hover:bg-white/5 group"
+                    className="w-full flex items-center justify-between px-4 py-3 transition-all duration-300 hover:bg-white/5 group"
                     style={{ color: "var(--text-primary)" }}
                     onClick={() => toggleMobileDropdown(key as DropdownType)}
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform"
+                        className="w-6 h-6 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform"
                         style={{
                           background:
                             activeMobileDropdown === key
@@ -1400,18 +1127,18 @@ const Navbar = () => {
                         }}
                       >
                         <IconComponent
-                          className={`w-4 h-4 ${
+                          className={`w-3 h-3 ${
                             activeMobileDropdown === key ? "text-white" : ""
                           }`}
                         />
                       </div>
-                      <span className="font-medium text-lg">{label}</span>
+                      <span className="font-medium text-sm">{label}</span>
                     </div>
                     <AnimatedChevron isActive={activeMobileDropdown === key} />
                   </button>
                   {activeMobileDropdown === key && (
                     <div
-                      className="border-l-2 ml-10 mt-2"
+                      className="border-l-2 ml-8 mt-1"
                       style={{ borderColor: "var(--text-accent-orange)" }}
                     >
                       <MobileDropdownContent type={key as DropdownType} />
@@ -1423,33 +1150,32 @@ const Navbar = () => {
 
             {/* Enhanced Mobile CTAs */}
             <div
-              className="px-6 py-6 border-t mt-6"
+              className="px-4 py-4 border-t mt-4"
               style={{ borderColor: "var(--border-primary)" }}
             >
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <NavLink
                   to="/login"
-                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-2xl font-medium transition-all duration-300 hover:scale-105 border backdrop-blur-sm"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 border backdrop-blur-sm text-sm"
                   style={{
                     borderColor: "var(--border-primary)",
                     color: "var(--text-primary)",
                     background: "rgba(255, 255, 255, 0.05)",
                   }}
                 >
-                  <User className="w-5 h-5" />
-                  <span className="text-lg">Log in</span>
+                  <User className="w-4 h-4" />
+                  <span>Log in</span>
                 </NavLink>
                 <NavLink
                   to="/register"
-                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-2xl font-medium transition-all duration-300 transform hover:scale-105 relative overflow-hidden group"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 relative overflow-hidden group text-sm"
                   style={{
                     background: `linear-gradient(135deg, var(--text-accent-orange) 0%, #ff6b35 100%)`,
                     color: "var(--text-primary)",
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <Zap className="w-5 h-5 relative z-10" />
-                  <span className="text-lg relative z-10">Open account</span>
+                  <Zap className="w-4 h-4 relative z-10" />
+                  <span className="relative z-10">Open account</span>
                 </NavLink>
               </div>
             </div>
@@ -1457,7 +1183,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Enhanced Desktop Dropdown menus */}
+      {/* Desktop Dropdown menus */}
       <TradingMenu />
       <PlatformsMenu />
       <LearningMenu />
